@@ -7,6 +7,7 @@ import * as THREE from "three";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Menu, X, Code2, Brain, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import BentoSection from "@/components/BentoSection";
 
 // Utility function for class names
 function cn(...classes: (string | undefined | null | false)[]) {
@@ -296,6 +297,9 @@ export function TensorTonicLanding() {
                     </motion.div>
                 </div>
             </section>
+
+            {/* Bento About Section */}
+            <BentoSection />
 
             {/* Features Section */}
             <section id="features" className="relative z-10 py-24 px-4">
