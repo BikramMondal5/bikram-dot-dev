@@ -1,9 +1,11 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { ArrowRightIcon } from "lucide-react";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
-/* ── BentoGrid ─────────────────────────────────────────────────── */
+/* -- BentoGrid -------------------------------------------------- */
 interface BentoGridProps extends ComponentPropsWithoutRef<"div"> {
     children: ReactNode;
 }
@@ -22,7 +24,7 @@ export function BentoGrid({ className, children, ...props }: BentoGridProps) {
     );
 }
 
-/* ── BentoCard ─────────────────────────────────────────────────── */
+/* -- BentoCard -------------------------------------------------- */
 interface BentoCardProps extends ComponentPropsWithoutRef<"div"> {
     name: string;
     description?: string;
@@ -58,18 +60,18 @@ export function BentoCard({
             {...(props as ComponentPropsWithoutRef<typeof motion.div>)}
         >
             {/* subtle top glow on hover */}
-            <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ background: "radial-gradient(circle at 50% 0%, #69E3000d 0%, transparent 65%)" }} />
+            <div
+                className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ background: "radial-gradient(circle at 50% 0%, #69E3000d 0%, transparent 65%)" }}
+            />
 
             {/* background layer */}
             <div className="absolute inset-0">{background}</div>
 
             {/* content pinned to bottom */}
-            <div className="absolute inset-0 flex flex-col justify-end p-6 z-10
-                translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+            <div className="absolute inset-0 flex flex-col justify-end p-6 z-10 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                 {Icon && (
-                    <div className="mb-2 w-9 h-9 rounded-lg bg-[#69E300]/10 border border-[#69E300]/20
-                        flex items-center justify-center">
+                    <div className="mb-2 w-9 h-9 rounded-lg bg-[#69E300]/10 border border-[#69E300]/20 flex items-center justify-center">
                         <Icon className="w-4 h-4 text-[#69E300]" />
                     </div>
                 )}
@@ -80,8 +82,7 @@ export function BentoCard({
                 {href && cta && (
                     <a
                         href={href}
-                        className="inline-flex items-center gap-1 text-xs font-medium text-[#69E300]
-                            opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        className="inline-flex items-center gap-1 text-xs font-medium text-[#69E300] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     >
                         {cta} <ArrowRightIcon className="w-3 h-3" />
                     </a>

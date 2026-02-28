@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useRef } from "react";
 import { motion, useAnimationFrame } from "framer-motion";
@@ -20,7 +20,7 @@ import { cn } from "@/lib/utils";
 import { BentoCard } from "@/components/ui/bento-grid";
 import { Marquee } from "@/components/ui/marquee";
 
-/* ══ TECH STACK DATA ══ */
+/* -- TECH STACK DATA -- */
 const techStack = [
     { label: "React", icon: <Code2 size={11} />, color: "#61DAFB" },
     { label: "TypeScript", icon: <Code2 size={11} />, color: "#3178C6" },
@@ -41,7 +41,7 @@ const techStack = [
     { label: "RxJS", icon: <Cpu size={11} />, color: "#B7178C" },
 ];
 
-/* ══ PROJECTS ══ */
+/* -- PROJECTS -- */
 const projects = [
     { title: "Custom Payments & Access Control", desc: "Built an in-house payment flow supporting subscriptions.", tags: ["Stripe", "Next.js", "Prisma"] },
     { title: "Unified Auth & Identity Layer", desc: "A shared authentication system powering Rune AI.", tags: ["NextAuth", "JWT", "Redis"] },
@@ -50,7 +50,7 @@ const projects = [
     { title: "Platform Monitoring & Growth Insights", desc: "Internal tracking and analytics to understand user behaviour.", tags: ["PostHog", "Grafana", "Docker"] },
 ];
 
-/* ══ CARD A — Avatar Circles ══ */
+/* -- CARD A — Avatar Circles -- */
 function AvatarCircles() {
     const avatars = [
         { seed: "dev1", delay: 0 },
@@ -94,7 +94,7 @@ function AvatarCircles() {
     );
 }
 
-/* ══ CARD B — Tech Scrolling Strips ══ */
+/* -- CARD B — Tech Scrolling Strips -- */
 function TechScrollBackground() {
     const row1 = techStack.slice(0, 9);
     const row2 = techStack.slice(9);
@@ -124,7 +124,7 @@ function TechScrollBackground() {
     );
 }
 
-/* ══ CARD C — Dot Globe ══ */
+/* -- CARD C — Dot Globe -- */
 function DotGlobe() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const angleRef = useRef(0);
@@ -190,7 +190,7 @@ function DotGlobe() {
     );
 }
 
-/* ══ CARD D — CTA pulsing rings ══ */
+/* -- CARD D — CTA pulsing rings -- */
 function CtaBackground() {
     return (
         <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
@@ -214,7 +214,7 @@ function CtaBackground() {
     );
 }
 
-/* ══ CARD E — Projects horizontal scroll ══ */
+/* -- CARD E — Projects horizontal scroll -- */
 function ProjectsBackground() {
     return (
         <Marquee
@@ -245,12 +245,12 @@ function ProjectsBackground() {
     );
 }
 
-/* ══════════════════════════════════════════════════════════
+/* ================================================================
    MAIN EXPORT — 5-Box Bento Grid
    Row 1:  [A — wide 2col]          [B — tall 2row]
    Row 2:  [C — tall 2row]  [D — square]  [B cont.]
    Row 3:  [C cont.]        [E — wide 2col        ]
-══════════════════════════════════════════════════════════ */
+================================================================ */
 export default function BentoSection() {
     return (
         <section className="relative z-10 py-20 px-4 bg-[#0a0a0a] overflow-hidden">
@@ -268,10 +268,10 @@ export default function BentoSection() {
                     className="flex items-center gap-3 mb-10"
                 >
                     <span className="w-8 h-px bg-[#69E300]" />
-                    <span className="text-[#69E300] text-sm font-mono uppercase tracking-widest">About & Work</span>
+                    <span className="text-[#69E300] text-sm font-mono uppercase tracking-widest">About &amp; Work</span>
                 </motion.div>
 
-                {/* 3-col × 3-row grid, each row = 260px */}
+                {/* 3-col x 3-row grid, each row = 260px */}
                 <div className="grid grid-cols-3 gap-4" style={{ gridTemplateRows: "260px 260px 260px" }}>
 
                     {/* A: Partnership — col 1-2 / row 1 */}
