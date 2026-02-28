@@ -14,12 +14,7 @@ function cn(...classes: (string | undefined | null | false)[]) {
 }
 
 /* -- 3D Wireframe Landscape -- */
-interface WireframeLandscapeProps {
-    mouseX: number;
-    mouseY: number;
-}
-
-function WireframeLandscape({ mouseX, mouseY }: WireframeLandscapeProps) {
+function WireframeLandscape() {
     const meshRef = useRef<THREE.Mesh>(null);
 
     const geometry = useMemo(() => {
@@ -62,17 +57,12 @@ function WireframeLandscape({ mouseX, mouseY }: WireframeLandscapeProps) {
 }
 
 /* -- 3D Scene -- */
-interface SceneProps {
-    mouseX: number;
-    mouseY: number;
-}
-
-function Scene({ mouseX, mouseY }: SceneProps) {
+function Scene() {
     return (
         <>
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} />
-            <WireframeLandscape mouseX={mouseX} mouseY={mouseY} />
+            <WireframeLandscape />
             <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
         </>
     );
@@ -80,27 +70,17 @@ function Scene({ mouseX, mouseY }: SceneProps) {
 
 /* -- Main Landing Page -- */
 export default function HeroSection() {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [scrollY, setScrollY] = useState(0);
 
     useEffect(() => {
-        const handleMouseMove = (event: MouseEvent) => {
-            setMousePosition({
-                x: (event.clientX / window.innerWidth) * 2 - 1,
-                y: -(event.clientY / window.innerHeight) * 2 + 1,
-            });
-        };
-
         const handleScroll = () => {
             setScrollY(window.scrollY);
         };
 
-        window.addEventListener("mousemove", handleMouseMove);
         window.addEventListener("scroll", handleScroll);
 
         return () => {
-            window.removeEventListener("mousemove", handleMouseMove);
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
@@ -204,7 +184,7 @@ export default function HeroSection() {
                 <div className="absolute inset-0 z-0">
                     <Canvas camera={{ position: [0, 3, 12], fov: 75 }}>
                         <Suspense fallback={null}>
-                            <Scene mouseX={mousePosition.x} mouseY={mousePosition.y} />
+                            <Scene />
                         </Suspense>
                     </Canvas>
                     <div className="absolute inset-0 bg-linear-to-b from-[#0a0f1e]/90 via-[#0a0f1e]/70 to-[#0a0f1e] pointer-events-none" />
