@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useAnimationFrame } from "framer-motion";
+import { motion } from "framer-motion";
 import {
     Mail,
     MapPin,
@@ -19,6 +19,9 @@ import {
 import { cn } from "@/lib/utils";
 import { BentoCard } from "@/components/ui/bento-grid";
 import { Marquee } from "@/components/ui/marquee";
+import { Globe } from "@/registry/magicui/globe";
+import Lanyard from "@/components/Lanyard";
+import { OrbitingCircles } from "@/registry/magicui/orbiting-circles";
 
 /* -- TECH STACK DATA -- */
 const techStack = [
@@ -124,92 +127,70 @@ function TechScrollBackground() {
     );
 }
 
-/* -- CARD C — Dot Globe -- */
-function DotGlobe() {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const angleRef = useRef(0);
-
-    useAnimationFrame(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-        const ctx = canvas.getContext("2d");
-        if (!ctx) return;
-
-        const W = canvas.width, H = canvas.height;
-        const cx = W / 2, cy = H / 2;
-        const R = Math.min(W, H) * 0.44;
-
-        ctx.clearRect(0, 0, W, H);
-        angleRef.current += 0.004;
-        const rot = angleRef.current;
-
-        const rows = 20;
-        for (let lat = -rows; lat <= rows; lat++) {
-            const phi = (lat / rows) * (Math.PI / 2);
-            const y = R * Math.sin(phi);
-            const r2 = Math.sqrt(R * R - y * y);
-            const cols = Math.max(1, Math.floor(rows * Math.cos(phi) * 1.7));
-            for (let col = 0; col < cols; col++) {
-                const theta = (col / cols) * Math.PI * 2 + rot;
-                const x = r2 * Math.cos(theta);
-                const z = r2 * Math.sin(theta);
-                const brightness = (z / R + 1) / 2;
-                const size = 1.2 + brightness * 1.8;
-                ctx.beginPath();
-                ctx.arc(cx + x, cy - y, size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(105,227,0,${0.12 + brightness * 0.55})`;
-                ctx.fill();
-            }
-        }
-
-        const phi = (20 * Math.PI) / 180;
-        const theta = (77 * Math.PI) / 180 + rot;
-        const hx = cx + R * Math.cos(phi) * Math.cos(theta);
-        const hy = cy - R * Math.sin(phi);
-        const hz = R * Math.cos(phi) * Math.sin(theta);
-        if (hz > 0) {
-            const pulse = 0.5 + 0.5 * Math.sin(Date.now() * 0.003);
-            ctx.beginPath();
-            ctx.arc(hx, hy, 5 + pulse * 5, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(105,227,0,${0.12 + pulse * 0.2})`;
-            ctx.fill();
-            ctx.beginPath();
-            ctx.arc(hx, hy, 3, 0, Math.PI * 2);
-            ctx.fillStyle = "#69E300";
-            ctx.fill();
-        }
-    });
-
-    return (
-        <canvas
-            ref={canvasRef}
-            width={340}
-            height={340}
-            className="absolute inset-0 w-full h-full object-contain opacity-90"
-        />
-    );
-}
-
-/* -- CARD D — CTA pulsing rings -- */
-function CtaBackground() {
+/* -- CARD D — Orbiting Tech Circles -- */
+function OrbitingBackground() {
     return (
         <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-            {[1, 2, 3].map((i) => (
-                <motion.div
-                    key={i}
-                    className="absolute rounded-full border border-[#69E300]/20"
-                    animate={{ scale: [0.6, 1.5], opacity: [0.6, 0] }}
-                    transition={{ repeat: Infinity, duration: 2.6, delay: i * 0.75, ease: "easeOut" }}
-                    style={{ width: 110 * i, height: 110 * i }}
+            {/* Centre: profile avatar */}
+            <div className="relative z-10 w-16 h-16 rounded-full overflow-hidden border-2 border-[#69E300]/50 shadow-[0_0_20px_#69E30033] bg-[#0d1a00]">
+                <img
+                    src="/avatar.jfif"
+                    alt="Bikram"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                        const t = e.currentTarget;
+                        t.style.display = 'none';
+                        t.parentElement!.innerHTML = '<div class="w-full h-full flex items-center justify-center text-3xl select-none">🧑‍💻</div>';
+                    }}
                 />
-            ))}
-            <motion.div
-                animate={{ scale: [1, 1.08, 1] }}
-                transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-                className="w-14 h-14 rounded-full bg-[#69E300]/10 border border-[#69E300]/30 flex items-center justify-center"
-            >
-                <Mail className="w-6 h-6 text-[#69E300]" />
-            </motion.div>
+            </div>
+
+            {/* Outer orbit */}
+            <OrbitingCircles iconSize={28} radius={95} duration={22} speed={1}>
+                {/* React */}
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full p-1">
+                    <circle cx="20" cy="20" r="3.8" fill="#61DAFB" />
+                    <ellipse cx="20" cy="20" rx="17" ry="6.5" stroke="#61DAFB" strokeWidth="1.5" fill="none" />
+                    <ellipse cx="20" cy="20" rx="17" ry="6.5" stroke="#61DAFB" strokeWidth="1.5" fill="none" transform="rotate(60 20 20)" />
+                    <ellipse cx="20" cy="20" rx="17" ry="6.5" stroke="#61DAFB" strokeWidth="1.5" fill="none" transform="rotate(120 20 20)" />
+                </svg>
+                {/* TypeScript */}
+                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" className="w-full h-full p-0.5">
+                    <rect width="40" height="40" rx="4" fill="#3178C6" />
+                    <path d="M8 22h6v-2H8v2zm0 4h4v-2H8v2zm12-4v8h2v-8h4v-2H16v2h4zm6-4H8v2h18v-2z" fill="white" />
+                    <path d="M22 18v2h2v8h2v-8h2v-2h-6z" fill="white" />
+                    <text x="6" y="32" fontSize="14" fontWeight="bold" fill="white" fontFamily="monospace">TS</text>
+                </svg>
+                {/* Next.js */}
+                <img src="/icons/next.svg" alt="Next.js" className="w-full h-full p-0.5 rounded" />
+                {/* Node.js */}
+                <img src="/icons/nodejs-icon.svg" alt="Node.js" className="w-full h-full p-0.5 rounded" />
+                {/* Tailwind */}
+                <img src="/icons/tailwind.svg" alt="Tailwind CSS" className="w-full h-full p-0.5 rounded" />
+            </OrbitingCircles>
+
+            {/* Inner orbit (reverse) */}
+            <OrbitingCircles iconSize={22} radius={52} duration={15} reverse speed={1.2}>
+                {/* PostgreSQL */}
+                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" className="w-full h-full p-0.5">
+                    <rect width="40" height="40" rx="4" fill="#1a1f4e" />
+                    <ellipse cx="20" cy="14" rx="10" ry="5" stroke="#336791" strokeWidth="1.5" fill="none" />
+                    <path d="M10 14v12c0 2.76 4.48 5 10 5s10-2.24 10-5V14" stroke="#336791" strokeWidth="1.5" fill="none" />
+                    <path d="M10 20c0 2.76 4.48 5 10 5s10-2.24 10-5" stroke="#336791" strokeWidth="1.5" fill="none" />
+                </svg>
+                {/* Prisma */}
+                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" className="w-full h-full p-1">
+                    <rect width="40" height="40" rx="4" fill="#0f172a" />
+                    <path d="M20 6L8 30h24L20 6z" stroke="#5A67D8" strokeWidth="1.5" fill="none" />
+                    <path d="M20 6L8 30l12-6z" fill="#5A67D8" opacity="0.5" />
+                </svg>
+                {/* Git */}
+                <img src="/icons/git.png" alt="Git" className="w-full h-full p-0.5 rounded" />
+            </OrbitingCircles>
+
+            {/* Subtle glow rings */}
+            <div className="pointer-events-none absolute rounded-full border border-[#69E300]/8" style={{ width: 214, height: 214 }} />
+            <div className="pointer-events-none absolute rounded-full border border-[#69E300]/5" style={{ width: 134, height: 134 }} />
         </div>
     );
 }
@@ -285,13 +266,13 @@ export default function BentoSection() {
                         background={<AvatarCircles />}
                     />
 
-                    {/* B: Tech Stack — col 3 / rows 1-2 */}
+                    {/* B: Lanyard — col 3 / rows 1-2 */}
                     <BentoCard
                         name="Focused on latest digital innovations"
                         description="Full-stack expertise across the modern JS ecosystem."
                         Icon={Zap}
                         className="col-start-3 row-span-2"
-                        background={<TechScrollBackground />}
+                        background={<Lanyard position={[0, 0, 15]} fov={25} />}
                     />
 
                     {/* C: Globe / Timezones — col 1 / rows 2-3 */}
@@ -300,7 +281,8 @@ export default function BentoSection() {
                         className="col-start-1 row-span-2"
                         background={
                             <>
-                                <DotGlobe />
+                                <Globe className="top-10 scale-110" />
+                                <div className="pointer-events-none absolute inset-0 h-full bg-[radial-gradient(circle_at_50%_200%,rgba(105,227,0,0.08),rgba(0,0,0,0))]" />
                                 <div className="absolute bottom-27 left-6 flex flex-wrap gap-2 z-20">
                                     {[
                                         { flag: "🇬🇧", code: "GB UK" },
@@ -323,15 +305,15 @@ export default function BentoSection() {
                         }
                     />
 
-                    {/* D: CTA Contact — col 2 / row 2 */}
+                    {/* D: Orbiting Tech — col 2 / row 2 */}
                     <BentoCard
                         name="Let's innovate together"
-                        description="Ready to bring your vision to life? Get in touch via email."
+                        description="Full-stack engineer orbiting the modern web ecosystem."
                         Icon={Mail}
                         href="mailto:hello@bikram.dev"
                         cta="hello@bikram.dev"
                         className="col-start-2 row-start-2"
-                        background={<CtaBackground />}
+                        background={<OrbitingBackground />}
                     />
 
                     {/* E: Projects — col 2-3 / row 3 */}

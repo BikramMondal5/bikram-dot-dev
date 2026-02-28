@@ -119,6 +119,30 @@
   }
 }
 
+@layer utilities {
+  .animate-orbit {
+    animation: orbit calc(var(--duration) * 1s) linear infinite;
+    animation-delay: calc(var(--delay) * 1s);
+    transform-origin: calc(var(--radius) * 1px + var(--icon-size) / 2) calc(var(--icon-size) / 2);
+    width: var(--icon-size);
+    height: var(--icon-size);
+    top: calc(50% - var(--icon-size) / 2);
+    left: calc(50% - var(--icon-size) / 2 - var(--radius) * 1px);
+  }
+}
+
+@keyframes orbit {
+  0% {
+    rotate: calc(var(--angle) * 1deg);
+    translate: 0;
+  }
+
+  100% {
+    rotate: calc(var(--angle) * 1deg + 360deg);
+    translate: 0;
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

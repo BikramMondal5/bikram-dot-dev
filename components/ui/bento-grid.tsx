@@ -69,7 +69,7 @@ export function BentoCard({
             <div className="absolute inset-0">{background}</div>
 
             {/* content pinned to bottom */}
-            <div className="absolute inset-0 flex flex-col justify-end p-6 z-10 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+            <div className="pointer-events-none absolute inset-0 flex flex-col justify-end p-6 z-10 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                 {Icon && (
                     <div className="mb-2 w-9 h-9 rounded-lg bg-[#69E300]/10 border border-[#69E300]/20 flex items-center justify-center">
                         <Icon className="w-4 h-4 text-[#69E300]" />
@@ -82,7 +82,7 @@ export function BentoCard({
                 {href && cta && (
                     <a
                         href={href}
-                        className="inline-flex items-center gap-1 text-xs font-medium text-[#69E300] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        className="pointer-events-auto inline-flex items-center gap-1 text-xs font-medium text-[#69E300] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     >
                         {cta} <ArrowRightIcon className="w-3 h-3" />
                     </a>
