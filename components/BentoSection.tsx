@@ -220,7 +220,7 @@ export default function BentoSection() {
                 style={{ background: "radial-gradient(ellipse 80% 40% at 50% -5%, #69E30010 0%, transparent 70%)" }}
             />
 
-            <div className="container mx-auto max-w-6xl relative">
+            <div className="container mx-auto max-w-7xl relative">
                 <SectionHeader
                     label="About & Work"
                     title={

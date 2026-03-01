@@ -21,7 +21,7 @@ export default function Navbar() {
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isPastHero ? "bg-[#0A0A0A] shadow-lg" : "bg-[#0a0f1e]"
                 }`}
         >
-            <div className="container mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+            <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                     {/* Logo */}
                     <a href="#" className="flex items-center text-white font-bold text-xl">

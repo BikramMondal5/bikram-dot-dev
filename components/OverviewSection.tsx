@@ -7,7 +7,7 @@ import { SectionHeader } from "./ui/SectionHeader";
 export default function OverviewSection() {
     return (
         <section id="overview" className="relative z-10 py-20 px-4 bg-[#0a0a0a] overflow-hidden">
-            <div className="container mx-auto max-w-6xl">
+            <div className="container mx-auto max-w-7xl">
                 <SectionHeader
                     label="Introduction"
                     title={

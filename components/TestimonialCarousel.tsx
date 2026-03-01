@@ -131,7 +131,7 @@ export default function TestimonialCarousel() {
 
     return (
         <section id="testimonials" className="relative py-24 bg-[#0A0A0A] overflow-hidden">
-            <div className="max-w-6xl mx-auto px-4 mb-16 text-center space-y-4">
+            <div className="max-w-7xl mx-auto px-4 mb-16 text-center space-y-4">
                 <div className="inline-flex items-center gap-2 rounded-full border border-[#69E300]/20 bg-[#69E300]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#69E300]">
                     Wall of Confidence
                 </div>
