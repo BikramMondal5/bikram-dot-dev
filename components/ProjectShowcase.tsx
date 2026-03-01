@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Code2, Database, Layers, Zap, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 interface TechStack {
     name: string;
@@ -140,8 +141,18 @@ const ProjectShowcase: React.FC = () => {
     };
 
     return (
-        <section id="projects" className="relative bg-[#0A0A0A] py-32 px-4 md:px-8 lg:px-16 min-h-screen flex items-center">
-            <div className="max-w-7xl mx-auto w-full">
+        <section id="projects" className="relative bg-[#0A0A0A] py-32 px-4 md:px-8 lg:px-16 min-h-screen flex flex-col items-center justify-center">
+            <SectionHeader
+                label="Featured Projects"
+                title={
+                    <>
+                        My Creative{" "}
+                        <span className="text-[#69E300]">Portfolio</span>
+                    </>
+                }
+                subtitle="Here are some of the projects I'm most proud of. From web apps to AI experiments, each one is a story of learning and creation."
+            />
+            <div className="max-w-7xl mx-auto w-full relative">
                 <AnimatePresence mode="wait" custom={direction}>
                     <motion.div
                         key={currentProject.id}
@@ -232,7 +243,7 @@ const ProjectShowcase: React.FC = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
-                className="absolute bottom-8 left-8 px-6 py-3 rounded-xl bg-[#69E300] text-black font-semibold hover:bg-[#7fff00] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-[#69E300] transition-all shadow-lg shadow-[#69E300]/30 flex items-center gap-2"
+                className="absolute bottom-8 left-8 px-4 py-2 rounded-xl bg-[#69E300] text-black font-semibold hover:bg-[#7fff00] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-[#69E300] transition-all shadow-lg shadow-[#69E300]/30 flex items-center gap-2"
             >
                 <ChevronLeft className="w-5 h-5" />
                 Previous
@@ -244,7 +255,7 @@ const ProjectShowcase: React.FC = () => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
-                className="absolute bottom-8 right-8 px-6 py-3 rounded-xl bg-[#69E300] text-black font-semibold hover:bg-[#7fff00] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-[#69E300] transition-all shadow-lg shadow-[#69E300]/30 flex items-center gap-2"
+                className="absolute bottom-8 right-8 px-4 py-2 rounded-xl bg-[#69E300] text-black font-semibold hover:bg-[#7fff00] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-[#69E300] transition-all shadow-lg shadow-[#69E300]/30 flex items-center gap-2"
             >
                 Next
                 <ChevronRight className="w-5 h-5" />

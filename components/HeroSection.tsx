@@ -9,6 +9,7 @@ import { ChevronRight, Menu, X, Code2, Brain, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import BentoSection from "@/components/BentoSection";
 import ProjectShowcase from "@/components/ProjectShowcase";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 function cn(...classes: (string | undefined | null | false)[]) {
     return classes.filter(Boolean).join(" ");
@@ -198,38 +199,21 @@ export default function HeroSection() {
                         transition={{ duration: 0.8 }}
                         className="max-w-4xl mx-auto text-center"
                     >
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                            className="inline-flex items-center gap-2 rounded-full bg-[#69E300]/10 border border-[#69E300]/20 px-4 py-2 text-sm mb-6"
-                        >
-                            <Sparkles className="w-4 h-4 text-[#69E300]" />
-                            <span className="text-[#69E300]">Full-Stack Developer · Open to Work</span>
-                        </motion.div>
-
-                        <motion.h1
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.7, delay: 0.3 }}
-                            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
-                        >
-                            Hi, I&apos;m{" "}
-                            <span className="bg-linear-to-r from-[#69E300] via-[#a3ff47] to-[#69E300] bg-clip-text text-transparent">
-                                Bikram
-                            </span>
-                            <br />
-                            I build for the web
-                        </motion.h1>
-
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.7, delay: 0.5 }}
-                            className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto"
-                        >
-                            I craft fast, accessible, and beautifully interactive products — from pixel-perfect UIs to scalable back-end systems.
-                        </motion.p>
+                        <SectionHeader
+                            label="Full-Stack Developer · Open to Work"
+                            title={
+                                <>
+                                    Hi, I&apos;m{" "}
+                                    <span className="bg-linear-to-r from-[#69E300] via-[#a3ff47] to-[#69E300] bg-clip-text text-transparent">
+                                        Bikram
+                                    </span>
+                                    <br />
+                                    I build for the web
+                                </>
+                            }
+                            subtitle="I craft fast, accessible, and beautifully interactive products — from pixel-perfect UIs to scalable back-end systems."
+                            className="mb-8"
+                        />
 
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -296,20 +280,22 @@ export default function HeroSection() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="max-w-4xl mx-auto text-center p-12 rounded-3xl bg-[#0d1a00] border border-[#69E300]/20"
+                        className="max-w-4xl mx-auto"
                     >
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white">
-                            Ready to Build Something?
-                        </h2>
-                        <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-                            Let&apos;s collaborate on your next project. I&apos;m open for freelance work and full-time roles.
-                        </p>
-                        <Button
-                            size="lg"
-                            className="rounded-full bg-[#69E300] text-black hover:bg-[#7fff00] font-semibold px-8 shadow-lg shadow-[#69E300]/30"
-                        >
-                            Get in Touch
-                        </Button>
+                        <SectionHeader
+                            label="Ready to Build Something?"
+                            title="Let's Collaborate"
+                            subtitle="I'm open for freelance work and full-time roles. Have a project in mind or just want to say hello? I'd love to hear from you."
+                            className="mb-8"
+                        />
+                        <div className="flex justify-center">
+                            <Button
+                                size="lg"
+                                className="rounded-full bg-[#69E300] text-black hover:bg-[#7fff00] font-semibold px-8 shadow-lg shadow-[#69E300]/30"
+                            >
+                                Get in Touch
+                            </Button>
+                        </div>
                     </motion.div>
                 </div>
             </section>

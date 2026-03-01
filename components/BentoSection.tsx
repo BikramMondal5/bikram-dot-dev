@@ -25,6 +25,7 @@ import Lanyard from "@/components/Lanyard";
 import { OrbitingCircles } from "@/registry/magicui/orbiting-circles";
 import { ConfettiButton } from "@/registry/magicui/confetti";
 import { VideoText } from "@/registry/magicui/video-text";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 /* -- TECH STACK DATA -- */
 const techStack = [
@@ -220,16 +221,16 @@ export default function BentoSection() {
             />
 
             <div className="container mx-auto max-w-6xl relative">
-                {/* Section label */}
-                <motion.div
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="flex items-center gap-3 mb-10"
-                >
-                    <span className="w-8 h-px bg-[#69E300]" />
-                    <span className="text-[#69E300] text-sm font-mono uppercase tracking-widest">About &amp; Work</span>
-                </motion.div>
+                <SectionHeader
+                    label="About & Work"
+                    title={
+                        <>
+                            My Digital{" "}
+                            <span className="text-[#69E300]">Playground</span>
+                        </>
+                    }
+                    subtitle="A glimpse into my skills, interests, and the technologies I love to work with. This is where code meets creativity."
+                />
 
                 {/* 3-col x 3-row grid, each row = 260px */}
                 <div className="grid grid-cols-3 gap-4" style={{ gridTemplateRows: "260px 260px 260px" }}>
