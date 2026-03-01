@@ -155,14 +155,9 @@ function OrbitingBackground() {
                     <ellipse cx="20" cy="20" rx="17" ry="6.5" stroke="#61DAFB" strokeWidth="1.5" fill="none" transform="rotate(120 20 20)" />
                 </svg>
                 {/* TypeScript */}
-                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" className="w-full h-full p-0.5">
-                    <rect width="40" height="40" rx="4" fill="#3178C6" />
-                    <path d="M8 22h6v-2H8v2zm0 4h4v-2H8v2zm12-4v8h2v-8h4v-2H16v2h4zm6-4H8v2h18v-2z" fill="white" />
-                    <path d="M22 18v2h2v8h2v-8h2v-2h-6z" fill="white" />
-                    <text x="6" y="32" fontSize="14" fontWeight="bold" fill="white" fontFamily="monospace">TS</text>
-                </svg>
+                <img src="/icons/typescript-2.svg" alt="TypeScript" className="w-full h-full p-0.5 rounded" />
                 {/* Next.js */}
-                <img src="/icons/next.svg" alt="Next.js" className="w-full h-full p-0.5 rounded" />
+                <img src="/icons/nextjs.png" alt="Next.js" className="w-full h-full p-0.5 rounded" />
                 {/* Node.js */}
                 <img src="/icons/nodejs-icon.svg" alt="Node.js" className="w-full h-full p-0.5 rounded" />
                 {/* Tailwind */}
@@ -171,19 +166,10 @@ function OrbitingBackground() {
 
             {/* Inner orbit (reverse) */}
             <OrbitingCircles iconSize={22} radius={52} duration={15} reverse speed={1.2}>
-                {/* PostgreSQL */}
-                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" className="w-full h-full p-0.5">
-                    <rect width="40" height="40" rx="4" fill="#1a1f4e" />
-                    <ellipse cx="20" cy="14" rx="10" ry="5" stroke="#336791" strokeWidth="1.5" fill="none" />
-                    <path d="M10 14v12c0 2.76 4.48 5 10 5s10-2.24 10-5V14" stroke="#336791" strokeWidth="1.5" fill="none" />
-                    <path d="M10 20c0 2.76 4.48 5 10 5s10-2.24 10-5" stroke="#336791" strokeWidth="1.5" fill="none" />
-                </svg>
-                {/* Prisma */}
-                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" className="w-full h-full p-1">
-                    <rect width="40" height="40" rx="4" fill="#0f172a" />
-                    <path d="M20 6L8 30h24L20 6z" stroke="#5A67D8" strokeWidth="1.5" fill="none" />
-                    <path d="M20 6L8 30l12-6z" fill="#5A67D8" opacity="0.5" />
-                </svg>
+                {/* MongoDB */}
+                <img src="/icons/mongodb.png" alt="MongoDB" className="w-full h-full p-0.5 rounded" />
+                {/* Python */}
+                <img src="/icons/python.png" alt="Python" className="w-full h-full p-0.5 rounded" />
                 {/* Git */}
                 <img src="/icons/git.png" alt="Git" className="w-full h-full p-0.5 rounded" />
             </OrbitingCircles>
