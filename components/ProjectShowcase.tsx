@@ -88,12 +88,12 @@ const projects: Project[] = [
     {
         id: 4,
         title: "Nano-Bond",
-        description: "A nano-chemistry toolset focused on exploring molecular bonds and interactions, designed to help researchers prototype chemical datasets faster.",
+        description: "A DeFi platform that democratizes access to government bonds. It enables retail users to invest in fractional units of government bonds using stablecoins, providing a transparent, secure, and highly accessible investment experience through blockchain technology.",
         features: [
-            "Nano-scale interaction modeling",
-            "Atomic bond visualization",
-            "Dataset analysis tools",
-            "Exportable structural formats"
+            "Enables investment in government bonds by splitting large assets into smaller, tokenized units, lowering entry barriers and increasing market participation.",
+            "Uses USDT for fast, low-cost, cross-border settlement, improving accessibility and reducing currency friction.",
+            "Provides live tracking of interest accrual and return on investment through intuitive dashboards.",
+            "Smart contracts autonomously compute and distribute interest, eliminating intermediaries and manual processes."
         ],
         techStack: [
             { name: "JavaScript", icon: <Code2 className="w-3 h-3" /> },
@@ -173,7 +173,7 @@ const ProjectShowcase: React.FC = () => {
                         className="flex items-center justify-between gap-8 lg:gap-20 xl:gap-24"
                     >
                         {/* Left - Project Info */}
-                        <div className="w-full lg:w-[45%] space-y-6">
+                        <div className="w-full lg:w-[45%] space-y-6 -mt-8">
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
