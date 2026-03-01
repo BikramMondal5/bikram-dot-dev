@@ -88,7 +88,7 @@ const projects: Project[] = [
     },
     {
         id: 4,
-        title: "Investor Hunter",
+        title: "NanoBond",
         description: "A DeFi platform that democratizes access to government bonds. It enables retail users to invest in fractional units of government bonds using stablecoins, providing a transparent, secure, and highly accessible investment experience through blockchain technology.",
         features: [
             "Enables investment in government bonds by splitting large assets into smaller, tokenized units, lowering entry barriers and increasing market participation.",
@@ -107,8 +107,8 @@ const projects: Project[] = [
         repoUrl: "https://github.com/BikramMondal5/Nano-Bond"
     },
     {
-        id: 3,
-        title: "MoleculeInsight",
+        id: 5,
+        title: "Investor Hunter",
         description: "A web application that empowers entrepreneurs to connect directly with real investors through AI-powered video pitch analysis, multilingual support, and smart investor matching.",
         features: [
             "Built an AI-powered pitch analyzer that assesses clarity, uniqueness, and market fit of startup pitches using advanced natural language evaluation techniques.",
@@ -201,7 +201,7 @@ const ProjectShowcase: React.FC = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2 }}
                             >
-                                <h2 className="text-4xl lg:text-6xl font-bold text-white tracking-tight mb-4">
+                                <h2 className="text-4xl lg:text-6xl font-bold text-[#69E300] tracking-tight mb-4">
                                     {currentProject.title}
                                 </h2>
                                 <p className="text-lg text-gray-300 leading-relaxed">
