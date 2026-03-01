@@ -243,7 +243,7 @@ const ProjectShowcase: React.FC = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
-                className="absolute bottom-2 left-32 px-4 py-2 rounded-xl bg-[#69E300] text-black font-semibold hover:bg-[#7fff00] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-[#69E300] transition-all shadow-lg shadow-[#69E300]/30 flex items-center gap-2"
+                className="absolute bottom-2 left-28 px-4 py-2 rounded-xl bg-[#69E300] text-black font-semibold hover:bg-[#7fff00] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-[#69E300] transition-all flex items-center gap-2"
             >
                 <ChevronLeft className="w-5 h-5" />
                 Previous
@@ -255,7 +255,7 @@ const ProjectShowcase: React.FC = () => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
-                className="absolute bottom-2 right-32 px-4 py-2 rounded-xl bg-[#69E300] text-black font-semibold hover:bg-[#7fff00] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-[#69E300] transition-all shadow-lg shadow-[#69E300]/30 flex items-center gap-2"
+                className="absolute bottom-2 right-28 px-4 py-2 rounded-xl bg-[#69E300] text-black font-semibold hover:bg-[#7fff00] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-[#69E300] transition-all flex items-center gap-2"
             >
                 Next
                 <ChevronRight className="w-5 h-5" />

@@ -25,10 +25,12 @@ export default function Navbar() {
                 <div className="flex h-16 items-center justify-between">
                     {/* Logo */}
                     <a href="#" className="flex items-center text-white font-bold text-xl">
-                        <div className="w-7 h-7 bg-white rounded-full flex items-center justify-center mr-2.5">
-                            <div className="w-4 h-4 bg-gradient-to-br from-[#69E300] to-[#4aaa00] rounded-full" />
-                        </div>
-                        bikram
+                        <img
+                            src="/icons/reactz-logo.png"
+                            alt="Logo"
+                            className="w-8 h-8 mr-2.5"
+                        />
+                        Bikram mondal
                     </a>
 
                     {/* Navigation Links */}
