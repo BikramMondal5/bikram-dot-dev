@@ -50,11 +50,11 @@ const techStack = [
 
 /* -- PROJECTS -- */
 const projects = [
-    { title: "Custom Payments & Access Control", desc: "Built an in-house payment flow supporting subscriptions.", tags: ["Stripe", "Next.js", "Prisma"] },
-    { title: "Unified Auth & Identity Layer", desc: "A shared authentication system powering Rune AI.", tags: ["NextAuth", "JWT", "Redis"] },
-    { title: "In-House CMS & Content Pipeline", desc: "Designed a custom CMS for publishing blogs, tools, and docs.", tags: ["Sanity", "TypeScript", "CDN"] },
-    { title: "AI Services & Model Orchestration", desc: "Integrated a proprietary AI logic to power Rune AI features.", tags: ["OpenAI", "LangChain", "Node.js"] },
-    { title: "Platform Monitoring & Growth Insights", desc: "Internal tracking and analytics to understand user behaviour.", tags: ["PostHog", "Grafana", "Docker"] },
+    { title: "Articuno.AI v1.0", desc: "A full-stack AI platform integrating 20+ advanced AI models and specialized agents in a unified platform", tags: ["Python", "Flask", "LLMs"] },
+    { title: "DevOps-Ghostwriter", desc: "An intelligent multi-agent AI DevOps assistant that automates GitHub pull request monitoring, deep security auditing, sandboxed code execution, and documentation generation.", tags: ["Next.js", "Version-control", "Agents"] },
+    { title: "MoleculeInsight", desc: "An AI-powered multi-agent research platform that aggregates and analyzes molecular data from clinical trials, patents, market intelligence, and scientific sources to deliver research-grade insights for pharmaceutical and biotech applications.", tags: ["Langchain", "TypeScript", "FastAPI"] },
+    { title: "NanoBonds", desc: "A decentralized finance (DeFi) platform that democratizes access to government bonds by enabling retail users to invest in fractional bond units using stablecoins with global Web3 wallet support.", tags: ["Solidity", "Rust", "Node.js"] },
+    { title: "InvestorHunt", desc: "An AI-driven web platform that empowers entrepreneurs to connect directly with real investors through AI video pitch analysis, multilingual support, and smart investor matching to streamline startup fundraising", tags: ["GEN-AI", "react-tailwind", "Node.js"] },
 ];
 
 /* -- CARD A — Video Text -- */

@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useRef, useEffect, useState, Suspense, useMemo } from "react";
+import React, { useRef, useEffect, useMemo, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Menu, X, Code2, Brain, Sparkles } from "lucide-react";
+import { ChevronRight, Code2, Sparkles, Brain } from "lucide-react";
 import { motion } from "framer-motion";
 import BentoSection from "@/components/BentoSection";
 import ProjectShowcase from "@/components/ProjectShowcase";
@@ -73,116 +73,10 @@ function Scene() {
 
 /* -- Main Landing Page -- */
 export default function HeroSection() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [scrollY, setScrollY] = useState(0);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrollY(window.scrollY);
-        };
-
-        window.addEventListener("scroll", handleScroll);
-
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
-
-    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
     return (
         <div className="relative min-h-screen bg-[#0a0f1e] text-white overflow-hidden">
-            {/* Header */}
-            <motion.header
-                initial={{ y: -100 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.5 }}
-                className={cn(
-                    "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-                    scrollY > 50 ? "bg-[#0a0f1e]/90 backdrop-blur-md shadow-lg" : "bg-transparent"
-                )}
-            >
-                <div className="container mx-auto px-4 md:px-6 lg:px-8">
-                    <div className="flex h-16 items-center justify-between">
-                        <div className="flex items-center gap-3">
-                            <motion.div
-                                whileHover={{ scale: 1.1, rotate: 5 }}
-                                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                                className="h-10 w-10 rounded-lg bg-linear-to-br from-[#69E300] to-[#4aaa00] flex items-center justify-center shadow-lg shadow-[#69E300]/30"
-                            >
-                                <Brain className="w-6 h-6 text-black" />
-                            </motion.div>
-                            <span className="font-bold text-xl">bikram.dev</span>
-                        </div>
-
-                        <nav className="hidden md:flex gap-6">
-                            {["About", "Projects", "Skills", "Contact"].map((item) => (
-                                <a
-                                    key={item}
-                                    href={`#${item.toLowerCase()}`}
-                                    className="text-sm font-medium transition-colors hover:text-[#69E300]"
-                                >
-                                    {item}
-                                </a>
-                            ))}
-                        </nav>
-
-                        <div className="hidden md:flex items-center gap-3">
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                className="rounded-full border-[#69E300] text-[#69E300] hover:bg-[#69E300]/10"
-                            >
-                                Resume
-                            </Button>
-                            <Button
-                                size="sm"
-                                className="rounded-full bg-[#69E300] text-black hover:bg-[#7fff00] font-semibold"
-                            >
-                                Hire Me
-                            </Button>
-                        </div>
-
-                        <button className="flex md:hidden text-white" onClick={toggleMenu}>
-                            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-                        </button>
-                    </div>
-                </div>
-
-                {/* Mobile Menu */}
-                {isMenuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-[#0a0f1e]/95 backdrop-blur-md border-t border-[#69E300]/20"
-                    >
-                        <div className="container mx-auto px-4 py-6 flex flex-col gap-4">
-                            {["About", "Projects", "Skills", "Contact"].map((item) => (
-                                <a
-                                    key={item}
-                                    href={`#${item.toLowerCase()}`}
-                                    className="text-sm font-medium hover:text-[#69E300]"
-                                    onClick={toggleMenu}
-                                >
-                                    {item}
-                                </a>
-                            ))}
-                            <div className="flex flex-col gap-3 pt-4">
-                                <Button variant="outline" className="w-full rounded-full border-[#69E300] text-[#69E300]">
-                                    Resume
-                                </Button>
-                                <Button className="w-full rounded-full bg-[#69E300] text-black font-semibold">
-                                    Hire Me
-                                </Button>
-                            </div>
-                        </div>
-                    </motion.div>
-                )}
-            </motion.header>
-
             {/* Hero Section */}
-            <section id="home" className="relative z-10 min-h-screen flex items-center justify-center px-4 pb-20 overflow-hidden">
+            <section id="home" className="relative z-10 min-h-screen flex items-center justify-center px-4 pb-20 overflow-hidden pt-16">
                 {/* 3D Background */}
                 <div className="absolute inset-0 z-0">
                     <Canvas camera={{ position: [0, 3, 12], fov: 75 }}>
@@ -310,7 +204,7 @@ export default function HeroSection() {
                     <div className="flex flex-col md:flex-row justify-between items-center gap-6">
                         <div className="flex items-center gap-3">
                             <div className="h-8 w-8 rounded-lg bg-[#69E300] flex items-center justify-center shadow-lg shadow-[#69E300]/30">
-                                <Brain className="w-5 h-5 text-black" />
+                                <Code2 className="w-5 h-5 text-black" />
                             </div>
                             <span className="font-bold text-white">bikram.dev</span>
                         </div>
