@@ -11,6 +11,7 @@ import BentoSection from "@/components/BentoSection";
 import ProjectShowcase from "@/components/ProjectShowcase";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import OverviewSection from "@/components/OverviewSection";
+import TestimonialCarousel from "@/components/TestimonialCarousel";
 
 function cn(...classes: (string | undefined | null | false)[]) {
     return classes.filter(Boolean).join(" ");
@@ -74,7 +75,7 @@ function Scene() {
 /* -- Main Landing Page -- */
 export default function HeroSection() {
     return (
-        <div className="relative min-h-screen bg-[#0a0f1e] text-white overflow-hidden">
+        <div className="relative bg-[#0a0f1e] text-white overflow-hidden">
             {/* Hero Section */}
             <section id="home" className="relative z-10 min-h-screen flex items-center justify-center px-4 pb-20 overflow-hidden pt-16">
                 {/* 3D Background */}
@@ -170,33 +171,8 @@ export default function HeroSection() {
             {/* Dynamic Project Showcase Section */}
             <ProjectShowcase />
 
-            {/* CTA Section */}
-            <section id="contact" className="relative z-10 py-20 px-4 bg-[#0a0a0a]">
-                <div className="container mx-auto">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="max-w-4xl mx-auto"
-                    >
-                        <SectionHeader
-                            label="Ready to Build Something?"
-                            title="Let's Collaborate"
-                            subtitle="I'm open for freelance work and full-time roles. Have a project in mind or just want to say hello? I'd love to hear from you."
-                            className="mb-8"
-                        />
-                        <div className="flex justify-center">
-                            <Button
-                                size="lg"
-                                className="rounded-full bg-[#69E300] text-black hover:bg-[#7fff00] font-semibold px-8 shadow-lg shadow-[#69E300]/30"
-                            >
-                                Get in Touch
-                            </Button>
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
+            {/* Testimonial Carousel */}
+            <TestimonialCarousel />
 
             {/* Footer */}
             <footer className="relative z-10 border-t border-[#69E300]/10 py-12 px-4 bg-[#0a0a0a]">

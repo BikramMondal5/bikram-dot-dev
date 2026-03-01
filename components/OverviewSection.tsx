@@ -38,11 +38,11 @@ export default function OverviewSection() {
                                 Full-stack Web developer
                             </span>{" "}
                             with experience in{" "}
-                            <span className="text-[#69E300]">
+                            <span className="font-bold">
                                 Python, Javascript &amp; TypeScript
                             </span>
                             , and expertise in frameworks like{" "}
-                            <span className="text-[#69E300]">
+                            <span className="font-bold">
                                 React, Node.js, and Three.js
                             </span>
                             . I love to explore new technologies to refine my skills and
