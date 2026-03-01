@@ -26,7 +26,7 @@ export function BentoGrid({ className, children, ...props }: BentoGridProps) {
 
 /* -- BentoCard -------------------------------------------------- */
 interface BentoCardProps extends ComponentPropsWithoutRef<"div"> {
-    name: string;
+    name?: string;
     description?: string;
     background?: ReactNode;
     Icon?: React.ElementType;
