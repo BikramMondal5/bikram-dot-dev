@@ -25,7 +25,7 @@ export function SectionHeader({
             >
                 {title}
             </h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">{subtitle}</p>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto mt-6 mb-8 px-4">{subtitle}</p>
         </div>
     );
 }

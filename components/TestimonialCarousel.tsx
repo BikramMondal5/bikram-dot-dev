@@ -2,8 +2,19 @@
 
 import { useEffect, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
-import { Star, User, Quote, MessageSquare } from "lucide-react"
+import { Star, User, Quote, MessageSquare, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
 
 // Default testimonial data
 const defaultTestimonials = [
@@ -128,7 +139,24 @@ function AnimatedTooltip({ items }: { items: typeof people }) {
 
 export default function TestimonialCarousel() {
     const [testimonials] = useState(defaultTestimonials)
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [formData, setFormData] = useState({
+        name: "",
+        role: "",
+        feedback: "",
+        rating: 5,
+    })
     const allTestimonials = [...testimonials]
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+        console.log("Testimonial submitted:", formData)
+        // Show success message
+        alert("Thank you for sharing your experience! Your testimonial has been submitted.")
+        // Reset form
+        setFormData({ name: "", role: "", feedback: "", rating: 5 })
+        setIsModalOpen(false)
+    }
 
     return (
         <section id="testimonials" className="relative py-24 bg-[#0A0A0A] overflow-hidden">
@@ -178,11 +206,97 @@ export default function TestimonialCarousel() {
                 </div>
 
                 <div className="flex justify-center mt-12">
-                    <Button
-                        className="h-14 px-8 rounded-full bg-[#69E300] text-black hover:bg-[#69E300]/90 font-bold text-base shadow-xl shadow-[#69E300]/5"
-                    >
-                        Share Your Experience
-                    </Button>
+                    <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+                        <DialogTrigger asChild>
+                            <Button
+                                className="h-14 px-8 rounded-full bg-[#69E300] text-black hover:bg-[#69E300]/90 font-bold text-base shadow-xl shadow-[#69E300]/5"
+                            >
+                                Share Your Experience With Me
+                            </Button>
+                        </DialogTrigger>
+                        <DialogContent className="sm:max-w-[550px] bg-[#0A0A0A] border-white/10">
+                            <DialogHeader>
+                                <DialogTitle className="text-2xl font-bold text-white flex items-center gap-2">
+                                    <MessageSquare className="w-6 h-6 text-[#69E300]" />
+                                    Share Your Experience
+                                </DialogTitle>
+                                <DialogDescription className="text-white/60">
+                                    I'd love to hear about your experience working with me. Your feedback helps me grow.
+                                </DialogDescription>
+                            </DialogHeader>
+                            <form onSubmit={handleSubmit} className="space-y-4 mt-3">
+                                <div className="space-y-2">
+                                    <Label className="text-white">
+                                        Rating <span className="text-[#69E300]">*</span>
+                                    </Label>
+                                    <div className="flex gap-2">
+                                        {[1, 2, 3, 4, 5].map((star) => (
+                                            <button
+                                                key={star}
+                                                type="button"
+                                                onClick={() => setFormData({ ...formData, rating: star })}
+                                                className="transition-transform hover:scale-110"
+                                            >
+                                                <Star
+                                                    className={`h-8 w-8 cursor-pointer ${star <= formData.rating
+                                                        ? "fill-[#69E300] text-[#69E300]"
+                                                        : "fill-none text-white/20 hover:text-white/40"
+                                                        }`}
+                                                />
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="name" className="text-white">
+                                        Your Name <span className="text-[#69E300]">*</span>
+                                    </Label>
+                                    <Input
+                                        id="name"
+                                        placeholder="John Doe"
+                                        value={formData.name}
+                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                        required
+                                        className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-[#69E300]/50"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="role" className="text-white">
+                                        Your Role / Relationship <span className="text-[#69E300]">*</span>
+                                    </Label>
+                                    <Input
+                                        id="role"
+                                        placeholder="e.g., Hackathon Teammate, Senior, Project Partner"
+                                        value={formData.role}
+                                        onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                                        required
+                                        className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-[#69E300]/50"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="feedback" className="text-white">
+                                        Your Feedback <span className="text-[#69E300]">*</span>
+                                    </Label>
+                                    <Textarea
+                                        id="feedback"
+                                        placeholder="Share your experience working with me..."
+                                        value={formData.feedback}
+                                        onChange={(e) => setFormData({ ...formData, feedback: e.target.value })}
+                                        required
+                                        rows={3}
+                                        className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-[#69E300]/50 resize-none"
+                                    />
+                                </div>
+                                <Button
+                                    type="submit"
+                                    className="w-full h-12 rounded-full bg-[#69E300] text-black hover:bg-[#69E300]/90 font-bold text-base shadow-xl shadow-[#69E300]/20 flex items-center gap-2"
+                                >
+                                    <Send className="w-5 h-5" />
+                                    Submit Testimonial
+                                </Button>
+                            </form>
+                        </DialogContent>
+                    </Dialog>
                 </div>
             </div>
 

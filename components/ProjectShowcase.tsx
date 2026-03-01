@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code2, Database, Layers, Zap, Globe, ChevronLeft, ChevronRight, Briefcase } from 'lucide-react';
+import { Code2, Database, Layers, Zap, Globe, ChevronLeft, ChevronRight, Briefcase, ExternalLink, Sparkles } from 'lucide-react';
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
 interface TechStack {
@@ -18,88 +18,92 @@ interface Project {
     techStack: TechStack[];
     image: string;
     avatar: string;
+    repoUrl: string;
 }
 
 const projects: Project[] = [
     {
         id: 1,
-        title: "Old Portfolio",
-        description: "A premium, high-performance portfolio crafted for the modern web. Featuring fluid GSAP animations, physics-based interactions, and a polished aesthetic, this template sets a new standard for creative developers.",
+        title: "Articuno.AI",
+        description: "A multi-modal AI platform providing unified access to 20+ AI models, tools, and utilities to simplify coding, analysis, and developer workflows.",
         features: [
-            "Premium, high-performance design with fluid GSAP animations",
-            "Physics-based interactions and advanced state management",
-            "Robust full-stack architecture with Prisma and Node.js",
-            "Seamless blend of design excellence and engineering precision"
+            "Unified interface for multiple AI models",
+            "Code assistance and automation tools",
+            "Supports analysis, generation, and integrations",
+            "Developer-focused utilities with plug-and-play experience"
         ],
         techStack: [
-            { name: "React", icon: <Code2 className="w-3 h-3" /> },
-            { name: "TypeScript", icon: <Code2 className="w-3 h-3" /> },
-            { name: "Next.js", icon: <Globe className="w-3 h-3" /> },
-            { name: "GSAP", icon: <Zap className="w-3 h-3" /> },
-            { name: "Prisma", icon: <Database className="w-3 h-3" /> },
-            { name: "Zustand", icon: <Layers className="w-3 h-3" /> }
+            { name: "Python", icon: <Code2 className="w-3 h-3" /> },
+            { name: "JavaScript", icon: <Code2 className="w-3 h-3" /> },
+            { name: "FastAPI", icon: <Zap className="w-3 h-3" /> },
+            { name: "Tailwind CSS", icon: <Layers className="w-3 h-3" /> },
+            { name: "LLMs", icon: <Database className="w-3 h-3" /> },
+            { name: "Agent Frameworks", icon: <Globe className="w-3 h-3" /> }
         ],
-        image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=800&fit=crop",
-        avatar: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=100&h=100&fit=crop"
+        image: "/ArticunoAI.png",
+        avatar: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=100&h=100&fit=crop",
+        repoUrl: "https://github.com/BikramMondal5/Articuno.AI"
     },
     {
         id: 2,
-        title: "RuneHub",
-        description: "RuneHub is a comprehensive programming education platform featuring extensive tutorials and articles on different programming languages, frameworks, and technologies with the latest industry news and insights.",
+        title: "DevOps-Ghostwriter",
+        description: "An autonomous DevOps AI assistant that automates CI/CD tasks, environment setup, and deployment orchestration — acting like a virtual DevOps engineer.",
         features: [
-            "Comprehensive programming tutorials across multiple languages",
-            "Tech trends section with latest industry news",
-            "Sanity CMS integration for efficient content management",
-            "Advanced search with Algolia integration"
+            "Automated pipeline generation",
+            "Infrastructure configuration assistant",
+            "Cloud service integrations",
+            "Modular DevOps scripting"
         ],
         techStack: [
-            { name: "React", icon: <Code2 className="w-3 h-3" /> },
-            { name: "Next.js", icon: <Globe className="w-3 h-3" /> },
-            { name: "Sanity CMS", icon: <Database className="w-3 h-3" /> },
-            { name: "Algolia", icon: <Zap className="w-3 h-3" /> },
-            { name: "Prisma.js", icon: <Layers className="w-3 h-3" /> },
-            { name: "TypeScript", icon: <Code2 className="w-3 h-3" /> }
+            { name: "Node.js", icon: <Code2 className="w-3 h-3" /> },
+            { name: "Bash", icon: <Code2 className="w-3 h-3" /> },
+            { name: "GitHub Actions", icon: <Globe className="w-3 h-3" /> },
+            { name: "Docker", icon: <Layers className="w-3 h-3" /> },
+            { name: "Cloud SDKs", icon: <Database className="w-3 h-3" /> }
         ],
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=800&fit=crop",
-        avatar: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=100&h=100&fit=crop"
+        image: "/ghostwriter.png",
+        avatar: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=100&h=100&fit=crop",
+        repoUrl: "https://github.com/BikramMondal5/DevOps-Ghostwriter"
     },
     {
         id: 3,
-        title: "E-Commerce Platform",
-        description: "A modern, scalable e-commerce solution with real-time inventory management and seamless checkout experience powered by cutting-edge technologies.",
+        title: "MoleculeInsight",
+        description: "A molecular analysis and visualization toolkit powered by AI — offering molecule insights, property prediction, and structured graph interpretations.",
         features: [
-            "Real-time inventory tracking and management",
-            "Secure payment integration with multiple gateways",
-            "Advanced search & filtering capabilities",
-            "Mobile-responsive design with PWA support"
+            "AI-driven molecular property analysis",
+            "Graph representation for chemical structures",
+            "Visual molecular graphs and predictions",
+            "Interactive research interface"
         ],
         techStack: [
-            { name: "React", icon: <Code2 className="w-3 h-3" /> },
-            { name: "Node.js", icon: <Database className="w-3 h-3" /> },
-            { name: "PostgreSQL", icon: <Layers className="w-3 h-3" /> },
-            { name: "Stripe", icon: <Zap className="w-3 h-3" /> }
+            { name: "Python", icon: <Code2 className="w-3 h-3" /> },
+            { name: "TensorFlow", icon: <Zap className="w-3 h-3" /> },
+            { name: "RDKit", icon: <Database className="w-3 h-3" /> },
+            { name: "Graph Neural Networks", icon: <Layers className="w-3 h-3" /> }
         ],
-        image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=800&fit=crop",
-        avatar: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=100&h=100&fit=crop"
+        image: "/MoleculeInsight.png",
+        avatar: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=100&h=100&fit=crop",
+        repoUrl: "https://github.com/BikramMondal5/MoleculeInsight"
     },
     {
         id: 4,
-        title: "AI Content Generator",
-        description: "Advanced AI-powered content creation tool for marketers and content creators with multi-language support and intelligent optimization features.",
+        title: "Nano-Bond",
+        description: "A nano-chemistry toolset focused on exploring molecular bonds and interactions, designed to help researchers prototype chemical datasets faster.",
         features: [
-            "Multi-language content generation support",
-            "SEO optimization and keyword analysis",
-            "Pre-built content templates library",
-            "Plagiarism detection and originality checks"
+            "Nano-scale interaction modeling",
+            "Atomic bond visualization",
+            "Dataset analysis tools",
+            "Exportable structural formats"
         ],
         techStack: [
-            { name: "Vue.js", icon: <Code2 className="w-3 h-3" /> },
-            { name: "Python", icon: <Layers className="w-3 h-3" /> },
-            { name: "GPT-4", icon: <Zap className="w-3 h-3" /> },
-            { name: "Redis", icon: <Database className="w-3 h-3" /> }
+            { name: "JavaScript", icon: <Code2 className="w-3 h-3" /> },
+            { name: "WebGL", icon: <Zap className="w-3 h-3" /> },
+            { name: "Three.js", icon: <Globe className="w-3 h-3" /> },
+            { name: "Python", icon: <Code2 className="w-3 h-3" /> }
         ],
-        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=800&fit=crop",
-        avatar: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=100&h=100&fit=crop"
+        image: "/NanoBond.png",
+        avatar: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=100&h=100&fit=crop",
+        repoUrl: "https://github.com/BikramMondal5/Nano-Bond"
     }
 ];
 
@@ -191,7 +195,7 @@ const ProjectShowcase: React.FC = () => {
                             >
                                 {currentProject.features.map((feature, idx) => (
                                     <div key={idx} className="flex items-start gap-3 text-gray-300 text-base">
-                                        <span className="text-red-500 mt-1 shrink-0 font-bold">+</span>
+                                        <Sparkles className="text-[#69E300] mt-1 shrink-0 w-4 h-4" />
                                         <span>{feature}</span>
                                     </div>
                                 ))}
@@ -221,14 +225,26 @@ const ProjectShowcase: React.FC = () => {
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: 0.2 }}
-                                className="overflow-hidden rounded-3xl border border-zinc-700/50 shadow-2xl bg-gradient-to-br from-red-900/20 to-orange-900/20 p-1"
+                                className="overflow-hidden rounded-3xl border border-zinc-700/50 shadow-2xl bg-gradient-to-br from-red-900/20 to-orange-900/20 p-1 group relative"
                             >
-                                <div className="rounded-[20px] overflow-hidden bg-black">
+                                <div className="rounded-[20px] overflow-hidden bg-black relative">
                                     <img
                                         src={currentProject.image}
                                         alt={currentProject.title}
-                                        className="w-full h-[500px] object-cover"
+                                        className="w-full h-[500px] object-cover object-center transition-transform duration-300 group-hover:scale-105"
                                     />
+                                    {/* GitHub Link Overlay */}
+                                    <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                        <a
+                                            href={currentProject.repoUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="px-6 py-3 bg-[#69E300] text-black font-bold rounded-full flex items-center gap-2 hover:bg-[#7fff00] transition-colors transform hover:scale-105"
+                                        >
+                                            <ExternalLink className="w-5 h-5" />
+                                            View on GitHub
+                                        </a>
+                                    </div>
                                 </div>
                             </motion.div>
                         </div>

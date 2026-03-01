@@ -64,7 +64,7 @@ export default function Navbar() {
                         <Button
                             className="bg-[#69E300] text-black hover:bg-[#7fff00] font-semibold"
                         >
-                            GhostWriter Agent
+                            Connect With Me
                         </Button>
                     </div>
                 </div>
