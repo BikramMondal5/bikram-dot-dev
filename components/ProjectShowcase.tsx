@@ -25,20 +25,20 @@ const projects: Project[] = [
     {
         id: 1,
         title: "Articuno.AI",
-        description: "A multi-modal AI platform providing unified access to 20+ AI models, tools, and utilities to simplify coding, analysis, and developer workflows.",
+        description: "Articuno.AI is a cutting-edge AI-powered platform that brings together 20+ advanced AI models and specialized agents in one unified interface. From weather forecasting to code generation, video analysis to web development assistance - everything at no cost!",
         features: [
-            "Unified interface for multiple AI models",
-            "Code assistance and automation tools",
-            "Supports analysis, generation, and integrations",
-            "Developer-focused utilities with plug-and-play experience"
+            "Engineered multiple contextual AI agents (weather, dev companion, video analysis, knowledge retrieval) for task-specific expert interaction.",
+            "Integrated 20+ advanced AI models including GPT-4o, Gemini flash variants, Grok, Llama, and others for diverse reasoning and generation tasks.",
+            "Built session-aware chat with MongoDB storage, session search, and analytics to enable context continuity and conversation tracking.",
+            "Supported multi-modal inputs including text, images, and voice, enhancing accessibility and user engagement.",
+            "Designed a sleek dark-theme interface with categorized agent selection, real-time message updates, and session analytics for superior user experience."
         ],
         techStack: [
             { name: "Python", icon: <Code2 className="w-3 h-3" /> },
-            { name: "JavaScript", icon: <Code2 className="w-3 h-3" /> },
-            { name: "FastAPI", icon: <Zap className="w-3 h-3" /> },
-            { name: "Tailwind CSS", icon: <Layers className="w-3 h-3" /> },
+            { name: "Flask", icon: <Code2 className="w-3 h-3" /> },
+            { name: "MongoDB", icon: <Zap className="w-3 h-3" /> },
             { name: "LLMs", icon: <Database className="w-3 h-3" /> },
-            { name: "Agent Frameworks", icon: <Globe className="w-3 h-3" /> }
+            { name: "Agents", icon: <Globe className="w-3 h-3" /> }
         ],
         image: "/ArticunoAI.png",
         avatar: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=100&h=100&fit=crop",
@@ -47,19 +47,19 @@ const projects: Project[] = [
     {
         id: 2,
         title: "DevOps-Ghostwriter",
-        description: "An autonomous DevOps AI assistant that automates CI/CD tasks, environment setup, and deployment orchestration — acting like a virtual DevOps engineer.",
+        description: "An intelligent multi-agent AI system that acts as your virtual DevOps engineer. Monitor GitHub Pull Requests, perform deep security audits, and auto-generate documentation — all while maintaining full observability.",
         features: [
-            "Automated pipeline generation",
-            "Infrastructure configuration assistant",
-            "Cloud service integrations",
-            "Modular DevOps scripting"
+            "Performed intelligent pull request analysis with detailed insights on code quality, bugs, and vulnerabilities.",
+            "Detected hardcoded secrets, injection risks, and executed sandboxed code to catch logical errors early.",
+            "Provided full tracing and monitoring through W&B Weave integration, plus automated Markdown/PDF report generation.",
+            "Seamlessly monitored PR events with GitHub webhooks and visualized live agent collaboration activity"
         ],
         techStack: [
             { name: "Node.js", icon: <Code2 className="w-3 h-3" /> },
-            { name: "Bash", icon: <Code2 className="w-3 h-3" /> },
+            { name: "Version Control", icon: <Code2 className="w-3 h-3" /> },
             { name: "GitHub Actions", icon: <Globe className="w-3 h-3" /> },
-            { name: "Docker", icon: <Layers className="w-3 h-3" /> },
-            { name: "Cloud SDKs", icon: <Database className="w-3 h-3" /> }
+            { name: "Google ADK", icon: <Layers className="w-3 h-3" /> },
+            { name: "Next.js", icon: <Database className="w-3 h-3" /> }
         ],
         image: "/ghostwriter.png",
         avatar: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=100&h=100&fit=crop",
@@ -68,18 +68,19 @@ const projects: Project[] = [
     {
         id: 3,
         title: "MoleculeInsight",
-        description: "A molecular analysis and visualization toolkit powered by AI — offering molecule insights, property prediction, and structured graph interpretations.",
+        description: "An AI-powered Agent platform for molecular research. MoleculeInsight uses specialized Agents to explore chemical properties, trials, patents, and market signals—giving you instant, research-grade insights.",
         features: [
-            "AI-driven molecular property analysis",
-            "Graph representation for chemical structures",
-            "Visual molecular graphs and predictions",
-            "Interactive research interface"
+            "Coordinated parallel agent system engineered to gather diverse data streams for comprehensive molecule insights.",
+            "Integrated Retrieval-Augmented Generation system that synthesizes internal JSON/PDF document content for context-aware responses.",
+            "Real-time 3D molecular structure rendering using PubChem API + 3Dmol.js, with interactive controls and auto-rotation for enhanced exploration.",
+            "Unified analysis across multiple scientific sources including ClinicalTrials.gov, PatentsView, UN Comtrade, IQVIA, PubChem, Wikipedia, and web intelligence.",
+            "Dynamic agent activity tracking via WebSockets and auto-generated detailed analysis reports in Markdown/PDF formats."
         ],
         techStack: [
             { name: "Python", icon: <Code2 className="w-3 h-3" /> },
-            { name: "TensorFlow", icon: <Zap className="w-3 h-3" /> },
-            { name: "RDKit", icon: <Database className="w-3 h-3" /> },
-            { name: "Graph Neural Networks", icon: <Layers className="w-3 h-3" /> }
+            { name: "FastAPI", icon: <Zap className="w-3 h-3" /> },
+            { name: "Langchain", icon: <Database className="w-3 h-3" /> },
+            { name: "Next.js", icon: <Layers className="w-3 h-3" /> }
         ],
         image: "/MoleculeInsight.png",
         avatar: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=100&h=100&fit=crop",
@@ -87,7 +88,7 @@ const projects: Project[] = [
     },
     {
         id: 4,
-        title: "Nano-Bond",
+        title: "Investor Hunter",
         description: "A DeFi platform that democratizes access to government bonds. It enables retail users to invest in fractional units of government bonds using stablecoins, providing a transparent, secure, and highly accessible investment experience through blockchain technology.",
         features: [
             "Enables investment in government bonds by splitting large assets into smaller, tokenized units, lowering entry barriers and increasing market participation.",
@@ -96,15 +97,36 @@ const projects: Project[] = [
             "Smart contracts autonomously compute and distribute interest, eliminating intermediaries and manual processes."
         ],
         techStack: [
-            { name: "JavaScript", icon: <Code2 className="w-3 h-3" /> },
-            { name: "WebGL", icon: <Zap className="w-3 h-3" /> },
-            { name: "Three.js", icon: <Globe className="w-3 h-3" /> },
-            { name: "Python", icon: <Code2 className="w-3 h-3" /> }
+            { name: "Solidity", icon: <Code2 className="w-3 h-3" /> },
+            { name: "Rust", icon: <Zap className="w-3 h-3" /> },
+            { name: "Next.js", icon: <Globe className="w-3 h-3" /> },
+            { name: "Node.js", icon: <Code2 className="w-3 h-3" /> }
         ],
         image: "/NanoBond.png",
         avatar: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=100&h=100&fit=crop",
         repoUrl: "https://github.com/BikramMondal5/Nano-Bond"
-    }
+    },
+    {
+        id: 3,
+        title: "MoleculeInsight",
+        description: "A web application that empowers entrepreneurs to connect directly with real investors through AI-powered video pitch analysis, multilingual support, and smart investor matching.",
+        features: [
+            "Built an AI-powered pitch analyzer that assesses clarity, uniqueness, and market fit of startup pitches using advanced natural language evaluation techniques.",
+            "Enabled instant AI feedback on 3–4 minute video pitch submissions, with automatic translation and analysis across multiple languages.",
+            "Incorporated real-time feedback from founders and early backers to enrich AI evaluations and improve pitch quality.",
+            "Designed smart investor matchmaking to connect founders with relevant investors based on pitch quality, stage, and market criteria.",
+            "Developed a dashboard to track pitch engagement and investor interactions, enabling measurable insights into pitch effectiveness."
+        ],
+        techStack: [
+            { name: "Next.js", icon: <Code2 className="w-3 h-3" /> },
+            { name: "Node.js", icon: <Zap className="w-3 h-3" /> },
+            { name: "TailwindCSS", icon: <Database className="w-3 h-3" /> },
+            { name: "Pitch Analysing", icon: <Layers className="w-3 h-3" /> }
+        ],
+        image: "investor-hunt.png",
+        avatar: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=100&h=100&fit=crop",
+        repoUrl: "https://github.com/BikramMondal5/Investor-Hunter"
+    },
 ];
 
 const ProjectShowcase: React.FC = () => {
