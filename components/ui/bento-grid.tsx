@@ -53,8 +53,8 @@ export function BentoCard({
             className={cn(
                 "group relative overflow-hidden rounded-2xl",
                 "bg-[#0d0d0d] border border-white/6",
-                "transition-all duration-300",
-                "hover:border-[#69E300]/30 hover:shadow-[0_0_0_1px_#69E30033,0_8px_40px_#69E30012]",
+                "transition-all duration-500",
+                "hover:shadow-[0_0_32px_8px_#69E30020,0_8px_60px_#69E30016]",
                 className
             )}
             {...(props as ComponentPropsWithoutRef<typeof motion.div>)}

@@ -24,6 +24,7 @@ import { Globe } from "@/registry/magicui/globe";
 import Lanyard from "@/components/Lanyard";
 import { OrbitingCircles } from "@/registry/magicui/orbiting-circles";
 import { ConfettiButton } from "@/registry/magicui/confetti";
+import { VideoText } from "@/registry/magicui/video-text";
 
 /* -- TECH STACK DATA -- */
 const techStack = [
@@ -55,46 +56,27 @@ const projects = [
     { title: "Platform Monitoring & Growth Insights", desc: "Internal tracking and analytics to understand user behaviour.", tags: ["PostHog", "Grafana", "Docker"] },
 ];
 
-/* -- CARD A — Avatar Circles -- */
-function AvatarCircles() {
-    const avatars = [
-        { seed: "dev1", delay: 0 },
-        { seed: "dev2", delay: 0.08 },
-        { seed: "dev3", delay: 0.16 },
-        { seed: "dev4", delay: 0.24 },
-        { seed: "dev5", delay: 0.32 },
-    ];
+/* -- CARD A — Video Text -- */
+function VideoTextBackground() {
     return (
-        <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex items-center">
-                {avatars.map((a, i) => (
-                    <motion.div
-                        key={i}
-                        initial={{ scale: 0, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ delay: a.delay, type: "spring", stiffness: 260, damping: 20 }}
-                        style={{ marginLeft: i === 0 ? 0 : -24, zIndex: i }}
-                        className={cn(
-                            "rounded-full border-2 overflow-hidden shrink-0 bg-[#111]",
-                            i === 2
-                                ? "w-24 h-24 border-[#69E300] ring-2 ring-[#69E300]/40 z-10"
-                                : "w-20 h-20 border-white/8"
-                        )}
-                    >
-                        {i === 2 ? (
-                            <div className="w-full h-full bg-[#0d1a00] flex items-center justify-center text-3xl select-none">
-                                🧑‍💻
-                            </div>
-                        ) : (
-                            <img
-                                src={`https://api.dicebear.com/9.x/identicon/svg?seed=${a.seed}&backgroundColor=111111`}
-                                alt=""
-                                className="w-full h-full opacity-60"
-                            />
-                        )}
-                    </motion.div>
-                ))}
-            </div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-8 gap-1 overflow-hidden">
+            <VideoText
+                src="https://cdn.magicui.design/ocean-small.webm"
+                className="h-auto w-auto"
+            >
+                <span
+                    className="text-white font-black uppercase leading-none select-none"
+                    style={{ fontSize: "clamp(4rem, 10vw, 7rem)", fontFamily: "var(--font-space-grotesk)" }}
+                >
+                    &lt;Welcome&gt;
+                </span>
+            </VideoText>
+            <p
+                className="text-lg font-medium tracking-wide"
+                style={{ fontFamily: "var(--font-space-grotesk)", fontSize: "clamp(1.5rem, 4vw, 2.5rem)", color: "#69E300" }}
+            >
+                to my Portfolio!
+            </p>
         </div>
     );
 }
@@ -180,10 +162,10 @@ function OrbitingBackground() {
             <div className="pointer-events-none absolute rounded-full border border-[#69E300]/8" style={{ width: 214, height: 214 }} />
             <div className="pointer-events-none absolute rounded-full border border-[#69E300]/5" style={{ width: 134, height: 134 }} />
 
-            {/* Email copy button — bottom right */}
+            {/* Email copy button — bottom right, visible on card hover */}
             <ConfettiButton
                 onClick={() => navigator.clipboard.writeText("codesnippets45@gmail.com")}
-                className="absolute bottom-4 right-4 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#69E300]/10 border border-[#69E300]/35 text-[#69E300] text-[10px] font-mono hover:bg-[#69E300]/20 active:scale-95 transition-all duration-200 cursor-pointer"
+                className="absolute bottom-4 right-4 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#69E300]/10 border border-[#69E300]/35 text-[#69E300] text-[10px] font-mono hover:bg-[#69E300]/20 active:scale-95 transition-all duration-300 cursor-pointer opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0"
             >
                 <Copy size={10} />
                 <span>codesnippets45@gmail.com</span>
@@ -252,10 +234,10 @@ export default function BentoSection() {
                 {/* 3-col x 3-row grid, each row = 260px */}
                 <div className="grid grid-cols-3 gap-4" style={{ gridTemplateRows: "260px 260px 260px" }}>
 
-                    {/* A: Partnership — col 1-2 / row 1 */}
+                    {/* A: Video Text — col 1-2 / row 1 */}
                     <BentoCard
                         className="col-span-2 row-span-1"
-                        background={<AvatarCircles />}
+                        background={<VideoTextBackground />}
                     />
 
                     {/* B: Lanyard — col 3 / rows 1-2 */}
@@ -274,9 +256,9 @@ export default function BentoSection() {
                             <>
                                 {/* Title at top */}
                                 <div className="absolute top-5 left-5 right-5 z-20">
-                                    <p className="text-sm font-semibold text-white leading-snug tracking-tight">I&apos;m highly adaptable<br />across global time zones</p>
+                                    <p className="text-sm font-semibold text-white leading-snug tracking-tight" style={{ fontFamily: 'var(--font-space-grotesk)' }}>I&apos;m highly adaptable<br />across global time zones</p>
                                 </div>
-                                <Globe className="top-10 scale-110" />
+                                <Globe className="top-[18%]" />
                                 <div className="pointer-events-none absolute inset-0 h-full bg-[radial-gradient(circle_at_50%_200%,rgba(105,227,0,0.08),rgba(0,0,0,0))]" />
                                 <div className="absolute bottom-6 left-5 flex items-center gap-1.5 z-20">
                                     <MapPin size={11} className="text-[#69E300]" />
@@ -304,30 +286,6 @@ export default function BentoSection() {
                     />
                 </div>
 
-                {/* Stats strip */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-                    {[
-                        { label: "Projects shipped", value: "24+", icon: <Layers size={15} /> },
-                        { label: "Years building", value: "4+", icon: <Code2 size={15} /> },
-                        { label: "Open-source PRs", value: "80+", icon: <GitBranch size={15} /> },
-                        { label: "Happy clients", value: "12+", icon: <GlobeIcon size={15} /> },
-                    ].map((s, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 16 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.35 + i * 0.07 }}
-                            className="p-5 rounded-2xl bg-[#0d0d0d] border border-white/6 hover:border-[#69E300]/25 transition-colors duration-300"
-                        >
-                            <div className="flex items-center gap-2 text-[#69E300] mb-2">
-                                {s.icon}
-                                <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">{s.label}</span>
-                            </div>
-                            <p className="text-3xl font-bold text-white">{s.value}</p>
-                        </motion.div>
-                    ))}
-                </div>
             </div>
         </section>
     );
