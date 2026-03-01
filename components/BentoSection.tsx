@@ -61,7 +61,7 @@ function VideoTextBackground() {
     return (
         <div className="absolute inset-0 flex flex-col items-center justify-center px-8 gap-1 overflow-hidden">
             <VideoText
-                src="https://cdn.magicui.design/ocean-small.webm"
+                src="/VideoText.mp4"
                 className="h-auto w-auto"
             >
                 <span
