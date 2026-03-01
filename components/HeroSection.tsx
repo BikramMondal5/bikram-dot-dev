@@ -99,28 +99,15 @@ export default function HeroSection() {
                         className="max-w-4xl mx-auto text-center"
                     >
                         {/* Main Heading */}
-                        <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-                            Programming isn’t just my profession, it’s my passion.
+                        <h1 className="font-bold mb-6 font-[family-name:var(--font-space-grotesk)]" style={{ fontSize: '80px', lineHeight: '98px' }}>
+                            Hi, I'm <span className="text-[#69E300]">Bikram Mondal</span>
                         </h1>
 
                         {/* Subheading */}
-                        <p className="text-xl md:text-2xl text-gray-300 mb-4">
-                            Hello, I'm <span className="text-white font-medium">Bikram Mondal</span>
+                        <p className="text-white mb-8 font-[family-name:var(--font-poppins)]" style={{ fontSize: '30px', lineHeight: '40px' }}>
+                            A Full Stack Web Developer with a passion for learning and building web applications.
+                            I love solving problems and building things through code. Programming isn't just my profession—it's my passion.
                         </p>
-
-                        {/* Software Developer Badge */}
-                        <div className="inline-block mb-8">
-                            <WordRotate
-                                className="bg-[#69E300] text-black px-6 py-2 rounded-md text-sm font-semibold"
-                                words={[
-                                    "Software Engineer",
-                                    "Full Stack Web Developer",
-                                    "AI/ML Expert",
-                                    "Moody Artists",
-                                    "Blogger",
-                                ]}
-                            />
-                        </div>
 
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
