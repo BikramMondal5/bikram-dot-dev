@@ -284,52 +284,139 @@ export default function HeroSection() {
             {/* Bento About Section */}
             <BentoSection />
 
-            {/* Features Section */}
+            {/* Project Showcase Section */}
             <section id="projects" className="relative z-10 py-24 px-4 bg-[#0a0a0a]">
-                <div className="container mx-auto">
+                <div className="container mx-auto max-w-6xl">
+                    {/* Section label */}
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="flex items-center gap-3 mb-14"
+                    >
+                        <span className="w-8 h-px bg-[#69E300]" />
+                        <span className="text-[#69E300] text-sm font-mono uppercase tracking-widest">Featured Project</span>
+                    </motion.div>
+
+                    {/* Project Card */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 32 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="text-center mb-16"
+                        className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center"
                     >
-                        <div className="flex items-center gap-3 justify-center mb-4">
-                            <span className="w-8 h-px bg-[#69E300]" />
-                            <span className="text-[#69E300] text-sm font-mono uppercase tracking-widest">What I Do</span>
-                            <span className="w-8 h-px bg-[#69E300]" />
-                        </div>
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
-                            Skills &amp; Services
-                        </h2>
-                        <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                            From concept to deployment — I cover the full stack with modern tooling
-                        </p>
-                    </motion.div>
+                        {/* Left — Text Content */}
+                        <div className="space-y-6">
+                            {/* Title */}
+                            <div className="flex items-center gap-3">
+                                <span className="text-red-500 text-2xl font-bold leading-none">—</span>
+                                <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight" style={{ fontFamily: "var(--font-space-grotesk)" }}>
+                                    Rune
+                                </h2>
+                            </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                        {[
-                            { title: "Frontend Development", description: "Pixel-perfect UIs with React, Next.js, Tailwind CSS and Framer Motion animations." },
-                            { title: "Backend & APIs", description: "Scalable Node.js, Express, and serverless APIs with REST and GraphQL." },
-                            { title: "Database Design", description: "PostgreSQL, MongoDB, Prisma ORM — from schema design to optimised queries." },
-                            { title: "3D & Motion", description: "Interactive 3D scenes with Three.js / React Three Fiber and smooth animations." },
-                            { title: "CMS Integration", description: "Headless CMS setups with Sanity, Contentful, and custom content pipelines." },
-                            { title: "DevOps & Deploy", description: "CI/CD, Docker, Vercel, and cloud hosting for production-ready deployments." },
-                        ].map((feature, index) => (
+                            {/* Description */}
+                            <p className="text-gray-400 leading-relaxed text-base">
+                                🚀 Rune is your all-in-one productivity toolkit featuring 100+ powerful tools for learning, creating, and working smarter. From text &amp; writing tools, PDF management, image editing, video processing, to developer utilities, calculators, and AI-powered assistants—Rune empowers students, professionals, and creators with free 24/7 access to streamline their workflow.
+                            </p>
+
+                            {/* Feature Bullets */}
+                            <div className="space-y-3">
+                                {[
+                                    "100+ free tools including text editors, PDF converters, and image processors",
+                                    "AI-powered tools for writing, summarizing, and content creation",
+                                    "Developer utilities with JSON formatter, regex tester, and code tools",
+                                ].map((feature, idx) => (
+                                    <motion.div
+                                        key={idx}
+                                        initial={{ x: -20, opacity: 0 }}
+                                        whileInView={{ x: 0, opacity: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.3 + idx * 0.1 }}
+                                        className="flex items-start gap-3"
+                                    >
+                                        <span className="text-[#69E300] font-bold text-lg leading-tight mt-0.5">+</span>
+                                        <p className="text-sm md:text-base text-gray-300">{feature}</p>
+                                    </motion.div>
+                                ))}
+                            </div>
+
+                            {/* Tech Stack Badges */}
                             <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
+                                initial={{ y: 20, opacity: 0 }}
+                                whileInView={{ y: 0, opacity: 1 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                whileHover={{ y: -8 }}
-                                className="p-6 rounded-2xl bg-[#0d0d0d] border border-white/6 hover:border-[#69E300]/30 hover:shadow-[0_0_20px_#69E30012] transition-all duration-300"
+                                transition={{ delay: 0.5 }}
+                                className="flex flex-wrap gap-2 pt-2"
                             >
-                                <h3 className="text-xl font-bold mb-3 text-white">{feature.title}</h3>
-                                <p className="text-gray-400">{feature.description}</p>
+                                {[
+                                    { name: "React", icon: "⚛️" },
+                                    { name: "TypeScript", icon: "🟦" },
+                                    { name: "Next.js", icon: "▲" },
+                                    { name: "Tailwind CSS", icon: "🌊" },
+                                    { name: "OpenAI", icon: "🤖" },
+                                    { name: "Framer Motion", icon: "🎨" },
+                                    { name: "Node.js", icon: "🟢" },
+                                    { name: "Vercel", icon: "▲" },
+                                ].map((tech, idx) => (
+                                    <motion.span
+                                        key={tech.name}
+                                        initial={{ scale: 0, opacity: 0 }}
+                                        whileInView={{ scale: 1, opacity: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.6 + idx * 0.05 }}
+                                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs md:text-sm font-medium bg-[#131313] border border-white/10 text-white hover:border-[#69E300]/30 transition-colors duration-200"
+                                    >
+                                        <span className="text-sm">{tech.icon}</span>
+                                        {tech.name}
+                                    </motion.span>
+                                ))}
                             </motion.div>
-                        ))}
-                    </div>
+                        </div>
+
+                        {/* Right — Image Placeholder */}
+                        <motion.div
+                            initial={{ x: 50, opacity: 0 }}
+                            whileInView={{ x: 0, opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
+                            className="relative w-full"
+                        >
+                            <div className="relative w-full aspect-4/3 rounded-2xl overflow-hidden bg-linear-to-br from-red-900/40 via-[#0d0d0d] to-[#0d0d0d] border border-white/6 group hover:border-[#69E300]/30 transition-all duration-500 shadow-2xl">
+                                {/* Mock browser chrome */}
+                                <div className="absolute top-0 left-0 right-0 h-8 bg-[#1a1a1a] border-b border-white/5 flex items-center px-3 gap-1.5 z-10">
+                                    <div className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
+                                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
+                                    <div className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
+                                    <div className="ml-3 flex-1 h-4 rounded-md bg-white/5" />
+                                </div>
+
+                                {/* Image placeholder area */}
+                                <div className="absolute inset-0 pt-8 flex items-center justify-center">
+                                    <div className="text-center space-y-4">
+                                        <div className="w-20 h-20 mx-auto rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center">
+                                            <Code2 className="w-10 h-10 text-red-400" />
+                                        </div>
+                                        <div className="space-y-1">
+                                            <p className="text-white/60 text-sm font-semibold">Project Preview</p>
+                                            <p className="text-gray-600 text-xs font-mono">rune.tools</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Decorative gradient overlay */}
+                                <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-[#0a0a0a]/60 via-transparent to-transparent" />
+
+                                {/* Subtle hover glow */}
+                                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: "radial-gradient(circle at 50% 50%, rgba(239,68,68,0.06) 0%, transparent 70%)" }} />
+                            </div>
+
+                            {/* Floating dot decoration */}
+                            <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-[#69E300]/20 blur-sm" />
+                            <div className="absolute -bottom-3 -left-3 w-6 h-6 rounded-full bg-red-500/10 blur-sm" />
+                        </motion.div>
+                    </motion.div>
                 </div>
             </section>
 
