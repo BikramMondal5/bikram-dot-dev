@@ -214,7 +214,7 @@ function ProjectsBackground() {
 ================================================================ */
 export default function BentoSection() {
     return (
-        <section id="about" className="relative z-10 py-32 px-4 bg-[#0a0a0a] overflow-hidden">
+        <section id="about" className="relative z-10 py-20 px-4 bg-[#0a0a0a] overflow-hidden">
             <div
                 className="pointer-events-none absolute inset-0"
                 style={{ background: "radial-gradient(ellipse 80% 40% at 50% -5%, #69E30010 0%, transparent 70%)" }}
@@ -286,43 +286,6 @@ export default function BentoSection() {
                         background={<ProjectsBackground />}
                     />
                 </div>
-
-                {/* Introduction Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 32 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-                >
-                    {/* Left: Content */}
-                    <div className="space-y-6">
-                        <div className="flex items-center gap-3">
-                            <span className="w-8 h-px bg-[#69E300]" />
-                            <span className="text-[#69E300] text-sm font-mono uppercase tracking-widest">INTRODUCTION</span>
-                        </div>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
-                            Overview.
-                        </h2>
-                        <p className="text-gray-400 leading-relaxed text-base">
-                            I&apos;m a <span className="text-white font-semibold">Full-stack Web developer</span> with experience in <span className="text-[#69E300]">Python, Javascript &amp; TypeScript</span>, and expertise in frameworks like <span className="text-[#69E300]">React, Node.js, and Three.js</span>. I love to explore new technologies to refine my skills and contribute to interactive projects. Also I enjoy to build efficient, scalable, and user-friendly solutions that solve real-world problems. Let&apos;s work together to bring your ideas to life!
-                        </p>
-                    </div>
-
-                    {/* Right: Image Placeholder */}
-                    <div className="relative w-[90%] h-[130%] ml-auto rounded-3xl overflow-hidden bg-linear-to-br from-[#69E300]/10 via-[#0d0d0d] to-[#0d0d0d] border border-white/6 group hover:border-[#69E300]/30 transition-all duration-500">
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="text-center space-y-3">
-                                <div className="w-16 h-16 mx-auto rounded-full bg-[#69E300]/10 border border-[#69E300]/30 flex items-center justify-center">
-                                    <Users className="w-8 h-8 text-[#69E300]" />
-                                </div>
-                                <p className="text-gray-500 text-sm font-mono">Image Placeholder</p>
-                            </div>
-                        </div>
-                        {/* Subtle hover glow */}
-                        <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: "radial-gradient(circle at 50% 50%, #69E30008 0%, transparent 70%)" }} />
-                    </div>
-                </motion.div>
 
             </div>
         </section>

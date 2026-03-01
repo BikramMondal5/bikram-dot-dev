@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import BentoSection from "@/components/BentoSection";
 import ProjectShowcase from "@/components/ProjectShowcase";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import OverviewSection from "@/components/OverviewSection";
 
 function cn(...classes: (string | undefined | null | false)[]) {
     return classes.filter(Boolean).join(" ");
@@ -181,7 +182,7 @@ export default function HeroSection() {
             </motion.header>
 
             {/* Hero Section */}
-            <section id="home" className="relative z-10 min-h-screen flex items-center justify-center px-4 pb-32 overflow-hidden">
+            <section id="home" className="relative z-10 min-h-screen flex items-center justify-center px-4 pb-20 overflow-hidden">
                 {/* 3D Background */}
                 <div className="absolute inset-0 z-0">
                     <Canvas camera={{ position: [0, 3, 12], fov: 75 }}>
@@ -269,11 +270,14 @@ export default function HeroSection() {
             {/* Bento About Section */}
             <BentoSection />
 
+            {/* Overview Section */}
+            <OverviewSection />
+
             {/* Dynamic Project Showcase Section */}
             <ProjectShowcase />
 
             {/* CTA Section */}
-            <section id="contact" className="relative z-10 py-32 px-4 bg-[#0a0a0a]">
+            <section id="contact" className="relative z-10 py-20 px-4 bg-[#0a0a0a]">
                 <div className="container mx-auto">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}

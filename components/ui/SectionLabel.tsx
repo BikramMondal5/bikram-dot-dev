@@ -12,7 +12,7 @@ const SectionLabel = React.forwardRef<HTMLDivElement, SectionLabelProps>(
             <div
                 ref={ref}
                 className={cn(
-                    "inline-flex items-center justify-center gap-2 rounded-full border border-green-800 bg-green-950 px-4 py-2 text-sm font-medium text-green-300",
+                    "inline-flex items-center justify-center gap-2 rounded-full bg-[#69E300]/10 border border-[#69E300]/20 px-4 py-2 text-sm font-medium text-[#69E300]",
                     className
                 )}
                 {...props}

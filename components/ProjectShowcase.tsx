@@ -141,7 +141,7 @@ const ProjectShowcase: React.FC = () => {
     };
 
     return (
-        <section id="projects" className="relative bg-[#0A0A0A] py-32 px-4 md:px-8 lg:px-16 min-h-screen flex flex-col items-center justify-center">
+        <section id="projects" className="relative bg-[#0A0A0A] py-20 px-4 md:px-8 lg:px-16 min-h-screen flex flex-col items-center justify-center">
             <SectionHeader
                 label="Featured Projects"
                 title={
