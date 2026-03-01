@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import {
     Mail,
     MapPin,
+    Copy,
     Code2,
     Database,
     Globe as GlobeIcon,
@@ -22,6 +23,7 @@ import { Marquee } from "@/components/ui/marquee";
 import { Globe } from "@/registry/magicui/globe";
 import Lanyard from "@/components/Lanyard";
 import { OrbitingCircles } from "@/registry/magicui/orbiting-circles";
+import { ConfettiButton } from "@/registry/magicui/confetti";
 
 /* -- TECH STACK DATA -- */
 const techStack = [
@@ -177,6 +179,15 @@ function OrbitingBackground() {
             {/* Subtle glow rings */}
             <div className="pointer-events-none absolute rounded-full border border-[#69E300]/8" style={{ width: 214, height: 214 }} />
             <div className="pointer-events-none absolute rounded-full border border-[#69E300]/5" style={{ width: 134, height: 134 }} />
+
+            {/* Email copy button — bottom right */}
+            <ConfettiButton
+                onClick={() => navigator.clipboard.writeText("codesnippets45@gmail.com")}
+                className="absolute bottom-4 right-4 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#69E300]/10 border border-[#69E300]/35 text-[#69E300] text-[10px] font-mono hover:bg-[#69E300]/20 active:scale-95 transition-all duration-200 cursor-pointer"
+            >
+                <Copy size={10} />
+                <span>codesnippets45@gmail.com</span>
+            </ConfettiButton>
         </div>
     );
 }
@@ -243,11 +254,6 @@ export default function BentoSection() {
 
                     {/* A: Partnership — col 1-2 / row 1 */}
                     <BentoCard
-                        name="Partnership"
-                        description="I prioritize client success, fostering open communication and transparent workflows throughout every project."
-                        Icon={Users}
-                        href="#"
-                        cta="Work with me"
                         className="col-span-2 row-span-1"
                         background={<AvatarCircles />}
                     />
@@ -263,27 +269,16 @@ export default function BentoSection() {
 
                     {/* C: Globe / Timezones — col 1 / rows 2-3 */}
                     <BentoCard
-                        name="I'm highly adaptable across global time zones"
                         className="col-start-1 row-span-2"
                         background={
                             <>
+                                {/* Title at top */}
+                                <div className="absolute top-5 left-5 right-5 z-20">
+                                    <p className="text-sm font-semibold text-white leading-snug tracking-tight">I&apos;m highly adaptable<br />across global time zones</p>
+                                </div>
                                 <Globe className="top-10 scale-110" />
                                 <div className="pointer-events-none absolute inset-0 h-full bg-[radial-gradient(circle_at_50%_200%,rgba(105,227,0,0.08),rgba(0,0,0,0))]" />
-                                <div className="absolute bottom-27 left-6 flex flex-wrap gap-2 z-20">
-                                    {[
-                                        { flag: "🇬🇧", code: "GB UK" },
-                                        { flag: "🇮🇳", code: "IN India" },
-                                        { flag: "🇺🇸", code: "US USA" },
-                                    ].map((z) => (
-                                        <span
-                                            key={z.code}
-                                            className="flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-medium bg-white/6 border border-white/10 text-gray-300"
-                                        >
-                                            {z.flag} {z.code}
-                                        </span>
-                                    ))}
-                                </div>
-                                <div className="absolute bottom-20 left-6 flex items-center gap-1.5 z-20">
+                                <div className="absolute bottom-6 left-5 flex items-center gap-1.5 z-20">
                                     <MapPin size={11} className="text-[#69E300]" />
                                     <span className="text-[11px] text-[#69E300] font-mono">REMOTE · India</span>
                                 </div>
@@ -293,19 +288,14 @@ export default function BentoSection() {
 
                     {/* D: Orbiting Tech — col 2 / row 2 */}
                     <BentoCard
-                        name="Let's innovate together"
-                        description="Full-stack engineer orbiting the modern web ecosystem."
-                        Icon={Mail}
-                        href="mailto:hello@bikram.dev"
-                        cta="hello@bikram.dev"
                         className="col-start-2 row-start-2"
                         background={<OrbitingBackground />}
                     />
 
                     {/* E: Projects — col 2-3 / row 3 */}
                     <BentoCard
-                        name="Working on Rune Environment"
-                        description="Things I'm doing — scroll to explore current builds →"
+                        name="Selected Works"
+                        description="SaaS products, AI tools & full-stack builds — scroll to explore →"
                         Icon={Code2}
                         href="#"
                         cta="View all projects"
