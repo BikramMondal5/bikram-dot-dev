@@ -24,48 +24,84 @@ export default function Navbar() {
             <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                     {/* Logo */}
-                    <a href="#" className="flex items-center text-white font-bold text-xl">
+                    <a href="#home" className="flex items-center text-white font-bold text-xl">
                         <img
                             src="/icons/reactz-logo.png"
                             alt="Logo"
                             className="w-8 h-8 mr-2.5"
                         />
-                        Bikram mondal
+                        Bikram Mondal
                     </a>
 
                     {/* Navigation Links */}
                     <ul className="hidden md:flex items-center gap-8">
-                        {["Home", "Dashboard", "Projects", "Agents", "Observability", "Security"].map((item) => (
-                            <li key={item}>
-                                <a
-                                    href={`#${item.toLowerCase()}`}
-                                    className="text-white/80 hover:text-white font-medium transition-colors duration-200"
-                                >
-                                    {item}
-                                </a>
-                            </li>
-                        ))}
+                        <li>
+                            <a
+                                href="#home"
+                                className="text-white/80 hover:text-white font-medium transition-colors duration-200"
+                            >
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#about"
+                                className="text-white/80 hover:text-white font-medium transition-colors duration-200"
+                            >
+                                About
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#overview"
+                                className="text-white/80 hover:text-white font-medium transition-colors duration-200"
+                            >
+                                Overview
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#projects"
+                                className="text-white/80 hover:text-white font-medium transition-colors duration-200"
+                            >
+                                Projects
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#testimonials"
+                                className="text-white/80 hover:text-white font-medium transition-colors duration-200"
+                            >
+                                Testimonials
+                            </a>
+                        </li>
                     </ul>
 
                     {/* Right Side Buttons */}
                     <div className="flex items-center gap-3">
-                        <Button
-                            variant="ghost"
-                            className="text-white/80 hover:text-white hover:bg-transparent"
-                        >
-                            Login
-                        </Button>
-                        <Button
-                            variant="ghost"
-                            className="text-white/80 hover:text-white hover:bg-transparent"
-                        >
-                            Register
-                        </Button>
-                        <Button
-                            className="bg-[#69E300] text-black hover:bg-[#7fff00] font-semibold"
-                        >
-                            Connect With Me
-                        </Button>
+                        <a href="/login">
+                            <Button
+                                variant="ghost"
+                                className="text-white/80 hover:text-white hover:bg-transparent"
+                            >
+                                Login
+                            </Button>
+                        </a>
+                        <a href="/sign-up">
+                            <Button
+                                variant="ghost"
+                                className="text-white/80 hover:text-white hover:bg-transparent"
+                            >
+                                Sign Up
+                            </Button>
+                        </a>
+                        <a href="mailto:bikrammondal734@gmail.com">
+                            <Button
+                                className="bg-[#69E300] text-black hover:bg-[#7fff00] font-semibold"
+                            >
+                                Connect With Me
+                            </Button>
+                        </a>
                     </div>
                 </div>
             </div>
