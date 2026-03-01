@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code2, Database, Layers, Zap, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Code2, Database, Layers, Zap, Globe, ChevronLeft, ChevronRight, Briefcase } from 'lucide-react';
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
 interface TechStack {
@@ -144,13 +144,13 @@ const ProjectShowcase: React.FC = () => {
         <section id="projects" className="relative bg-[#0A0A0A] py-20 px-4 md:px-8 lg:px-16 min-h-screen flex flex-col items-center justify-center">
             <SectionHeader
                 label="Featured Projects"
+                icon={<Briefcase className="h-4 w-4" />}
                 title={
                     <>
-                        My Creative{" "}
-                        <span className="text-[#69E300]">Portfolio</span>
+                        Selected <span className="text-[#69E300]">Work & Experiments</span>
                     </>
                 }
-                subtitle="Here are some of the projects I'm most proud of. From web apps to AI experiments, each one is a story of learning and creation."
+                subtitle="A collection of high-performance web applications and AI-driven tools built with a focus on scalability, clean architecture, and user experience."
             />
             <div className="max-w-7xl mx-auto w-full relative">
                 <AnimatePresence mode="wait" custom={direction}>

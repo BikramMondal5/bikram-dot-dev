@@ -15,7 +15,7 @@ export default function OverviewSection() {
                             Hey! It&apos;s Me <span className="text-[#69E300]">Bikram</span>
                         </>
                     }
-                    subtitle="A brief overview of who I am and what I do."
+                    subtitle="A full-stack developer passionate about AI, scalable architecture, and crafting interactive digital experiences."
                 />
                 <motion.div
                     initial={{ opacity: 0, y: 32 }}

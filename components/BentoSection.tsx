@@ -222,14 +222,14 @@ export default function BentoSection() {
 
             <div className="container mx-auto max-w-7xl relative">
                 <SectionHeader
-                    label="About & Work"
+                    label="Building Intelligent Systems"
                     title={
                         <>
-                            My Digital{" "}
-                            <span className="text-[#69E300]">Playground</span>
+                            Ideas Into{" "}
+                            <span className="text-[#69E300]">Reality</span>
                         </>
                     }
-                    subtitle="A glimpse into my skills, interests, and the technologies I love to work with. This is where code meets creativity."
+                    subtitle="Crafting scalable AI tools, interactive web apps, and experimental digital systems where performance meets creativity."
                 />
 
                 {/* 3-col x 3-row grid, each row = 260px */}

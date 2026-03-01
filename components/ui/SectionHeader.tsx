@@ -6,6 +6,7 @@ interface SectionHeaderProps {
     title: React.ReactNode;
     subtitle: string;
     className?: string;
+    icon?: React.ReactNode;
 }
 
 export function SectionHeader({
@@ -13,10 +14,11 @@ export function SectionHeader({
     title,
     subtitle,
     className,
+    icon,
 }: SectionHeaderProps) {
     return (
         <div className={cn("text-center space-y-4 mb-12", className)}>
-            <SectionLabel>{label}</SectionLabel>
+            <SectionLabel icon={icon}>{label}</SectionLabel>
             <h2
                 className="text-4xl md:text-6xl font-bold text-white tracking-tighter"
                 style={{ fontFamily: "var(--font-space-grotesk)" }}

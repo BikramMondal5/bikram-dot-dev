@@ -2,63 +2,63 @@
 
 import { useEffect, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
-import { Star, User, Quote } from "lucide-react"
+import { Star, User, Quote, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 // Default testimonial data
 const defaultTestimonials = [
     {
-        name: "Marcus Thorne",
-        country: "Cloud Infrastructure Lead",
-        type: "Enterprise",
-        avatar: "https://i.pravatar.cc/150?u=marcus",
+        name: "Arijit Sen",
+        country: "Senior",
+        type: "Senior",
+        avatar: "https://i.pravatar.cc/150?u=arijit",
         feedback:
-            "The agentic orchestration in Ghostwriter has transformed our CI/CD pipeline. We've seen a 40% reduction in deployment failures due to autonomous pre-flight audits.",
+            "Bikram has a strong problem-solving mindset and a genuine curiosity for learning. During our collaboration, he consistently took ownership of challenging tasks and delivered clean, well-structured solutions. His dedication and growth mindset really stand out.",
         rating: 5,
     },
     {
-        name: "Dr. Sarah Chen",
-        country: "USA",
-        type: "Enterprise",
-        avatar: "https://i.pravatar.cc/150?u=sarah",
+        name: "Rohit Sharma",
+        country: "Hackathon Teammate",
+        type: "Teammate",
+        avatar: "https://i.pravatar.cc/150?u=rohit",
         feedback:
-            "MoleculeInsight cut our preliminary research phase by 60%. The agentic AI orchestration finds connections across patents and clinical trials we missed manually.",
+            "Working with Bikram during the hackathon was a great experience. He handled both frontend and backend responsibilities smoothly and always focused on performance and user experience. His ability to stay calm under pressure helped our team a lot.",
         rating: 5,
     },
     {
-        name: "James Wilson",
-        country: "UK",
-        type: "Scale-up",
-        avatar: "https://i.pravatar.cc/150?u=james",
+        name: "Ananya Das",
+        country: "Hackathon Teammate",
+        type: "Teammate",
+        avatar: "https://i.pravatar.cc/150?u=ananya",
         feedback:
-            "The comprehensive PDF reports generated are board-ready. It's like having a dedicated analyst team working 24/7 on molecule repurposing opportunities.",
-        rating: 4,
-    },
-    {
-        name: "Elena Rodriguez",
-        country: "Spain",
-        type: "FinTech",
-        avatar: "https://i.pravatar.cc/150?u=elena",
-        feedback:
-            "Deep data retrieval from multiple sources is seamless. I can trust the data quality because it links directly to the source documents.",
+            "Bikram has a deep interest in AI and system design. I was impressed by how he integrates machine learning concepts into real-world applications instead of just building basic projects. He always aims to build something meaningful.",
         rating: 5,
     },
     {
-        name: "Akira Tanaka",
-        country: "Japan",
-        type: "Enterprise",
-        avatar: "https://i.pravatar.cc/150?u=akira",
+        name: "Sayan Roy",
+        country: "Project Partner",
+        type: "Partner",
+        avatar: "https://i.pravatar.cc/150?s=sayan",
         feedback:
-            "For evaluating biotech startups, this tool is indispensable. It quickly validates claims and highlights the competitive landscape in minutes.",
-        rating: 4,
+            "One thing I admire about Bikram is his collaborative nature. He communicates clearly, listens to feedback, and actively contributes ideas. He doesn’t just write code — he thinks about architecture and scalability.",
+        rating: 5,
     },
     {
-        name: "Dr. Emily Clarke",
-        country: "Canada",
-        type: "Scale-up",
-        avatar: "https://i.pravatar.cc/150?u=emily",
+        name: "Priyanka Mukherjee",
+        country: "Senior",
+        type: "Senior",
+        avatar: "https://i.pravatar.cc/150?u=priyanka",
         feedback:
-            "The ease of use is remarkable. Just entering a molecule name gives me a holistic view from molecular properties to current market status.",
+            "Bikram is extremely consistent and disciplined in his work. Whenever we worked together, he delivered on time and ensured everything was properly tested. His attention to detail makes his projects feel polished and professional.",
+        rating: 5,
+    },
+    {
+        name: "Amit Verma",
+        country: "Project Partner",
+        type: "Partner",
+        avatar: "https://i.pravatar.cc/150?u=amit",
+        feedback:
+            "Bikram has a great sense of UI and interaction design. His projects aren’t just functional — they feel modern and well-crafted. His experiments with animations and interactive components show strong creativity and technical depth.",
         rating: 5,
     },
 ]
@@ -117,6 +117,7 @@ function AnimatedTooltip({ items }: { items: typeof people }) {
                     <img
                         src={item.image || "/placeholder.svg"}
                         alt={item.name}
+                        onError={(e) => (e.currentTarget.src = "/avatar.jfif")}
                         className="w-10 h-10 rounded-full border-2 border-background object-cover transition-transform group-hover:scale-110"
                     />
                 </div>
@@ -133,13 +134,14 @@ export default function TestimonialCarousel() {
         <section id="testimonials" className="relative py-24 bg-[#0A0A0A] overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 mb-16 text-center space-y-4">
                 <div className="inline-flex items-center gap-2 rounded-full border border-[#69E300]/20 bg-[#69E300]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#69E300]">
-                    Wall of Confidence
+                    <MessageSquare className="w-4 h-4 text-[#69E300]" />
+                    <span>Testimonials</span>
                 </div>
                 <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-white">
-                    Trusted by <span className="text-[#69E300]">Industry Leaders</span>
+                    What People <span className="text-[#69E300]">Thinks About Me</span>
                 </h2>
                 <p className="text-lg text-white/60 max-w-2xl mx-auto text-pretty">
-                    See how teams are accelerating discovery with our autonomous AI agents.
+                    Insights and feedback from peers, teammates, and mentors I’ve had the opportunity to collaborate with.
                 </p>
 
                 {/* Avatars Section */}
@@ -147,9 +149,7 @@ export default function TestimonialCarousel() {
                     <div className="flex flex-row items-center justify-center w-full">
                         <AnimatedTooltip items={people} />
                     </div>
-                    <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#69E300]">
-                        Empowering 1,200+ Engineering Teams
-                    </p>
+
                 </div>
             </div>
 

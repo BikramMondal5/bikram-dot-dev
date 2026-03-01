@@ -106,7 +106,7 @@ export default function HeroSection() {
                         {/* Subheading */}
                         <p className="text-white mb-8 font-[family-name:var(--font-poppins)]" style={{ fontSize: '30px', lineHeight: '40px' }}>
                             A Full Stack Web Developer with a passion for learning and building web applications.
-                            I love solving problems and building things through code. Programming isn't just my profession—it's my passion.
+                            I love solving problems and building things through code. Programming isn't just my profession, it's my passion.
                         </p>
 
                         <motion.div
