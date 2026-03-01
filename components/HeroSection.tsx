@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronRight, Menu, X, Code2, Brain, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import BentoSection from "@/components/BentoSection";
+import ProjectShowcase from "@/components/ProjectShowcase";
 
 function cn(...classes: (string | undefined | null | false)[]) {
     return classes.filter(Boolean).join(" ");
@@ -179,7 +180,7 @@ export default function HeroSection() {
             </motion.header>
 
             {/* Hero Section */}
-            <section className="relative z-10 min-h-screen flex items-center justify-center px-4 overflow-hidden">
+            <section id="home" className="relative z-10 min-h-screen flex items-center justify-center px-4 pb-32 overflow-hidden">
                 {/* 3D Background */}
                 <div className="absolute inset-0 z-0">
                     <Canvas camera={{ position: [0, 3, 12], fov: 75 }}>
@@ -284,144 +285,11 @@ export default function HeroSection() {
             {/* Bento About Section */}
             <BentoSection />
 
-            {/* Project Showcase Section */}
-            <section id="projects" className="relative z-10 py-24 px-4 bg-[#0a0a0a]">
-                <div className="container mx-auto max-w-6xl">
-                    {/* Section label */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 16 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="flex items-center gap-3 mb-14"
-                    >
-                        <span className="w-8 h-px bg-[#69E300]" />
-                        <span className="text-[#69E300] text-sm font-mono uppercase tracking-widest">Featured Project</span>
-                    </motion.div>
-
-                    {/* Project Card */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 32 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center"
-                    >
-                        {/* Left — Text Content */}
-                        <div className="space-y-6">
-                            {/* Title */}
-                            <div className="flex items-center gap-3">
-                                <span className="text-red-500 text-2xl font-bold leading-none">—</span>
-                                <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight" style={{ fontFamily: "var(--font-space-grotesk)" }}>
-                                    Rune
-                                </h2>
-                            </div>
-
-                            {/* Description */}
-                            <p className="text-gray-400 leading-relaxed text-base">
-                                🚀 Rune is your all-in-one productivity toolkit featuring 100+ powerful tools for learning, creating, and working smarter. From text &amp; writing tools, PDF management, image editing, video processing, to developer utilities, calculators, and AI-powered assistants—Rune empowers students, professionals, and creators with free 24/7 access to streamline their workflow.
-                            </p>
-
-                            {/* Feature Bullets */}
-                            <div className="space-y-3">
-                                {[
-                                    "100+ free tools including text editors, PDF converters, and image processors",
-                                    "AI-powered tools for writing, summarizing, and content creation",
-                                    "Developer utilities with JSON formatter, regex tester, and code tools",
-                                ].map((feature, idx) => (
-                                    <motion.div
-                                        key={idx}
-                                        initial={{ x: -20, opacity: 0 }}
-                                        whileInView={{ x: 0, opacity: 1 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.3 + idx * 0.1 }}
-                                        className="flex items-start gap-3"
-                                    >
-                                        <span className="text-[#69E300] font-bold text-lg leading-tight mt-0.5">+</span>
-                                        <p className="text-sm md:text-base text-gray-300">{feature}</p>
-                                    </motion.div>
-                                ))}
-                            </div>
-
-                            {/* Tech Stack Badges */}
-                            <motion.div
-                                initial={{ y: 20, opacity: 0 }}
-                                whileInView={{ y: 0, opacity: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.5 }}
-                                className="flex flex-wrap gap-2 pt-2"
-                            >
-                                {[
-                                    { name: "React", icon: "⚛️" },
-                                    { name: "TypeScript", icon: "🟦" },
-                                    { name: "Next.js", icon: "▲" },
-                                    { name: "Tailwind CSS", icon: "🌊" },
-                                    { name: "OpenAI", icon: "🤖" },
-                                    { name: "Framer Motion", icon: "🎨" },
-                                    { name: "Node.js", icon: "🟢" },
-                                    { name: "Vercel", icon: "▲" },
-                                ].map((tech, idx) => (
-                                    <motion.span
-                                        key={tech.name}
-                                        initial={{ scale: 0, opacity: 0 }}
-                                        whileInView={{ scale: 1, opacity: 1 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.6 + idx * 0.05 }}
-                                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs md:text-sm font-medium bg-[#131313] border border-white/10 text-white hover:border-[#69E300]/30 transition-colors duration-200"
-                                    >
-                                        <span className="text-sm">{tech.icon}</span>
-                                        {tech.name}
-                                    </motion.span>
-                                ))}
-                            </motion.div>
-                        </div>
-
-                        {/* Right — Image Placeholder */}
-                        <motion.div
-                            initial={{ x: 50, opacity: 0 }}
-                            whileInView={{ x: 0, opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
-                            className="relative w-full"
-                        >
-                            <div className="relative w-full aspect-4/3 rounded-2xl overflow-hidden bg-linear-to-br from-red-900/40 via-[#0d0d0d] to-[#0d0d0d] border border-white/6 group hover:border-[#69E300]/30 transition-all duration-500 shadow-2xl">
-                                {/* Mock browser chrome */}
-                                <div className="absolute top-0 left-0 right-0 h-8 bg-[#1a1a1a] border-b border-white/5 flex items-center px-3 gap-1.5 z-10">
-                                    <div className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
-                                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
-                                    <div className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
-                                    <div className="ml-3 flex-1 h-4 rounded-md bg-white/5" />
-                                </div>
-
-                                {/* Image placeholder area */}
-                                <div className="absolute inset-0 pt-8 flex items-center justify-center">
-                                    <div className="text-center space-y-4">
-                                        <div className="w-20 h-20 mx-auto rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center">
-                                            <Code2 className="w-10 h-10 text-red-400" />
-                                        </div>
-                                        <div className="space-y-1">
-                                            <p className="text-white/60 text-sm font-semibold">Project Preview</p>
-                                            <p className="text-gray-600 text-xs font-mono">rune.tools</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Decorative gradient overlay */}
-                                <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-[#0a0a0a]/60 via-transparent to-transparent" />
-
-                                {/* Subtle hover glow */}
-                                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: "radial-gradient(circle at 50% 50%, rgba(239,68,68,0.06) 0%, transparent 70%)" }} />
-                            </div>
-
-                            {/* Floating dot decoration */}
-                            <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-[#69E300]/20 blur-sm" />
-                            <div className="absolute -bottom-3 -left-3 w-6 h-6 rounded-full bg-red-500/10 blur-sm" />
-                        </motion.div>
-                    </motion.div>
-                </div>
-            </section>
+            {/* Dynamic Project Showcase Section */}
+            <ProjectShowcase />
 
             {/* CTA Section */}
-            <section id="contact" className="relative z-10 py-24 px-4 bg-[#0a0a0a]">
+            <section id="contact" className="relative z-10 py-32 px-4 bg-[#0a0a0a]">
                 <div className="container mx-auto">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}

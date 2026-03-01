@@ -213,7 +213,7 @@ function ProjectsBackground() {
 ================================================================ */
 export default function BentoSection() {
     return (
-        <section className="relative z-10 py-20 px-4 bg-[#0a0a0a] overflow-hidden">
+        <section id="about" className="relative z-10 py-32 px-4 bg-[#0a0a0a] overflow-hidden">
             <div
                 className="pointer-events-none absolute inset-0"
                 style={{ background: "radial-gradient(ellipse 80% 40% at 50% -5%, #69E30010 0%, transparent 70%)" }}
