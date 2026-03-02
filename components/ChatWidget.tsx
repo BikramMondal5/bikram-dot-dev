@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FiSend, FiMic, FiMinimize2, FiMaximize2 } from "react-icons/fi";
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
@@ -77,10 +77,9 @@ const getApiKey = () => {
 const API_URL = "https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent";
 
 // Simple fallback prompt for when RAG fails (without using my-details.json)
-const SIMPLE_FALLBACK_PROMPT = `You are Bikram.AI, an AI assistant for Bikram Mondal's portfolio. 
-Bikram is a B.Tech CSE student specializing in AI/ML at Heritage Institute Of Technology, Kolkata. 
-He's skilled in web development (React, Next.js, Three.js) and AI technologies. 
-Provide helpful, concise responses about web development, AI, or general tech questions.`;
+const SIMPLE_FALLBACK_PROMPT = `You are Reactz agent, the AI assistant for Bikram Mondal’s portfolio.
+Bikram is a B.Tech CSE (AI/ML) student at Heritage Institute of Technology, Kolkata, with expertise in full-stack development (Python, Js, MongoDB, Express, React, Next.js, Node.js) and AI systems.
+Provide helpful, concise, and technically accurate responses about web development, AI, software engineering, and general technology topics. Maintain a professional and polite tone.`;
 
 // Get system instruction from environment variable
 const BIKRAM_AI_PROMPT = process.env.NEXT_PUBLIC_SYSTEM_INSTRUCTION || 'You are a knowledgeable, concise, and helpful AI assistant. Respond clearly and politely.';
@@ -103,6 +102,7 @@ const ChatWidget = () => {
     const [isTyping, setIsTyping] = useState(false);
     const chatEndRef = useRef<HTMLDivElement>(null);
     const [minimized, setMinimized] = useState(false);
+    const [confirmClear, setConfirmClear] = useState(false);
     const [retryCount, setRetryCount] = useState(0);
     const maxRetries = 2;
     const [isListening, setIsListening] = useState(false);
@@ -715,7 +715,7 @@ const ChatWidget = () => {
                                 />
                             </div>
                             <div>
-                                <h3 className="text-white font-medium">Bikram.AI</h3>
+                                <h3 className="text-white font-medium">Reactz Agent</h3>
                                 <p className="text-purple-100 text-xs opacity-80">
                                     {isListening ? "Listening..." : "Online"}
                                 </p>
@@ -724,12 +724,7 @@ const ChatWidget = () => {
                         <div className="flex items-center gap-1">
                             <button
                                 className="p-1 rounded-full hover:bg-white/10 transition-colors"
-                                onClick={async () => {
-                                    if (chatMemory.current && confirm('Clear conversation history?')) {
-                                        await chatMemory.current.clearHistory();
-                                        setMessages([]);
-                                    }
-                                }}
+                                onClick={() => setConfirmClear(true)}
                                 title="Clear chat history"
                             >
                                 <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -848,7 +843,7 @@ const ChatWidget = () => {
                                                 transition={{ duration: 0.5 }}
                                             >
                                                 <p className="text-gray-100 text-sm leading-relaxed">
-                                                    Hi there! I'm <span className="text-purple-400 font-semibold">Bikram.AI</span>. Think of me as Bikram's digital twin! I can tell you about my skills, projects, or experiences. What would you like to know?
+                                                    Hi there! I'm <span className="text-purple-400 font-semibold">Reactz Agent</span>. Think of me as Bikram's digital twin! I can tell you about my skills, projects, or experiences. What would you like to know?
                                                 </p>
                                                 <span className="text-xs text-gray-400 mt-2 block">
                                                     {formatTime(new Date())}
@@ -868,7 +863,7 @@ const ChatWidget = () => {
                                                 <div
                                                     className={`max-w-[80%] rounded-2xl px-4 py-3 ${message.sender === "user"
                                                         ? "bg-gradient-to-r from-purple-600 to-[#a259ff] text-white rounded-tr-none"
-                                                        : "bg-[#1e1e1e] text-gray-100 rounded-tl-none border-2 border-purple-500/40"
+                                                        : "bg-[#1e1e1e] text-gray-100 rounded-tl-none shadow-[0_2px_8px_rgba(0,0,0,0.4)]"
                                                         } ${message.isTemporary ? "opacity-70" : ""}`}
                                                 >
                                                     {message.sender === "bot" ? (
@@ -953,6 +948,58 @@ const ChatWidget = () => {
                     )}
                 </motion.div>
             )}
+
+            {/* Clear history confirmation modal */}
+            <AnimatePresence>
+                {confirmClear && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/60 backdrop-blur-sm"
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0, y: 10 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.9, opacity: 0, y: 10 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                            className="bg-[#1a1a2e] border border-white/10 rounded-2xl shadow-2xl p-6 w-80 mx-4"
+                        >
+                            <div className="flex items-center gap-3 mb-3">
+                                <div className="w-9 h-9 rounded-full bg-red-500/15 flex items-center justify-center shrink-0">
+                                    <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </div>
+                                <h3 className="text-white font-semibold text-base">Clear Conversation</h3>
+                            </div>
+                            <p className="text-gray-400 text-sm mb-5 leading-relaxed">
+                                Are you sure you want to clear the entire conversation history? This action cannot be undone.
+                            </p>
+                            <div className="flex gap-3 justify-end">
+                                <button
+                                    onClick={() => setConfirmClear(false)}
+                                    className="px-4 py-2 rounded-lg text-sm font-medium text-gray-300 bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    onClick={async () => {
+                                        if (chatMemory.current) {
+                                            await chatMemory.current.clearHistory();
+                                            setMessages([]);
+                                        }
+                                        setConfirmClear(false);
+                                    }}
+                                    className="px-4 py-2 rounded-lg text-sm font-medium text-white bg-red-500 hover:bg-red-600 transition-colors"
+                                >
+                                    Clear
+                                </button>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </>
     );
 };
