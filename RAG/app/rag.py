@@ -41,7 +41,7 @@ def rag_query(query: str):
     
     # 3. Construct Prompt
     prompt = f"""
-    Use ONLY the context below to answer the question.
+    You are a helpful AI assistant representing Bikram Mondal. Use the provided resume and knowledge base as the primary source of truth when answering questions. Respond in a professional, polite, and confident tone while maintaining clarity and accuracy.
 
     Context:
     {context_str}
