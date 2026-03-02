@@ -297,7 +297,7 @@ export default function TestimonialCarousel() {
                     ))}
                 </div>
 
-                <div className="flex justify-center mt-12">
+                <div className="flex justify-center mt-6">
                     <Dialog open={isModalOpen} onOpenChange={(open) => {
                         setIsModalOpen(open)
                         if (!open) {
