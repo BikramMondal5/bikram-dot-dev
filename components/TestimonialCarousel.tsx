@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
-import { Star, User, Quote, MessageSquare, Send } from "lucide-react"
+import { Star, User, Quote, MessageSquare, Send, Upload, Image as ImageIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 import {
     Dialog,
     DialogContent,
@@ -137,25 +138,116 @@ function AnimatedTooltip({ items }: { items: typeof people }) {
     )
 }
 
+// Predefined avatar options
+const predefinedAvatars = [
+    "https://i.pravatar.cc/150?img=1",
+    "https://i.pravatar.cc/150?img=2",
+    "https://i.pravatar.cc/150?img=3",
+    "https://i.pravatar.cc/150?img=5",
+    "https://i.pravatar.cc/150?img=7",
+    "https://i.pravatar.cc/150?img=8",
+    "https://i.pravatar.cc/150?img=9",
+    "https://i.pravatar.cc/150?img=12",
+]
+
 export default function TestimonialCarousel() {
-    const [testimonials] = useState(defaultTestimonials)
+    const [testimonials, setTestimonials] = useState(defaultTestimonials)
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error', message: string } | null>(null)
+    const [selectedAvatar, setSelectedAvatar] = useState<string>(predefinedAvatars[0])
+    const [customImage, setCustomImage] = useState<string | null>(null)
     const [formData, setFormData] = useState({
         name: "",
         role: "",
         feedback: "",
         rating: 5,
+        avatar: predefinedAvatars[0],
     })
-    const allTestimonials = [...testimonials]
 
-    const handleSubmit = (e: React.FormEvent) => {
+    // Seed database and fetch testimonials on mount
+    useEffect(() => {
+        const initializeTestimonials = async () => {
+            try {
+                setIsLoading(true)
+
+                // First, seed the database with default testimonials if empty
+                await fetch('/api/testimonials/seed', { method: 'POST' })
+
+                // Then fetch all testimonials
+                const response = await fetch('/api/testimonials')
+                const data = await response.json()
+
+                if (data.success && data.data.length > 0) {
+                    setTestimonials(data.data)
+                }
+            } catch (error) {
+                console.error('Error initializing testimonials:', error)
+                // Keep default testimonials on error
+            } finally {
+                setIsLoading(false)
+            }
+        }
+
+        initializeTestimonials()
+    }, [])
+
+    const allTestimonials = [...testimonials, ...testimonials]
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        console.log("Testimonial submitted:", formData)
-        // Show success message
-        alert("Thank you for sharing your experience! Your testimonial has been submitted.")
-        // Reset form
-        setFormData({ name: "", role: "", feedback: "", rating: 5 })
-        setIsModalOpen(false)
+        setIsSubmitting(true)
+
+        try {
+            const response = await fetch('/api/testimonials', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+
+            const data = await response.json()
+
+            if (data.success) {
+                setStatusMessage({
+                    type: 'success',
+                    message: 'Thank you for sharing your experience! Your testimonial has been submitted successfully.'
+                })
+
+                // Reset form
+                setFormData({ name: "", role: "", feedback: "", rating: 5, avatar: predefinedAvatars[0] })
+                setSelectedAvatar(predefinedAvatars[0])
+                setCustomImage(null)
+
+                // Refresh testimonials
+                const refreshResponse = await fetch('/api/testimonials')
+                const refreshData = await refreshResponse.json()
+                if (refreshData.success) {
+                    setTestimonials(refreshData.data)
+                }
+
+                // Close modal after 2 seconds
+                setTimeout(() => {
+                    setIsModalOpen(false)
+                    setStatusMessage(null)
+                }, 2000)
+            } else {
+                setStatusMessage({
+                    type: 'error',
+                    message: data.error || 'Failed to submit testimonial'
+                })
+            }
+        } catch (error) {
+            console.error('Error submitting testimonial:', error)
+            setStatusMessage({
+                type: 'error',
+                message: 'Failed to submit testimonial. Please try again.'
+            })
+        } finally {
+            setIsSubmitting(false)
+        }
     }
 
     return (
@@ -206,7 +298,14 @@ export default function TestimonialCarousel() {
                 </div>
 
                 <div className="flex justify-center mt-12">
-                    <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+                    <Dialog open={isModalOpen} onOpenChange={(open) => {
+                        setIsModalOpen(open)
+                        if (!open) {
+                            setStatusMessage(null)
+                            setCustomImage(null)
+                            setSelectedAvatar(predefinedAvatars[0])
+                        }
+                    }}>
                         <DialogTrigger asChild>
                             <Button
                                 className="h-14 px-8 rounded-full bg-[#69E300] text-black hover:bg-[#69E300]/90 font-bold text-base shadow-xl shadow-[#69E300]/5"
@@ -224,7 +323,29 @@ export default function TestimonialCarousel() {
                                     I'd love to hear about your experience working with me. Your feedback helps me grow.
                                 </DialogDescription>
                             </DialogHeader>
-                            <form onSubmit={handleSubmit} className="space-y-4 mt-3">
+
+                            {/* Status Message */}
+                            {statusMessage && (
+                                <div
+                                    className={`p-4 rounded-xl border ${statusMessage.type === 'success'
+                                        ? 'bg-[#69E300]/10 border-[#69E300]/30 text-[#69E300]'
+                                        : 'bg-red-500/10 border-red-500/30 text-red-400'
+                                        } flex items-center gap-3 animate-in fade-in slide-in-from-top-2 duration-300`}
+                                >
+                                    {statusMessage.type === 'success' ? (
+                                        <div className="w-6 h-6 rounded-full bg-[#69E300] flex items-center justify-center text-black font-bold">
+                                            ✓
+                                        </div>
+                                    ) : (
+                                        <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center text-white font-bold">
+                                            ✕
+                                        </div>
+                                    )}
+                                    <p className="font-medium text-sm">{statusMessage.message}</p>
+                                </div>
+                            )}
+
+                            <form onSubmit={handleSubmit} className={`space-y-4 mt-3 ${statusMessage ? 'hidden' : ''}`}>
                                 <div className="space-y-2">
                                     <Label className="text-white">
                                         Rating <span className="text-[#69E300]">*</span>
@@ -247,6 +368,94 @@ export default function TestimonialCarousel() {
                                         ))}
                                     </div>
                                 </div>
+
+                                {/* Profile Image Selection */}
+                                <div className="space-y-3">
+                                    <Label className="text-white">
+                                        Profile Image <span className="text-[#69E300]">*</span>
+                                    </Label>
+
+                                    {/* Selected/Uploaded Image Preview */}
+                                    <div className="flex items-center gap-4">
+                                        <div className="relative w-20 h-20 rounded-2xl border-2 border-[#69E300]/30 bg-white/5 overflow-hidden">
+                                            <img
+                                                src={customImage || selectedAvatar}
+                                                alt="Preview"
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                        <div className="flex-1">
+                                            <p className="text-sm text-white/60 mb-2">Choose from avatars or upload your own</p>
+                                            <div className="flex gap-2">
+                                                <label className="cursor-pointer">
+                                                    <input
+                                                        type="file"
+                                                        accept="image/*"
+                                                        className="hidden"
+                                                        onChange={(e) => {
+                                                            const file = e.target.files?.[0]
+                                                            if (file) {
+                                                                const reader = new FileReader()
+                                                                reader.onloadend = () => {
+                                                                    const base64String = reader.result as string
+                                                                    setCustomImage(base64String)
+                                                                    setFormData({ ...formData, avatar: base64String })
+                                                                }
+                                                                reader.readAsDataURL(file)
+                                                            }
+                                                        }}
+                                                    />
+                                                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#69E300]/10 border border-[#69E300]/20 hover:bg-[#69E300]/20 transition-colors text-[#69E300] text-sm font-medium">
+                                                        <Upload className="w-4 h-4" />
+                                                        Upload Image
+                                                    </div>
+                                                </label>
+                                                {customImage && (
+                                                    <Button
+                                                        type="button"
+                                                        onClick={() => {
+                                                            setCustomImage(null)
+                                                            setFormData({ ...formData, avatar: selectedAvatar })
+                                                        }}
+                                                        className="px-4 py-2 text-sm bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 text-red-400"
+                                                    >
+                                                        Remove
+                                                    </Button>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Predefined Avatars */}
+                                    {!customImage && (
+                                        <div>
+                                            <p className="text-xs text-white/40 mb-2">Or choose an avatar:</p>
+                                            <div className="grid grid-cols-8 gap-2">
+                                                {predefinedAvatars.map((avatar, index) => (
+                                                    <button
+                                                        key={index}
+                                                        type="button"
+                                                        onClick={() => {
+                                                            setSelectedAvatar(avatar)
+                                                            setFormData({ ...formData, avatar })
+                                                        }}
+                                                        className={`w-12 h-12 rounded-xl overflow-hidden border-2 transition-all hover:scale-110 ${selectedAvatar === avatar
+                                                                ? 'border-[#69E300] ring-2 ring-[#69E300]/30'
+                                                                : 'border-white/10 hover:border-[#69E300]/50'
+                                                            }`}
+                                                    >
+                                                        <img
+                                                            src={avatar}
+                                                            alt={`Avatar ${index + 1}`}
+                                                            className="w-full h-full object-cover"
+                                                        />
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+
                                 <div className="space-y-2">
                                     <Label htmlFor="name" className="text-white">
                                         Your Name <span className="text-[#69E300]">*</span>
@@ -289,10 +498,20 @@ export default function TestimonialCarousel() {
                                 </div>
                                 <Button
                                     type="submit"
-                                    className="w-full h-12 rounded-full bg-[#69E300] text-black hover:bg-[#69E300]/90 font-bold text-base shadow-xl shadow-[#69E300]/20 flex items-center gap-2"
+                                    disabled={isSubmitting}
+                                    className="w-full h-12 rounded-full bg-[#69E300] text-black hover:bg-[#69E300]/90 font-bold text-base shadow-xl shadow-[#69E300]/20 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
-                                    <Send className="w-5 h-5" />
-                                    Submit Testimonial
+                                    {isSubmitting ? (
+                                        <>
+                                            <span className="animate-spin">⏳</span>
+                                            Submitting...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Send className="w-5 h-5" />
+                                            Submit Testimonial
+                                        </>
+                                    )}
                                 </Button>
                             </form>
                         </DialogContent>
