@@ -227,8 +227,8 @@ export default function BentoSection() {
                     icon={<Sparkles className="h-4 w-4" />}
                     title={
                         <>
-                            Ideas Into{" "}
-                            <span className="text-[#69E300]">Reality</span>
+                            Ideas{" "}
+                            <span className="text-[#69E300]">Into Reality</span>
                         </>
                     }
                     subtitle="Crafting scalable AI tools, interactive web apps, and experimental digital systems where performance meets creativity."

@@ -868,7 +868,7 @@ const ChatWidget = () => {
                                                 <div
                                                     className={`max-w-[80%] rounded-2xl px-4 py-3 ${message.sender === "user"
                                                         ? "bg-gradient-to-r from-purple-600 to-[#a259ff] text-white rounded-tr-none"
-                                                        : "bg-[#1e1e1e] text-gray-100 rounded-tl-none"
+                                                        : "bg-[#1e1e1e] text-gray-100 rounded-tl-none border-2 border-purple-500/40"
                                                         } ${message.isTemporary ? "opacity-70" : ""}`}
                                                 >
                                                     {message.sender === "bot" ? (

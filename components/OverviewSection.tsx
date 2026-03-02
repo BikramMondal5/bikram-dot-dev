@@ -27,6 +27,7 @@ import {
     SiFigma,
     SiCanva,
     SiPostman,
+    SiPrisma,
 } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
 import { IconType } from "react-icons";
@@ -39,7 +40,7 @@ type TechCategory = { category: string; techs: TechItem[] };
 
 const techCategories: TechCategory[] = [
     {
-        category: "AI/ML",
+        category: "AI & Data",
         techs: [
             { name: "LangChain", type: "icon", Icon: SiLangchain, color: "#1C3C3C" },
             { name: "Android", type: "icon", Icon: SiAndroid, color: "#3DDC84" },
@@ -80,6 +81,7 @@ const techCategories: TechCategory[] = [
             { name: "Express.js", type: "icon", Icon: SiExpress, color: "#E0E0E0" },
             { name: "Flask", type: "icon", Icon: SiFlask, color: "#E0E0E0" },
             { name: "FastAPI", type: "icon", Icon: SiFastapi, color: "#009688" },
+            { name: "Prisma", type: "icon", Icon: SiPrisma, color: "#5A67D8" },
         ],
     },
     {
@@ -220,8 +222,8 @@ export default function OverviewSection() {
                         icon={<Settings2 className="h-4 w-4" />}
                         title={
                             <>
-                                Tools &amp; Technologies{" "}
-                                <span className="text-[#69E300]">I Work With</span>
+                                Tools &amp;{" "}
+                                <span className="text-[#69E300]">Technologies I Work With</span>
                             </>
                         }
                         subtitle="A carefully curated stack of modern technologies I use to design, build, and scale intelligent digital systems."
