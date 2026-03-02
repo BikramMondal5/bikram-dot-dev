@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Space_Grotesk, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { ThreeJsProvider } from "@/utils/ThreeJsContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,8 +41,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${poppins.variable} antialiased`}
       >
-        <Navbar />
-        {children}
+        <ThreeJsProvider>
+          <Navbar />
+          {children}
+        </ThreeJsProvider>
       </body>
     </html>
   );

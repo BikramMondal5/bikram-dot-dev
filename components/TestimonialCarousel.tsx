@@ -145,7 +145,7 @@ const predefinedAvatars = [
     "https://i.pravatar.cc/150?img=3",
     "https://i.pravatar.cc/150?img=5",
     "https://i.pravatar.cc/150?img=7",
-    "https://i.pravatar.cc/150?img=8",
+    "https://i.pravatar.cc/150?u=ananya",
     "https://i.pravatar.cc/150?img=9",
     "https://i.pravatar.cc/150?img=12",
 ]
@@ -156,14 +156,14 @@ export default function TestimonialCarousel() {
     const [isLoading, setIsLoading] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error', message: string } | null>(null)
-    const [selectedAvatar, setSelectedAvatar] = useState<string>(predefinedAvatars[0])
+    const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null)
     const [customImage, setCustomImage] = useState<string | null>(null)
     const [formData, setFormData] = useState({
         name: "",
         role: "",
         feedback: "",
         rating: 5,
-        avatar: predefinedAvatars[0],
+        avatar: null as string | null,
     })
 
     // Seed database and fetch testimonials on mount
@@ -217,8 +217,8 @@ export default function TestimonialCarousel() {
                 })
 
                 // Reset form
-                setFormData({ name: "", role: "", feedback: "", rating: 5, avatar: predefinedAvatars[0] })
-                setSelectedAvatar(predefinedAvatars[0])
+                setFormData({ name: "", role: "", feedback: "", rating: 5, avatar: null })
+                setSelectedAvatar(null)
                 setCustomImage(null)
 
                 // Refresh testimonials
@@ -303,7 +303,7 @@ export default function TestimonialCarousel() {
                         if (!open) {
                             setStatusMessage(null)
                             setCustomImage(null)
-                            setSelectedAvatar(predefinedAvatars[0])
+                            setSelectedAvatar(null)
                         }
                     }}>
                         <DialogTrigger asChild>
@@ -377,12 +377,16 @@ export default function TestimonialCarousel() {
 
                                     {/* Selected/Uploaded Image Preview */}
                                     <div className="flex items-center gap-4">
-                                        <div className="relative w-20 h-20 rounded-2xl border-2 border-[#69E300]/30 bg-white/5 overflow-hidden">
-                                            <img
-                                                src={customImage || selectedAvatar}
-                                                alt="Preview"
-                                                className="w-full h-full object-cover"
-                                            />
+                                        <div className="relative w-20 h-20 rounded-2xl border-2 border-[#69E300]/30 bg-white/5 overflow-hidden flex items-center justify-center">
+                                            {(customImage || selectedAvatar) ? (
+                                                <img
+                                                    src={customImage || selectedAvatar || ''}
+                                                    alt="Preview"
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            ) : (
+                                                <ImageIcon className="w-8 h-8 text-white/20" />
+                                            )}
                                         </div>
                                         <div className="flex-1">
                                             <p className="text-sm text-white/60 mb-2">Choose from avatars or upload your own</p>
@@ -440,8 +444,8 @@ export default function TestimonialCarousel() {
                                                             setFormData({ ...formData, avatar })
                                                         }}
                                                         className={`w-12 h-12 rounded-xl overflow-hidden border-2 transition-all hover:scale-110 ${selectedAvatar === avatar
-                                                                ? 'border-[#69E300] ring-2 ring-[#69E300]/30'
-                                                                : 'border-white/10 hover:border-[#69E300]/50'
+                                                            ? 'border-[#69E300] ring-2 ring-[#69E300]/30'
+                                                            : 'border-white/10 hover:border-[#69E300]/50'
                                                             }`}
                                                     >
                                                         <img
