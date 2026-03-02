@@ -330,11 +330,9 @@ export default function CertificatesSection() {
                                                             src={cert.imageUrl}
                                                             alt={cert.title}
                                                             fill
-                                                            className="object-cover"
+                                                            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                                                             style={{ objectPosition: 'center top' }}
                                                         />
-                                                        {/* Hover overlay */}
-                                                        <div className="absolute inset-0 bg-[#69E300]/0 group-hover:bg-[#69E300]/10 transition-all duration-300" />
 
                                                         {/* Issuer Badge */}
                                                         <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
