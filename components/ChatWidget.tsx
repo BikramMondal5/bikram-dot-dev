@@ -109,6 +109,7 @@ const ChatWidget = () => {
     const [retryCount, setRetryCount] = useState(0);
     const maxRetries = 2;
     const [isListening, setIsListening] = useState(false);
+    const [knowledgeBase, setKnowledgeBase] = useState<string>("");
 
     // Speech-to-text state
     const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
@@ -121,6 +122,18 @@ const ChatWidget = () => {
 
     // Initialize chat memory
     const chatMemory = useRef(typeof window !== 'undefined' ? getChatMemory() : null);
+
+    // Fetch knowledge base from my-details.json
+    useEffect(() => {
+        fetch('/my-details.json')
+            .then((res) => res.json())
+            .then((data) => {
+                setKnowledgeBase(JSON.stringify(data));
+            })
+            .catch((err) => {
+                console.warn('Could not load my-details.json:', err);
+            });
+    }, []);
 
 
     // Auto scroll to bottom of chat
@@ -277,6 +290,10 @@ const ChatWidget = () => {
 
             // Build context with system prompt and conversation history
             let contextText = BIKRAM_AI_PROMPT;
+
+            if (knowledgeBase) {
+                contextText += `\n\nHere is detailed structured information about Bikram Mondal to help you answer questions accurately:\n${knowledgeBase}`;
+            }
 
             if (conversationHistory) {
                 contextText += `\n\nPrevious conversation:\n${conversationHistory}`;

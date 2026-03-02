@@ -12,6 +12,7 @@ import BentoSection from "@/components/BentoSection";
 import ProjectShowcase from "@/components/ProjectShowcase";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import OverviewSection from "@/components/OverviewSection";
+import CertificatesSection from "@/components/CertificatesSection";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
 
 function cn(...classes: (string | undefined | null | false)[]) {
@@ -230,6 +231,9 @@ export default function HeroSection() {
 
             {/* Dynamic Project Showcase Section */}
             <ProjectShowcase />
+
+            {/* Certificates Section */}
+            <CertificatesSection />
 
             {/* Testimonial Carousel */}
             <TestimonialCarousel />

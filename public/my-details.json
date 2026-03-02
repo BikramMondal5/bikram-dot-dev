@@ -1,0 +1,186 @@
+{
+    "identity": {
+        "full_name": "Bikram Mondal",
+        "role": "Full-Stack Developer & AI/ML Engineer",
+        "university": "Heritage Institute of Technology (HITK)",
+        "program": "B.Tech in Computer Science Engineering (AIML)",
+        "batch": "HITK'28",
+        "location": "India",
+        "hacker_rank": "5 Star Python",
+        "student_chapter_membership": "ACM HITK Student Chapter"
+    },
+    "leadership_roles": [
+        {
+            "title": "AIML Lead",
+            "organization": "Digital Dominators IN",
+            "focus": "AI/ML workshops, innovation initiatives, technical community building"
+        },
+        {
+            "title": "Campus Lead",
+            "organization": "Open Source Connect Global (OSCG)",
+            "focus": "Open-source advocacy, mentoring developers, onboarding contributors"
+        }
+    ],
+    "core_strengths": [
+        "Multi-Agent AI Systems",
+        "Full-Stack Architecture Design",
+        "Retrieval-Augmented Generation (RAG)",
+        "DevOps Automation",
+        "Blockchain & DeFi Engineering",
+        "WebRTC & Real-time Systems",
+        "Agent Orchestration",
+        "AI Product Engineering"
+    ],
+    "technical_stack": {
+        "languages": [
+            "Python",
+            "JavaScript",
+            "TypeScript",
+            "Solidity"
+        ],
+        "frontend": [
+            "React",
+            "Next.js",
+            "TailwindCSS",
+            "Three.js"
+        ],
+        "backend": [
+            "Node.js",
+            "FastAPI",
+            "Flask"
+        ],
+        "databases": [
+            "MongoDB",
+            "ChromaDB"
+        ],
+        "ai_tools": [
+            "Gemini API",
+            "RAG Pipelines",
+            "LangChain",
+            "Vector Embeddings",
+            "Multi-Agent Systems"
+        ],
+        "blockchain": [
+            "Solidity",
+            "Hardhat",
+            "IPFS",
+            "Account Abstraction",
+            "Zero Knowledge Proofs"
+        ],
+        "realtime_tech": [
+            "WebRTC",
+            "Socket.io",
+            "UDP-based P2P streaming",
+            "SFU Architecture"
+        ],
+        "devops_tools": [
+            "GitHub Webhooks",
+            "Automated PR Bots",
+            "Security Auditing Agents"
+        ]
+    },
+    "major_projects": [
+        {
+            "name": "Nano-Bonds",
+            "type": "DeFi / Blockchain Platform",
+            "description": "A decentralized platform enabling fractional investment in government bonds using stablecoins and Web3 wallet integration.",
+            "highlights": [
+                "Fractional bond ownership via GBOND tokens",
+                "Stablecoin settlement using USDT",
+                "On-chain IPFS verification",
+                "Automated smart contract yield accounting",
+                "Account abstraction & embedded wallets",
+                "AI-powered investment assistant"
+            ],
+            "event": "East India Blockchain Summit 2.0 at IIT KGP",
+            "achievement": "Final Round Qualifier"
+        },
+        {
+            "name": "MoleculeInsight",
+            "type": "Multi-Agent AI Research Platform",
+            "description": "AI-powered molecular research platform orchestrating 9 specialized agents for clinical, patent, trade, and scientific data analysis.",
+            "architecture": [
+                "RAG pipeline with ChromaDB",
+                "Gemini API optimization",
+                "Multi-agent orchestration",
+                "3D molecule visualization",
+                "Caching & embedding cost optimization"
+            ],
+            "achievement": "Rank 1 in EY Techathon 6.0"
+        },
+        {
+            "name": "DevOps Ghostwriter",
+            "type": "Autonomous DevOps AI Agent",
+            "description": "AI-powered GitHub PR health checker that automates security scanning, logic validation, and review generation.",
+            "agents": [
+                "Security Auditor Agent",
+                "Runtime Validator Agent",
+                "Ghostwriter Review Agent"
+            ],
+            "capabilities": [
+                "GitHub webhook automation",
+                "Sandboxed execution",
+                "Markdown report generation",
+                "Real-time PR auditing"
+            ]
+        },
+        {
+            "name": "InvestorHunt",
+            "type": "AI Startup Funding Platform",
+            "description": "AI-driven entrepreneur-first platform connecting founders with investors via video pitch analysis and secure P2P meetings.",
+            "features": [
+                "AI pitch evaluation",
+                "Multilingual support",
+                "Secure WebRTC video meetings",
+                "Serverless streaming",
+                "AI investment assistant",
+                "UDP-based P2P architecture"
+            ]
+        }
+    ],
+    "achievements": [
+        "Winner - FPC'25",
+        "Finalist - Edu-chain Virtual Hackathon",
+        "Finalist - East India Blockchain Summit 2.0 (IIT KGP)",
+        "Rank 1 - Round 1, EY Techathon 6.0",
+        "Winner - Official GitHub Merchandise (Azure AI Event)",
+        "Active Participant - Google DevFest Kolkata 2025"
+    ],
+    "personality_profile": {
+        "traits": [
+            "Curious and self-driven learner",
+            "Community-oriented",
+            "Builder mindset",
+            "Collaborative team player",
+            "Hackathon enthusiast",
+            "Deep interest in AI & blockchain"
+        ],
+        "beliefs": [
+            "Learning from others' code is valid when intention is growth",
+            "Technology should democratize access",
+            "AI should enhance real-world workflows",
+            "Version control is transformative in developer growth"
+        ]
+    },
+    "interests": [
+        "AI Agents",
+        "Web3 & Blockchain",
+        "DeFi Systems",
+        "Open Source",
+        "Startup Ecosystems",
+        "Scientific AI Research",
+        "Real-Time Systems",
+        "Serverless Architectures"
+    ],
+    "events_attended": [
+        "Google DevFest Kolkata 2025",
+        "East India Blockchain Summit 2.0 - IIT KGP",
+        "Azure AI for Next-Gen Applications",
+        "Sci-Tech Fest HackTechnique"
+    ],
+    "networking_mindset": {
+        "open_to_connect": true,
+        "preferred_connections": "Builders, AI Engineers, Web3 Developers, Open Source Contributors",
+        "community_focus": "Learning-driven and collaboration-focused"
+    }
+}
