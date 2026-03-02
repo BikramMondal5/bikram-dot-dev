@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Tilt from "react-parallax-tilt";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Award, Trophy, Calendar, ExternalLink, ChevronDown } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -313,123 +314,131 @@ export default function CertificatesSection() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.4, delay: index * 0.1 }}
                                 >
-                                    <Card className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 hover:border-[#69E300]/50 transition-all duration-300 overflow-hidden h-[420px] cursor-pointer flex flex-col rounded-2xl">
-                                        {cert.imageUrl ? (
-                                            <>
-                                                {/* Top Half - Certificate Image */}
-                                                <div className="relative h-1/2 overflow-hidden rounded-t-2xl">
-                                                    <Image
-                                                        src={cert.imageUrl}
-                                                        alt={cert.title}
-                                                        fill
-                                                        className="object-cover"
-                                                        style={{ objectPosition: 'center top' }}
-                                                    />
-                                                    {/* Hover overlay */}
-                                                    <div className="absolute inset-0 bg-[#69E300]/0 group-hover:bg-[#69E300]/10 transition-all duration-300" />
+                                    <Tilt
+                                        tiltMaxAngleX={15}
+                                        tiltMaxAngleY={15}
+                                        scale={1.02}
+                                        transitionSpeed={450}
+                                        className="h-[420px]"
+                                    >
+                                        <Card className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 hover:border-[#69E300]/50 transition-all duration-300 overflow-hidden h-full cursor-pointer flex flex-col rounded-2xl">
+                                            {cert.imageUrl ? (
+                                                <>
+                                                    {/* Top Half - Certificate Image */}
+                                                    <div className="relative h-1/2 overflow-hidden rounded-t-2xl">
+                                                        <Image
+                                                            src={cert.imageUrl}
+                                                            alt={cert.title}
+                                                            fill
+                                                            className="object-cover"
+                                                            style={{ objectPosition: 'center top' }}
+                                                        />
+                                                        {/* Hover overlay */}
+                                                        <div className="absolute inset-0 bg-[#69E300]/0 group-hover:bg-[#69E300]/10 transition-all duration-300" />
 
-                                                    {/* Issuer Badge */}
-                                                    <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                                                        <div className="flex items-center gap-2 px-3 py-2 bg-black/70 backdrop-blur-md rounded-lg border border-white/10">
-                                                            {activeTab === "courses" ? (
-                                                                <Award className="w-4 h-4 text-[#69E300]" />
-                                                            ) : (
-                                                                <Trophy className="w-4 h-4 text-[#69E300]" />
+                                                        {/* Issuer Badge */}
+                                                        <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
+                                                            <div className="flex items-center gap-2 px-3 py-2 bg-black/70 backdrop-blur-md rounded-lg border border-white/10">
+                                                                {activeTab === "courses" ? (
+                                                                    <Award className="w-4 h-4 text-[#69E300]" />
+                                                                ) : (
+                                                                    <Trophy className="w-4 h-4 text-[#69E300]" />
+                                                                )}
+                                                                <span className="text-xs font-semibold text-white">
+                                                                    {cert.issuer}
+                                                                </span>
+                                                            </div>
+
+                                                            {cert.credentialUrl && (
+                                                                <a
+                                                                    href={cert.credentialUrl}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                    className="p-2 bg-[#69E300] hover:bg-[#69E300]/80 rounded-lg transition-all duration-300 group/link"
+                                                                    onClick={(e) => e.stopPropagation()}
+                                                                >
+                                                                    <ExternalLink className="w-4 h-4 text-black" />
+                                                                </a>
                                                             )}
-                                                            <span className="text-xs font-semibold text-white">
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Bottom Half - Details Only (No Image) */}
+                                                    <div className="h-1/2 bg-[#0a0a0a] p-6 flex flex-col justify-between">
+                                                        <div className="space-y-3">
+                                                            <h3 className="text-lg font-bold text-white leading-tight line-clamp-2">
+                                                                {cert.title}
+                                                            </h3>
+
+                                                            <div className="flex items-center gap-2 text-sm text-gray-400">
+                                                                <Calendar className="w-4 h-4" />
+                                                                <span>{cert.date}</span>
+                                                            </div>
+
+                                                            <p className="text-sm text-gray-400 line-clamp-2">
+                                                                {cert.description}
+                                                            </p>
+                                                        </div>
+
+                                                        {/* Skills */}
+                                                        <div className="flex flex-wrap gap-2">
+                                                            {cert.skills.slice(0, 3).map((skill, idx) => (
+                                                                <span
+                                                                    key={idx}
+                                                                    className="px-3 py-1 text-xs font-medium bg-[#69E300]/10 text-[#69E300] rounded-full border border-[#69E300]/30"
+                                                                >
+                                                                    {skill}
+                                                                </span>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            ) : (
+                                                // Fallback if no image provided
+                                                <div className="relative p-6 space-y-4 h-full flex flex-col justify-between">
+                                                    <div>
+                                                        <div className="flex items-center gap-2 mb-2">
+                                                            <div className="h-8 w-8 rounded-lg bg-[#69E300]/10 flex items-center justify-center">
+                                                                {activeTab === "courses" ? (
+                                                                    <Award className="w-4 h-4 text-[#69E300]" />
+                                                                ) : (
+                                                                    <Trophy className="w-4 h-4 text-[#69E300]" />
+                                                                )}
+                                                            </div>
+                                                            <span className="text-sm font-semibold text-[#69E300]">
                                                                 {cert.issuer}
                                                             </span>
                                                         </div>
-
-                                                        {cert.credentialUrl && (
-                                                            <a
-                                                                href={cert.credentialUrl}
-                                                                target="_blank"
-                                                                rel="noopener noreferrer"
-                                                                className="p-2 bg-[#69E300] hover:bg-[#69E300]/80 rounded-lg transition-all duration-300 group/link"
-                                                                onClick={(e) => e.stopPropagation()}
-                                                            >
-                                                                <ExternalLink className="w-4 h-4 text-black" />
-                                                            </a>
-                                                        )}
-                                                    </div>
-                                                </div>
-
-                                                {/* Bottom Half - Details Only (No Image) */}
-                                                <div className="h-1/2 bg-[#0a0a0a] p-6 flex flex-col justify-between">
-                                                    <div className="space-y-3">
-                                                        <h3 className="text-lg font-bold text-white leading-tight line-clamp-2">
+                                                        <h3 className="text-lg font-bold text-white leading-tight">
                                                             {cert.title}
                                                         </h3>
+                                                    </div>
 
+                                                    <div className="space-y-3">
                                                         <div className="flex items-center gap-2 text-sm text-gray-400">
                                                             <Calendar className="w-4 h-4" />
                                                             <span>{cert.date}</span>
                                                         </div>
 
-                                                        <p className="text-sm text-gray-400 line-clamp-2">
+                                                        <p className="text-sm text-gray-300 line-clamp-3">
                                                             {cert.description}
                                                         </p>
-                                                    </div>
 
-                                                    {/* Skills */}
-                                                    <div className="flex flex-wrap gap-2">
-                                                        {cert.skills.slice(0, 3).map((skill, idx) => (
-                                                            <span
-                                                                key={idx}
-                                                                className="px-3 py-1 text-xs font-medium bg-[#69E300]/10 text-[#69E300] rounded-full border border-[#69E300]/30"
-                                                            >
-                                                                {skill}
-                                                            </span>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            </>
-                                        ) : (
-                                            // Fallback if no image provided
-                                            <div className="relative p-6 space-y-4 h-full flex flex-col justify-between">
-                                                <div>
-                                                    <div className="flex items-center gap-2 mb-2">
-                                                        <div className="h-8 w-8 rounded-lg bg-[#69E300]/10 flex items-center justify-center">
-                                                            {activeTab === "courses" ? (
-                                                                <Award className="w-4 h-4 text-[#69E300]" />
-                                                            ) : (
-                                                                <Trophy className="w-4 h-4 text-[#69E300]" />
-                                                            )}
+                                                        <div className="flex flex-wrap gap-2">
+                                                            {cert.skills.map((skill, idx) => (
+                                                                <span
+                                                                    key={idx}
+                                                                    className="px-3 py-1 text-xs font-medium bg-[#69E300]/10 text-[#69E300] rounded-full border border-[#69E300]/20"
+                                                                >
+                                                                    {skill}
+                                                                </span>
+                                                            ))}
                                                         </div>
-                                                        <span className="text-sm font-semibold text-[#69E300]">
-                                                            {cert.issuer}
-                                                        </span>
-                                                    </div>
-                                                    <h3 className="text-lg font-bold text-white leading-tight">
-                                                        {cert.title}
-                                                    </h3>
-                                                </div>
-
-                                                <div className="space-y-3">
-                                                    <div className="flex items-center gap-2 text-sm text-gray-400">
-                                                        <Calendar className="w-4 h-4" />
-                                                        <span>{cert.date}</span>
-                                                    </div>
-
-                                                    <p className="text-sm text-gray-300 line-clamp-3">
-                                                        {cert.description}
-                                                    </p>
-
-                                                    <div className="flex flex-wrap gap-2">
-                                                        {cert.skills.map((skill, idx) => (
-                                                            <span
-                                                                key={idx}
-                                                                className="px-3 py-1 text-xs font-medium bg-[#69E300]/10 text-[#69E300] rounded-full border border-[#69E300]/20"
-                                                            >
-                                                                {skill}
-                                                            </span>
-                                                        ))}
                                                     </div>
                                                 </div>
-                                            </div>
-                                        )}
-                                    </Card>
+                                            )}
+                                        </Card>
+                                    </Tilt>
                                 </motion.div>
                             ))}
                         </div>
