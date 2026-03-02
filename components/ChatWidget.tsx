@@ -76,14 +76,11 @@ const getApiKey = () => {
 
 const API_URL = "https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent";
 
-// Fallback responses for when the API fails
-const FALLBACK_RESPONSES = [
-    "I'm Bikram Mondal, currently living in Kolkata, India. I'm pursuing B.Tech in CSE with AI/ML specialization at Heritage Institute Of Technology, Kolkata. I'm passionate about web development and AI integration!",
-    "I live in Kolkata, India. I have experience with Python, JavaScript, React, Next.js, and Three.js. My recent projects include LearnEx, KrishiMitra, and Edubyte.",
-    "I'm based in Kolkata, India. Besides coding, I enjoy writing blogs on Quora about science and technology. Feel free to ask about my projects or skills!",
-    "I'm from Kolkata, India. I'm skilled in various frameworks including React, Node.js, and Flask. I also work with AI tools like scikit-learn and OpenCV.",
-    "I'm currently in Kolkata, India where I'm studying at Heritage Institute Of Technology. I'm familiar with tools like Git, GitHub, VSCode, and Google Cloud Platform. I've participated in several hackathons too!"
-];
+// Simple fallback prompt for when RAG fails (without using my-details.json)
+const SIMPLE_FALLBACK_PROMPT = `You are Bikram.AI, an AI assistant for Bikram Mondal's portfolio. 
+Bikram is a B.Tech CSE student specializing in AI/ML at Heritage Institute Of Technology, Kolkata. 
+He's skilled in web development (React, Next.js, Three.js) and AI technologies. 
+Provide helpful, concise responses about web development, AI, or general tech questions.`;
 
 // Get system instruction from environment variable
 const BIKRAM_AI_PROMPT = process.env.NEXT_PUBLIC_SYSTEM_INSTRUCTION || 'You are a knowledgeable, concise, and helpful AI assistant. Respond clearly and politely.';
@@ -109,7 +106,7 @@ const ChatWidget = () => {
     const [retryCount, setRetryCount] = useState(0);
     const maxRetries = 2;
     const [isListening, setIsListening] = useState(false);
-    const [knowledgeBase, setKnowledgeBase] = useState<string>("");
+    // Removed knowledgeBase - now using RAG pipeline for document-based responses
 
     // Speech-to-text state
     const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
@@ -122,19 +119,6 @@ const ChatWidget = () => {
 
     // Initialize chat memory
     const chatMemory = useRef(typeof window !== 'undefined' ? getChatMemory() : null);
-
-    // Fetch knowledge base from my-details.json
-    useEffect(() => {
-        fetch('/my-details.json')
-            .then((res) => res.json())
-            .then((data) => {
-                setKnowledgeBase(JSON.stringify(data));
-            })
-            .catch((err) => {
-                console.warn('Could not load my-details.json:', err);
-            });
-    }, []);
-
 
     // Auto scroll to bottom of chat
     useEffect(() => {
@@ -264,10 +248,87 @@ const ChatWidget = () => {
         ]) as Promise<Response>;
     };
 
-    // Get random fallback response
-    const getFallbackResponse = () => {
-        const randomIndex = Math.floor(Math.random() * FALLBACK_RESPONSES.length);
-        return FALLBACK_RESPONSES[randomIndex];
+    // Get fallback response using simple Gemini call (no knowledge base)
+    const getFallbackResponse = async (userMessage: string) => {
+        try {
+            const API_KEY = getApiKey();
+            if (!API_KEY) return "I'm having trouble connecting right now. Please try again later.";
+
+            const requestBody = {
+                contents: [{
+                    parts: [{
+                        text: `${SIMPLE_FALLBACK_PROMPT}\n\nUser: ${userMessage}\n\nAssistant:`
+                    }]
+                }]
+            };
+
+            const response = await fetchWithTimeout(
+                `${API_URL}?key=${API_KEY}`,
+                {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(requestBody)
+                },
+                10000
+            );
+
+            if (response.ok) {
+                const data = await response.json();
+                if (data.candidates?.[0]?.content) {
+                    return data.candidates[0].content.parts[0].text;
+                }
+            }
+        } catch (error) {
+            console.error('Fallback error:', error);
+        }
+        return "I'm having trouble connecting right now. Please try again later.";
+    };
+
+    const fetchRAGResponse = async (userMessage: string) => {
+        try {
+            console.log('Sending request to RAG API...');
+
+            const response = await fetchWithTimeout(
+                '/api/rag',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ question: userMessage })
+                },
+                20000 // Increased timeout for RAG processing
+            );
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error('RAG API Error:', errorData);
+
+                // Extract detailed error message
+                const errorMessage = errorData.details
+                    ? `${errorData.error} - ${errorData.details}`
+                    : errorData.error || `API request failed with status ${response.status}`;
+
+                throw new Error(errorMessage);
+            }
+
+            const data = await response.json();
+            console.log('RAG API Response:', data);
+
+            if (data.answer) {
+                setRetryCount(0);
+                return data.answer;
+            } else if (data.error) {
+                console.error("RAG Error:", data.error);
+                throw new Error(`RAG Error: ${data.error}`);
+            } else {
+                console.error("Invalid response format:", data);
+                throw new Error("Invalid response format");
+            }
+        } catch (error) {
+            console.error("Error fetching RAG response:", error);
+            throw error;
+        }
     };
 
     const fetchGeminiResponse = async (userMessage: string) => {
@@ -291,9 +352,7 @@ const ChatWidget = () => {
             // Build context with system prompt and conversation history
             let contextText = BIKRAM_AI_PROMPT;
 
-            if (knowledgeBase) {
-                contextText += `\n\nHere is detailed structured information about Bikram Mondal to help you answer questions accurately:\n${knowledgeBase}`;
-            }
+            // Note: Not using my-details.json anymore - RAG handles document queries
 
             if (conversationHistory) {
                 contextText += `\n\nPrevious conversation:\n${conversationHistory}`;
@@ -390,8 +449,11 @@ const ChatWidget = () => {
             try {
                 let response;
                 try {
-                    response = await fetchGeminiResponse(currentMessage);
+                    // Try RAG first
+                    response = await fetchRAGResponse(currentMessage);
                 } catch (error) {
+                    console.log('RAG failed, falling back to Gemini:', error);
+                    // If RAG fails, fall back to Gemini
                     if (retryCount < maxRetries) {
                         setRetryCount(prev => prev + 1);
                         console.log(`Retry attempt ${retryCount + 1}/${maxRetries}`);
@@ -422,7 +484,7 @@ const ChatWidget = () => {
 
                 setMessages(prev => prev.filter(msg => !msg.isTemporary));
 
-                const fallbackText = getFallbackResponse();
+                const fallbackText = await getFallbackResponse(currentMessage);
                 const errorResponse: Message = {
                     id: messages.length + 2,
                     text: fallbackText,
