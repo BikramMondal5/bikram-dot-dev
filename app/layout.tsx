@@ -27,8 +27,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Bikram — Full-Stack Developer",
-  description: "Portfolio of Bikram, a full-stack developer building modern web experiences with React, Next.js, Node.js, and more.",
+  title: "Bikram Mondal | Portfolio",
+  description: "Portfolio of Bikram Mondal, showcasing skills, projects, and experience in full-stack development.",
 };
 
 export default function RootLayout({
@@ -38,6 +38,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/icons/reactz-logo.png" type="image/png" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${poppins.variable} antialiased`}
       >

@@ -16,6 +16,7 @@ import {
     GitBranch,
     Users,
     Zap,
+    Sparkles,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { BentoCard } from "@/components/ui/bento-grid";
@@ -223,6 +224,7 @@ export default function BentoSection() {
             <div className="container mx-auto max-w-7xl relative">
                 <SectionHeader
                     label="Building Intelligent Systems"
+                    icon={<Sparkles className="h-4 w-4" />}
                     title={
                         <>
                             Ideas Into{" "}

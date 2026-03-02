@@ -98,6 +98,14 @@ export default function HeroSection() {
                         transition={{ duration: 0.8 }}
                         className="max-w-4xl mx-auto text-center"
                     >
+                        <SectionHeader
+                            label="About Me"
+                            icon={<Sparkles className="h-4 w-4" />}
+                            title=""
+                            subtitle=""
+                            className="mb-1"
+                        />
+
                         {/* Main Heading */}
                         <h1 className="font-bold mb-6 font-[family-name:var(--font-space-grotesk)]" style={{ fontSize: '80px', lineHeight: '98px' }}>
                             Hi, I'm <span className="text-[#69E300]">Bikram Mondal</span>
@@ -164,13 +172,15 @@ export default function HeroSection() {
                                 <Instagram className="w-6 h-6 text-white group-hover:text-black transition-colors" />
                             </a>
 
-                            <button
-                                onClick={() => setIsResumeModalOpen(true)}
+                            <a
+                                href="https://drive.google.com/file/d/1tu0QenFZIEciDSA0GerFjF4Ck_mbgOTq/view?usp=sharing"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="group p-3 rounded-full bg-white/10 hover:bg-[#69E300] transition-all duration-300"
                                 aria-label="Resume"
                             >
                                 <FileText className="w-6 h-6 text-white group-hover:text-black transition-colors" />
-                            </button>
+                            </a>
                         </motion.div>
 
 

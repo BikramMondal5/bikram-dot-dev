@@ -14,12 +14,57 @@ import '@/utils/process-stub';
 // Import Three.js context to manage Three.js when chat is open
 import { useThreeJs } from "@/utils/ThreeJsContext";
 
-// Import VAPI client
-import { getVapi } from "@/utils/vapi";
-import type Vapi from "@vapi-ai/web";
+// Import VAPI client (commented out for now)
+// import { getVapi } from "@/utils/vapi";
+// import type Vapi from "@vapi-ai/web";
 
 // Import LangChain memory
 import { getChatMemory } from "@/utils/chatMemory";
+
+// TypeScript declarations for Web Speech API
+declare global {
+    interface Window {
+        SpeechRecognition: any;
+        webkitSpeechRecognition: any;
+    }
+}
+
+interface SpeechRecognition extends EventTarget {
+    continuous: boolean;
+    interimResults: boolean;
+    lang: string;
+    start(): void;
+    stop(): void;
+    onstart: ((event: Event) => void) | null;
+    onend: ((event: Event) => void) | null;
+    onresult: ((event: SpeechRecognitionEvent) => void) | null;
+    onerror: ((event: SpeechRecognitionErrorEvent) => void) | null;
+}
+
+interface SpeechRecognitionEvent extends Event {
+    results: SpeechRecognitionResultList;
+}
+
+interface SpeechRecognitionErrorEvent extends Event {
+    error: string;
+}
+
+interface SpeechRecognitionResultList {
+    readonly length: number;
+    item(index: number): SpeechRecognitionResult;
+    [index: number]: SpeechRecognitionResult;
+}
+
+interface SpeechRecognitionResult {
+    readonly length: number;
+    item(index: number): SpeechRecognitionAlternative;
+    [index: number]: SpeechRecognitionAlternative;
+}
+
+interface SpeechRecognitionAlternative {
+    readonly transcript: string;
+    readonly confidence: number;
+}
 
 // API configuration - Get from environment variables
 const getApiKey = () => {
@@ -65,10 +110,14 @@ const ChatWidget = () => {
     const maxRetries = 2;
     const [isListening, setIsListening] = useState(false);
 
-    // VAPI state
-    const [vapi, setVapi] = useState<Vapi | null>(null);
-    const [isCallActive, setIsCallActive] = useState(false);
-    const [callStatus, setCallStatus] = useState<string>("");
+    // Speech-to-text state
+    const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
+    const [speechSupported, setSpeechSupported] = useState(false);
+
+    // VAPI state (commented out for now)
+    // const [vapi, setVapi] = useState<Vapi | null>(null);
+    // const [isCallActive, setIsCallActive] = useState(false);
+    // const [callStatus, setCallStatus] = useState<string>("");
 
     // Initialize chat memory
     const chatMemory = useRef(typeof window !== 'undefined' ? getChatMemory() : null);
@@ -102,60 +151,86 @@ const ChatWidget = () => {
 
     // Initialize speech recognition only on client side
     useEffect(() => {
-        // Initialize VAPI client
         if (typeof window !== 'undefined') {
-            try {
-                const vapiClient = getVapi();
-                setVapi(vapiClient);
+            // Check for speech recognition support
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-                // Setup VAPI event listeners
-                vapiClient.on("call-start", () => {
-                    console.log("VAPI: Call started");
-                    setIsCallActive(true);
-                    setCallStatus("📞 Call started");
+            if (SpeechRecognition) {
+                setSpeechSupported(true);
+                const recognitionInstance = new SpeechRecognition();
+
+                // Configure speech recognition
+                recognitionInstance.continuous = false;
+                recognitionInstance.interimResults = false;
+                recognitionInstance.lang = 'en-US';
+
+                // Setup event listeners
+                recognitionInstance.onstart = () => {
+                    console.log('Speech recognition started');
                     setIsListening(true);
-                });
+                };
 
-                vapiClient.on("call-end", () => {
-                    console.log("VAPI: Call ended");
-                    setIsCallActive(false);
-                    setCallStatus("");
+                recognitionInstance.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    console.log('Speech recognition result:', transcript);
+
+                    // Remove temporary listening message
+                    setMessages((prev) => prev.filter(msg => !msg.isTemporary));
+
+                    setInputMessage(transcript);
                     setIsListening(false);
-                });
+                };
 
-                vapiClient.on("speech-start", () => {
-                    console.log("VAPI: User speaking");
-                    setCallStatus("🗣️ Listening...");
-                });
-
-                vapiClient.on("speech-end", () => {
-                    console.log("VAPI: User stopped speaking");
-                    setCallStatus("🤖 AI Responding...");
-                });
-
-                vapiClient.on("message", (message: any) => {
-                    console.log("VAPI message:", message);
-                    // Messages are logged but not displayed during voice calls
-                });
-
-                vapiClient.on("error", (error: any) => {
-                    console.error("VAPI Error:", error);
-                    setCallStatus("⚠️ Error occurred");
-                    setIsCallActive(false);
+                recognitionInstance.onend = () => {
+                    console.log('Speech recognition ended');
                     setIsListening(false);
-                });
 
-            } catch (error) {
-                console.error("Failed to initialize VAPI:", error);
+                    // Remove temporary listening message
+                    setMessages((prev) => prev.filter(msg => !msg.isTemporary));
+                };
+
+                recognitionInstance.onerror = (event) => {
+                    console.error('Speech recognition error:', event.error);
+                    setIsListening(false);
+
+                    // Remove temporary listening message
+                    setMessages((prev) => prev.filter(msg => !msg.isTemporary));
+
+                    const errorMsg: Message = {
+                        id: Date.now(),
+                        text: `Speech recognition error: ${event.error}. Please try again.`,
+                        sender: "bot",
+                        timestamp: new Date(),
+                    };
+                    setMessages((prev) => [...prev, errorMsg]);
+                };
+
+                setRecognition(recognitionInstance);
+            } else {
+                setSpeechSupported(false);
+                console.warn('Speech recognition not supported in this browser');
             }
         }
 
         return () => {
-            // Cleanup: stop any active call
-            if (vapi && isCallActive) {
-                vapi.stop();
+            // Cleanup speech recognition
+            if (recognition && isListening) {
+                recognition.stop();
             }
         };
+
+        // VAPI initialization (commented out)
+        /*
+        if (typeof window !== 'undefined') {
+            try {
+                const vapiClient = getVapi();
+                setVapi(vapiClient);
+                // ... VAPI event listeners ...
+            } catch (error) {
+                console.error("Failed to initialize VAPI:", error);
+            }
+        }
+        */
     }, []);
 
     // Function to fetch with timeout
@@ -368,6 +443,75 @@ const ChatWidget = () => {
     };
 
     const handleMicClick = async () => {
+        if (!speechSupported) {
+            const errorMsg: Message = {
+                id: Date.now(),
+                text: "Speech recognition is not supported in your browser. Please try using a modern browser like Chrome, Edge, or Safari.",
+                sender: "bot",
+                timestamp: new Date(),
+            };
+            setMessages((prev) => [...prev, errorMsg]);
+            return;
+        }
+
+        if (!recognition) {
+            console.error("Speech recognition not initialized");
+            const errorMsg: Message = {
+                id: Date.now(),
+                text: "Speech recognition is not available. Please refresh the page and try again.",
+                sender: "bot",
+                timestamp: new Date(),
+            };
+            setMessages((prev) => [...prev, errorMsg]);
+            return;
+        }
+
+        try {
+            if (isListening) {
+                // Stop listening
+                recognition.stop();
+                setIsListening(false);
+            } else {
+                // Request microphone permission and start listening
+                try {
+                    await navigator.mediaDevices.getUserMedia({ audio: true });
+                    recognition.start();
+
+                    // Add a message to indicate listening started
+                    const listeningMsg: Message = {
+                        id: Date.now(),
+                        text: "🎤 Listening... Speak now!",
+                        sender: "bot",
+                        timestamp: new Date(),
+                        isTemporary: true
+                    };
+                    setMessages((prev) => [...prev, listeningMsg]);
+                } catch (permissionError) {
+                    console.error("Microphone permission denied:", permissionError);
+                    const errorMsg: Message = {
+                        id: Date.now(),
+                        text: "Microphone access denied. Please allow microphone permission to use speech-to-text.",
+                        sender: "bot",
+                        timestamp: new Date(),
+                    };
+                    setMessages((prev) => [...prev, errorMsg]);
+                }
+            }
+        } catch (error) {
+            console.error("Speech recognition error:", error);
+            setIsListening(false);
+
+            const errorMsg: Message = {
+                id: Date.now(),
+                text: "Failed to start speech recognition. Please try again.",
+                sender: "bot",
+                timestamp: new Date(),
+            };
+            setMessages((prev) => [...prev, errorMsg]);
+        }
+
+        // VAPI code (commented out)
+        /*
         if (!vapi) {
             console.error("VAPI client not initialized");
             const errorMsg: Message = {
@@ -381,36 +525,23 @@ const ChatWidget = () => {
         }
 
         try {
-            if (isCallActive) {
-                // Stop the call
-                vapi.stop();
-                setIsCallActive(false);
-                setIsListening(false);
-                setCallStatus("");
-            } else {
-                // Start the call with your custom system prompt
-                await vapi.start({
-                    model: {
-                        provider: "google",
-                        model: "gemini-2.0-flash-exp",
-                        systemPrompt: BIKRAM_AI_PROMPT
-                    },
-                    transcriber: {
-                        provider: "deepgram",
-                        model: "nova-2",
-                        language: "en"
-                    },
-                    voice: {
-                        provider: "deepgram",
-                        voiceId: "asteria"
-                    }
-                });
-            }
+            // if (isCallActive) {
+            //     vapi.stop();
+            //     // setIsCallActive(false);
+            //     // setIsListening(false);
+            //     // setCallStatus("");
+            // } else {
+            //     await vapi.start({
+            //         model: { provider: "google", model: "gemini-2.0-flash-exp", systemPrompt: BIKRAM_AI_PROMPT },
+            //         transcriber: { provider: "deepgram", model: "nova-2", language: "en" },
+            //         voice: { provider: "deepgram", voiceId: "asteria" }
+            //     });
+            // }
         } catch (error) {
             console.error("VAPI call error:", error);
-            setIsCallActive(false);
-            setIsListening(false);
-            setCallStatus("⚠️ Failed to start voice call");
+            // setIsCallActive(false);
+            // setIsListening(false);
+            // setCallStatus("⚠️ Failed to start voice call");
 
             const errorMsg: Message = {
                 id: Date.now(),
@@ -420,6 +551,7 @@ const ChatWidget = () => {
             };
             setMessages((prev) => [...prev, errorMsg]);
         }
+        */
     };
 
     // Safe function to toggle chat widget
@@ -464,7 +596,7 @@ const ChatWidget = () => {
         <>
             <motion.button
                 onClick={toggleChatWidget}
-                className="fixed bottom-5 right-5 w-14 h-14 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 p-0 border border-transparent z-[9999]"
+                className="fixed bottom-5 right-5 w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 p-0 border border-transparent z-[9999]"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 style={{ zIndex: 9999 }}
@@ -474,7 +606,7 @@ const ChatWidget = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 ) : (
-                    <div className="w-[52px] h-[52px] rounded-full bg-black flex items-center justify-center overflow-hidden p-0">
+                    <div className="w-[48px] h-[48px] rounded-full bg-black flex items-center justify-center overflow-hidden p-0">
                         <img
                             src="/icons/reactz-logo.png"
                             alt="Chat Bot"
@@ -506,7 +638,7 @@ const ChatWidget = () => {
                             <div>
                                 <h3 className="text-white font-medium">Bikram.AI</h3>
                                 <p className="text-purple-100 text-xs opacity-80">
-                                    {callStatus || "Online"}
+                                    {isListening ? "Listening..." : "Online"}
                                 </p>
                             </div>
                         </div>
@@ -539,7 +671,7 @@ const ChatWidget = () => {
                             className="bg-[#121212] h-96 overflow-y-auto p-4 flex flex-col gap-4 scrollbar-thin scrollbar-thumb-purple-600 scrollbar-track-transparent"
                             style={{ scrollbarWidth: 'thin' } as any}
                         >
-                            {isCallActive ? (
+                            {false /* isCallActive - VAPI disabled */ ? (
                                 // Voice Agent UI - Large animated microphone with wave effect
                                 <div className="flex items-center justify-center h-full">
                                     <motion.div className="relative flex items-center justify-center w-full h-full">
@@ -622,7 +754,7 @@ const ChatWidget = () => {
                                         animate={{ opacity: [0.7, 1, 0.7] }}
                                         transition={{ duration: 2, repeat: Infinity }}
                                     >
-                                        {callStatus || "Voice call active"}
+                                        {isListening ? "Speech-to-text active" : "Chat mode"}
                                     </motion.p>
                                 </div>
                             ) : (
@@ -726,7 +858,7 @@ const ChatWidget = () => {
                                 placeholder="Ask me anything..."
                                 className="flex-1 bg-[#262626] text-gray-200 rounded-full px-4 py-2 focus:outline-none focus:ring-1 focus:ring-purple-500 text-sm placeholder:text-gray-500"
                             />
-                            <button className="text-purple-400 hover:text-purple-300 p-2 rounded-full hover:bg-white/5 transition-colors" onClick={handleMicClick} title={isCallActive ? "Stop voice call" : "Start voice call"}>
+                            <button className="text-purple-400 hover:text-purple-300 p-2 rounded-full hover:bg-white/5 transition-colors" onClick={handleMicClick} title={isListening ? "Stop listening" : "Start speech-to-text"}>
                                 <FiMic className={`w-5 h-5 ${isListening ? "animate-pulse text-red-400" : ""}`} />
                             </button>
                             <motion.button

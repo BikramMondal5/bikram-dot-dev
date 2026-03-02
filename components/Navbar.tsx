@@ -79,23 +79,7 @@ export default function Navbar() {
 
                     {/* Right Side Buttons */}
                     <div className="flex items-center gap-3">
-                        <a href="/login">
-                            <Button
-                                variant="ghost"
-                                className="text-white/80 hover:text-white hover:bg-transparent"
-                            >
-                                Login
-                            </Button>
-                        </a>
-                        <a href="/sign-up">
-                            <Button
-                                variant="ghost"
-                                className="text-white/80 hover:text-white hover:bg-transparent"
-                            >
-                                Sign Up
-                            </Button>
-                        </a>
-                        <a href="mailto:bikrammondal734@gmail.com">
+                        <a href="https://linktr.ee/BikramMondal5" target="_blank" rel="noopener noreferrer">
                             <Button
                                 className="bg-[#69E300] text-black hover:bg-[#7fff00] font-semibold"
                             >
