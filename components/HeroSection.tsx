@@ -374,38 +374,53 @@ export default function HeroSection() {
             {/* Footer */}
             <footer className="relative z-10 py-16 px-4 bg-[#0a0a0a]">
                 <div className="max-w-7xl mx-auto">
-                    <div className="flex flex-col items-center gap-8">
-                        <h2 className="text-9xl md:text-[11rem] lg:text-[13rem] font-bold text-gray-400 text-center">
-                            Let&apos;s Connect
-                        </h2>
+                    <div className="flex flex-row items-start justify-between gap-12">
+                        {/* Left: Let's Connect */}
+                        <div className="flex flex-col items-start gap-6">
+                            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-400">
+                                Let&apos;s Connect
+                            </h2>
 
-                        <TooltipProvider>
-                            <Dock direction="middle" className="bg-white/5 border-white/10">
-                                {Object.entries(SOCIAL_DATA).map(([name, social]) => (
-                                    <DockIcon key={name}>
-                                        <Tooltip>
-                                            <TooltipTrigger asChild>
-                                                <Link
-                                                    href={social.url}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    aria-label={social.name}
-                                                    className={cn(
-                                                        buttonVariants({ variant: "ghost", size: "icon" }),
-                                                        "size-12 rounded-full hover:bg-[#69E300] hover:text-black"
-                                                    )}
-                                                >
-                                                    <social.icon className="size-5" />
-                                                </Link>
-                                            </TooltipTrigger>
-                                            <TooltipContent>
-                                                <p>{name}</p>
-                                            </TooltipContent>
-                                        </Tooltip>
-                                    </DockIcon>
-                                ))}
-                            </Dock>
-                        </TooltipProvider>
+                            <TooltipProvider>
+                                <Dock direction="middle" className="bg-white/5 border-white/10">
+                                    {Object.entries(SOCIAL_DATA).map(([name, social]) => (
+                                        <DockIcon key={name}>
+                                            <Tooltip>
+                                                <TooltipTrigger asChild>
+                                                    <Link
+                                                        href={social.url}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        aria-label={social.name}
+                                                        className={cn(
+                                                            buttonVariants({ variant: "ghost", size: "icon" }),
+                                                            "size-12 rounded-full hover:bg-[#69E300] hover:text-black"
+                                                        )}
+                                                    >
+                                                        <social.icon className="size-5" />
+                                                    </Link>
+                                                </TooltipTrigger>
+                                                <TooltipContent>
+                                                    <p>{name}</p>
+                                                </TooltipContent>
+                                            </Tooltip>
+                                        </DockIcon>
+                                    ))}
+                                </Dock>
+                            </TooltipProvider>
+                        </div>
+
+                        {/* Right: Collaboration Text */}
+                        <div className="flex-1 flex flex-col gap-4 max-w-2xl">
+                            <p className="text-2xl md:text-3xl font-semibold text-[#69E300] leading-relaxed">
+                                Have an idea or want to collaborate? I&apos;d love to hear from you.
+                            </p>
+                            <p className="text-xl md:text-2xl text-gray-400 leading-relaxed">
+                                Looking for a contact form? Skip the traditional way — just ask my{" "}
+                                <span className="text-[#69E300] font-semibold">Reactz Agent</span>{" "}
+                                and it&apos;ll handle everything for you.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </footer>
