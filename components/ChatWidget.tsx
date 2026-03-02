@@ -635,7 +635,7 @@ const ChatWidget = () => {
 
             {isOpen && (
                 <motion.div
-                    className="fixed bottom-24 right-5 w-80 sm:w-96 rounded-2xl overflow-hidden shadow-2xl border2 border-purple-600/30 z-[9998]"
+                    className="fixed bottom-24 right-5 w-80 sm:w-96 rounded-2xl overflow-hidden shadow-2xl border border-[#1E293B] z-[9998]"
                     variants={widgetVariants}
                     initial="closed"
                     animate="open"

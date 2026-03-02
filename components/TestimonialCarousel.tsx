@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Star, User, Quote, MessageSquare, Send, Upload, Image as ImageIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { AvatarCircles } from "@/components/ui/avatar-circles"
 import Image from "next/image"
 import {
     Dialog,
@@ -75,68 +76,32 @@ const defaultTestimonials = [
     },
 ]
 
-const people = [
+const avatars = [
     {
-        id: 1,
-        name: "John Doe",
-        designation: "Software Engineer",
-        image:
-            "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
+        imageUrl: "https://avatars.githubusercontent.com/u/16860528",
+        profileUrl: "https://github.com/dillionverma",
     },
     {
-        id: 2,
-        name: "Robert Johnson",
-        designation: "Product Manager",
-        image:
-            "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+        imageUrl: "https://avatars.githubusercontent.com/u/20110627",
+        profileUrl: "https://github.com/tomonarifeehan",
     },
     {
-        id: 3,
-        name: "Jane Smith",
-        designation: "Data Scientist",
-        image:
-            "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+        imageUrl: "https://avatars.githubusercontent.com/u/106103625",
+        profileUrl: "https://github.com/BankkRoll",
     },
     {
-        id: 4,
-        name: "Emily Davis",
-        designation: "UX Designer",
-        image:
-            "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+        imageUrl: "https://avatars.githubusercontent.com/u/59228569",
+        profileUrl: "https://github.com/safethecode",
     },
     {
-        id: 5,
-        name: "Tyler Durden",
-        designation: "Soap Developer",
-        image:
-            "https://images.unsplash.com/photo-1472099644761-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80",
+        imageUrl: "https://avatars.githubusercontent.com/u/59442788",
+        profileUrl: "https://github.com/sanjay-mali",
     },
     {
-        id: 6,
-        name: "Dora",
-        designation: "The Explorer",
-        image:
-            "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3534&q=80",
+        imageUrl: "https://avatars.githubusercontent.com/u/89768406",
+        profileUrl: "https://github.com/itsarghyadas",
     },
 ]
-
-// Simple AnimatedTooltip component
-function AnimatedTooltip({ items }: { items: typeof people }) {
-    return (
-        <div className="flex flex-row items-center">
-            {items.map((item, idx) => (
-                <div key={item.id} className="relative group -ml-4 first:ml-0" style={{ zIndex: items.length - idx }}>
-                    <img
-                        src={item.image || "/placeholder.svg"}
-                        alt={item.name}
-                        onError={(e) => (e.currentTarget.src = "/avatar.jfif")}
-                        className="w-10 h-10 rounded-full border-2 border-background object-cover transition-transform group-hover:scale-110"
-                    />
-                </div>
-            ))}
-        </div>
-    )
-}
 
 // Predefined avatar options
 const predefinedAvatars = [
@@ -266,10 +231,7 @@ export default function TestimonialCarousel() {
 
                 {/* Avatars Section */}
                 <div className="flex flex-col items-center gap-4 mt-8">
-                    <div className="flex flex-row items-center justify-center w-full">
-                        <AnimatedTooltip items={people} />
-                    </div>
-
+                    <AvatarCircles numPeople={30} avatarUrls={avatars} />
                 </div>
             </div>
 

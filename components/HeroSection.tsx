@@ -377,7 +377,16 @@ export default function HeroSection() {
                     <div className="flex flex-row items-start justify-between gap-12">
                         {/* Left: Let's Connect */}
                         <div className="flex flex-col items-start gap-6">
-                            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-400">
+                            <h2
+                                className="pointer-events-none text-5xl md:text-6xl lg:text-7xl leading-tight whitespace-pre-wrap"
+                                style={{
+                                    background: 'linear-gradient(180deg, #f8fafc 0%, #bfc9d3 40%, #6b7280 100%)',
+                                    WebkitBackgroundClip: 'text',
+                                    backgroundClip: 'text',
+                                    color: 'transparent',
+                                    textShadow: '0 4px 0 rgba(0,0,0,0.55), 0 14px 30px rgba(0,0,0,0.8)'
+                                }}
+                            >
                                 Let&apos;s Connect
                             </h2>
 
@@ -394,7 +403,7 @@ export default function HeroSection() {
                                                         aria-label={social.name}
                                                         className={cn(
                                                             buttonVariants({ variant: "ghost", size: "icon" }),
-                                                            "size-12 rounded-full hover:bg-[#69E300] hover:text-black"
+                                                            "size-12 rounded-full !bg-transparent hover:!bg-[#69E300] hover:!text-black"
                                                         )}
                                                     >
                                                         <social.icon className="size-5" />
