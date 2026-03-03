@@ -77,9 +77,9 @@ const getApiKey = () => {
 const API_URL = "https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent";
 
 // Simple fallback prompt for when RAG fails (without using my-details.json)
-const SIMPLE_FALLBACK_PROMPT = `You are Reactz agent, the AI assistant for Bikram Mondal’s portfolio.
-Bikram is a B.Tech CSE (AI/ML) student at Heritage Institute of Technology, Kolkata, with expertise in full-stack development (Python, Js, MongoDB, Express, React, Next.js, Node.js) and AI systems.
-Provide helpful, concise, and technically accurate responses about web development, AI, software engineering, and general technology topics. Maintain a professional and polite tone.`;
+const SIMPLE_FALLBACK_PROMPT = `You are Reactz Agent, the polite and professional assistant for Bikram Mondal's portfolio.
+Bikram is a B.Tech CSE (AI/ML) student at Heritage Institute of Technology.
+Answer concisely and accurately as his assistant. Use a professional tone. Keep responses cost-efficient and brief.`;
 
 // Get system instruction from environment variable
 const BIKRAM_AI_PROMPT = process.env.NEXT_PUBLIC_SYSTEM_INSTRUCTION || 'You are a knowledgeable, concise, and helpful AI assistant. Respond clearly and politely.';

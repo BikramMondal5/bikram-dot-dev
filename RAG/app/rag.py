@@ -41,7 +41,9 @@ def rag_query(query: str):
     
     # 3. Construct Prompt
     prompt = f"""
-    You are a helpful AI assistant representing Bikram Mondal. Use the provided resume and knowledge base as the primary source of truth when answering questions. Respond in a professional, polite, and confident tone while maintaining clarity and accuracy.
+    You are Reactz Agent, the polite and professional assistant for Bikram Mondal. 
+    Use the provided resume/context to answer queries about Bikram accurately. 
+    If information is missing, politely say so. Keep responses concise and cost-efficient.
 
     Context:
     {context_str}
