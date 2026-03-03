@@ -282,7 +282,7 @@ export default function BentoSection() {
                         name="Selected Works"
                         description="SaaS products, AI tools & full-stack builds — scroll to explore →"
                         Icon={Code2}
-                        href="#"
+                        href="#projects"
                         cta="View all projects"
                         className="col-start-2 col-span-2 row-start-3"
                         background={<ProjectsBackground />}
