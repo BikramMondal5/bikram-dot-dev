@@ -243,7 +243,7 @@ export default function HeroSection() {
                         {/* Subheading */}
                         <p className="text-white mb-8 font-[family-name:var(--font-poppins)]" style={{ fontSize: '30px', lineHeight: '40px' }}>
                             A <span className="inline-flex items-center px-6 py-2 bg-[#69E300] text-black hover:bg-[#7fff00] font-semibold rounded-lg transition-all duration-300">Full Stack Web Developer</span> with a passion for learning and building web applications.
-                            I love solving problems and building things through code. Programming isn't just my profession, <Highlighter action="highlight" color="#69E300"><span className="text-black font-semibold">it's my passion.</span></Highlighter>
+                            I love solving problems and building things through code. Programming isn't just my profession, it's my passion.
                         </p>
 
                         <motion.div
@@ -426,16 +426,11 @@ export default function HeroSection() {
                             <p className="text-2xl md:text-3xl font-semibold text-[#69E300] leading-relaxed">
                                 Have an idea or want to collaborate? I&apos;d love to hear from you.
                             </p>
-                            <div className="text-xl md:text-2xl leading-relaxed">
-                                <TypingAnimation 
-                                    className="text-gray-400" 
-                                    duration={80}
-                                    loop={true}
-                                    showCursor={false}
-                                >
-                                    Looking for a contact form? Skip the traditional way — just ask my Reactz Agent and it'll handle everything for you.
-                                </TypingAnimation>
-                            </div>
+                            <p className="text-xl md:text-2xl text-gray-400 leading-tight">
+                                Looking for a contact form? Skip the traditional way, just ask my{" "}
+                                <span className="text-[#69E300] font-semibold">Reactz Agent</span>{" "}
+                                and it&apos;ll handle everything for you.
+                            </p>
                         </div>
                     </div>
                 </div>

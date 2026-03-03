@@ -9,14 +9,13 @@ from app.rag import rag_query
 
 app = FastAPI(title="Gemini RAG System")
 
+# Get allowed origins from environment variable
+ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000").split(",")
+
 # Configure CORS to allow requests from Next.js frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "http://localhost:3001",  # Alternative dev port
-    ],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -54,6 +53,31 @@ async def ask_endpoint(payload: QueryRequest):
         return response
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/health")
+async def health_check():
+    """
+    Health check endpoint for deployment monitoring
+    """
+    return {
+        "status": "healthy",
+        "service": "RAG Backend",
+        "version": "1.0.0"
+    }
+
+@app.get("/")
+async def root():
+    """
+    Root endpoint
+    """
+    return {
+        "message": "Gemini RAG System API",
+        "endpoints": {
+            "health": "/health",
+            "ingest": "/ingest (POST)",
+            "ask": "/ask (POST)"
+        }
+    }
 
 if __name__ == "__main__":
     uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
