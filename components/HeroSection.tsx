@@ -179,12 +179,13 @@ function QuoteCard() {
                     {/* Avatar */}
                     <div className="flex-shrink-0">
                         <div className="relative">
-                            <Image
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
                                 src={quoteData.avatar}
                                 alt={quoteData.name}
                                 width={80}
                                 height={80}
-                                className="rounded-full border-2 border-white/10 object-cover transition-all duration-500"
+                                className="rounded-full border-2 border-white/10 object-cover transition-all duration-500 w-20 h-20"
                             />
                             <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[#69E300] rounded-full border-2 border-[#0a0809]" />
                         </div>
