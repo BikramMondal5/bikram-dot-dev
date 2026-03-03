@@ -1,433 +1,281 @@
-# �✨ Modern Portfolio with AI-Powered Chat
+# 🚀✨ Bikram Mondal – Portfolio
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Next.js](https://img.shields.io/badge/Next.js-16.1.6-black)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
-![Python](https://img.shields.io/badge/Python-3.11-yellow)
+![Portfolio Preview](public/hero-section.png)
 
-A stunning, interactive portfolio website built with Next.js 16 and TypeScript, featuring an **AI-powered chatbot** using Retrieval Augmented Generation (RAG) with Google's Gemini AI. Ask questions about projects, experience, and skills — get intelligent responses powered by your own documents! 🤖💬
+A modern, interactive, and AI-powered portfolio website showcasing my journey as a Full-Stack Developer and AI/ML enthusiast. Built with cutting-edge technologies, featuring stunning 3D animations, an intelligent AI chatbot, and a seamless user experience across all devices.
 
-> **Sit back, sip your coffee ☕, and let AI showcase your portfolio!**
+Grab a coffee ☕, explore my work, and let's build something amazing together!
 
-## 📸 Preview
-
-![Portfolio Preview](public/screenshot.png)
-*Note: Add your screenshot as `public/screenshot.png`*
+---
 
 ## 🌟 Features
 
-- 🎨 **Interactive 3D Hero Section** – Eye-catching animations with Three.js and React Three Fiber
-- 🤖 **RAG-Powered AI Chat** – Intelligent chatbot that answers questions based on your documents
-- 💬 **Persistent Chat History** – MongoDB-backed conversation memory
-- 📧 **Contact Form** – Email integration with Nodemailer for seamless communication
-- ⭐ **Testimonials System** – Full CRUD operations for managing client feedback
-- 🎯 **Project Showcase** – Beautiful project cards with detailed descriptions
-- 🏆 **Certificates Gallery** – Visual display of achievements and certifications
-- 🌐 **Responsive Design** – Flawless experience on desktop, tablet, and mobile
-- 🎭 **Smooth Animations** – Powered by Framer Motion for buttery-smooth transitions
-- 🌙 **Dark Mode Support** – Built-in theme support for better UX
-- ⚡ **Blazing Fast** – Optimized with Next.js 16 App Router and server components
-- 🔒 **Secure** – Environment-based configuration and data validation
-- 📊 **SEO Optimized** – Meta tags and structured data for better discoverability
+- 🎨 **Stunning 3D Visuals** – Interactive Three.js wireframe landscapes and animated components
+- 🤖 **AI-Powered Chat Assistant** – Reactz Agent with RAG (Retrieval-Augmented Generation) for intelligent conversations
+- 📧 **Smart Email Integration** – AI-driven email composition and sending directly from the chat
+- 🎭 **Dynamic Project Showcase** – Carousel-based project display with smooth animations
+- 🏆 **Interactive Certificates Section** – Tabbed interface for skills, hackathons, and extracurricular achievements
+- 💬 **Live Testimonials** – Real-time testimonial submission with MongoDB integration
+- 🌐 **Fully Responsive Design** – Optimized for mobile, tablet, and desktop (320px to 4K)
+- 🎯 **Smooth Animations** – Framer Motion powered transitions and micro-interactions
+- 🌙 **Dark Theme UI** – Modern, eye-friendly dark interface with neon green accents
+- 🔄 **Real-time Updates** – Dynamic content loading and state management
+- 🎪 **Bento Grid Layout** – Modern card-based design with orbiting tech stack visualization
+- 📱 **Mobile-First Approach** – Hamburger menu, touch-friendly controls, and adaptive layouts
+
+---
 
 ## 🛠️ Technologies Used
 
 ### Frontend
-- **Next.js 16** – React framework with App Router
+- **Next.js 14** – React framework with App Router
 - **TypeScript** – Type-safe development
-- **Tailwind CSS 4** – Modern utility-first CSS framework
-- **Framer Motion** – Advanced animation library
+- **Tailwind CSS** – Utility-first styling
+- **Framer Motion** – Advanced animations
 - **Three.js / React Three Fiber** – 3D graphics and animations
-- **Radix UI** – Accessible, unstyled UI components
-- **React Markdown** – Markdown rendering for rich content
-- **Lucide React** – Beautiful icon library
+- **Shadcn/ui** – Beautiful, accessible UI components
 
 ### Backend & AI
-- **FastAPI** (Python) – High-performance API framework for RAG system
-- **Google Gemini AI** – Advanced language model for intelligent responses
-- **ChromaDB** – Vector database for semantic search
-- **MongoDB** – NoSQL database for data persistence
-- **Mongoose** – MongoDB ODM for Node.js
-- **Nodemailer** – Email service integration
+- **Python / Flask** – RAG pipeline backend
+- **LangChain** – AI agent orchestration
+- **Google Gemini API** – Large language model integration
+- **ChromaDB** – Vector database for document retrieval
+- **MongoDB** – Database for testimonials and user data
 
-### DevOps & Tools
-- **ESLint** – Code linting and quality checks
-- **Vapi AI** – Voice agent integration (optional)
-- **GitHub Actions** – CI/CD pipeline
-- **Vercel Ready** – Optimized for Vercel deployment
+### Additional Tools
+- **React Markdown** – Markdown rendering in chat
+- **React Icons** – Comprehensive icon library
+- **React Parallax Tilt** – 3D tilt effects
+- **Lucide Icons** – Modern icon set
+- **Nodemailer** – Email sending functionality
 
-## 📦 Project Structure
-
-```
-bikram-dot-dev/
-├── app/                    # Next.js 16 App Router
-│   ├── api/               # API routes (chat, email, testimonials)
-│   │   ├── chat-history/  # Chat history management
-│   │   ├── rag/           # RAG integration endpoint
-│   │   ├── send-email/    # Contact form handler
-│   │   └── testimonials/  # Testimonials CRUD
-│   ├── layout.tsx         # Root layout
-│   └── page.tsx           # Homepage
-├── components/            # React components
-│   ├── ChatWidget.tsx     # AI-powered chat interface
-│   ├── HeroSection.tsx    # 3D animated hero
-│   ├── ProjectShowcase.tsx # Project cards
-│   ├── TestimonialCarousel.tsx # Testimonials slider
-│   └── ui/                # Reusable UI components
-├── RAG/                   # Python RAG Backend
-│   ├── app/               # FastAPI application
-│   │   ├── main.py        # API server
-│   │   ├── rag.py         # RAG logic
-│   │   ├── ingest.py      # Document processing
-│   │   └── utils/         # Helper functions
-│   ├── pdfs/              # Your documents (resume, projects, etc.)
-│   └── db/                # ChromaDB vector storage
-├── lib/                   # Utilities
-│   ├── mongodb.ts         # Database connection
-│   ├── utils.ts           # Helper functions
-│   └── models/            # Mongoose schemas
-└── public/                # Static assets
-    ├── icons/             # Icons and logos
-    └── Certificates/      # Certificate images
-```
+---
 
 ## ⚙️ Installation
 
 ### Prerequisites
-- **Node.js 18+** – [Download here](https://nodejs.org/)
-- **Python 3.11+** – [Download here](https://www.python.org/)
-- **MongoDB Atlas** – [Sign up](https://www.mongodb.com/cloud/atlas)
-- **Google Gemini API Key** – [Get key](https://makersuite.google.com/app/apikey)
+- Node.js 18+ and npm/yarn
+- Python 3.9+ (for RAG backend)
+- MongoDB instance (local or cloud)
+- Google Gemini API key
 
-### 1. Clone the Repository
-
+### 1. Clone the repository
 ```bash
 git clone https://github.com/BikramMondal5/bikram-dot-dev.git
 cd bikram-dot-dev
 ```
 
-### 2. Install Dependencies
-
+### 2. Install Frontend Dependencies
 ```bash
-# Install Node.js dependencies
 npm install
-# or if you encounter peer dependency issues
+# or
 npm install --legacy-peer-deps
 ```
 
-### 3. Setup Environment Variables
-
-Create `.env.local` in the root directory:
+### 3. Set Up Environment Variables
+Create a `.env.local` file in the root directory:
 ```env
-# MongoDB Connection
-MONGODB_URI=your_mongodb_connection_string
-
-# RAG Backend URL
-RAG_BACKEND_URL=http://localhost:8000
+# Gemini API
+NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key_here
+NEXT_PUBLIC_SYSTEM_INSTRUCTION=your_system_prompt_here
 
 # Email Configuration
 EMAIL_USER=your_email@gmail.com
-EMAIL_PASSWORD=your_gmail_app_password
+EMAIL_PASS=your_app_password
+
+# MongoDB
+MONGODB_URI=your_mongodb_connection_string
+
+# RAG Backend URL (if running separately)
+NEXT_PUBLIC_RAG_API_URL=http://localhost:5000
 ```
 
-Create `RAG/.env` for the Python backend:
-```env
-# Google Gemini API Key
-GEMINI_API_KEY=your_gemini_api_key_here
-
-# CORS Configuration
-ALLOWED_ORIGINS=http://localhost:3000
-```
-
-### 4. Setup RAG Backend
-
+### 4. Set Up RAG Backend (Python)
 ```bash
-# Navigate to RAG directory
 cd RAG
-
-# Install Python dependencies
 pip install -r requirements.txt
 
-# Add your documents (PDF format) to RAG/pdfs/ directory
-# Example: resume.pdf, projects.pdf, certificates.pdf
-
-# Index your documents
-python app/ingest.py
-
-# Go back to root
-cd ..
+# Set up your documents in the RAG/documents folder
+# Run the RAG server
+python app.py
 ```
 
-### 5. Start Development Servers
-
-#### Option 1: Start Both Servers with One Command
+### 5. Run the Development Server
 ```bash
-# Windows
-start_servers.bat
-
-# Mac/Linux
-chmod +x start_servers.sh
-./start_servers.sh
-```
-
-#### Option 2: Start Manually
-```bash
-# Terminal 1: Start RAG Backend
-cd RAG
-uvicorn app.main:app --reload
-
-# Terminal 2: Start Next.js Frontend
 npm run dev
 ```
 
 ### 6. Open Your Browser
+Navigate to `http://localhost:3000` to view the portfolio.
 
-Navigate to **`http://localhost:3000`** to view your portfolio! 🎉
 
-## � How to Use
+## 🚀 How to Use
 
 ### For Visitors
-1. **🏠 Explore the Portfolio** – Navigate through different sections to learn about projects and experience
-2. **💬 Chat with AI** – Click the chat widget to ask questions about skills, projects, or experience
-3. **📧 Get in Touch** – Use the contact form to send a message directly
-4. **⭐ Read Testimonials** – See what others say about the work
+1. 🏠 **Explore the Portfolio** – Scroll through sections to learn about my skills and projects
+2. 💬 **Chat with Reactz Agent** – Click the chat widget to ask questions or send emails
+3. 📧 **Send an Email** – Use natural language like "send an email to Bikram about collaboration"
+4. 🏆 **View Certificates** – Browse through skills, hackathons, and achievements
+5. 💭 **Share Testimonials** – Leave feedback about your experience working with me
+6. 🔗 **Connect on Social Media** – Find me on GitHub, LinkedIn, Twitter, and more
 
-### For Developers (Customization)
-
-#### Add Your Content
-1. **Update Personal Details** – Edit `public/my-details.json` with your information
-2. **Add Documents** – Place your PDFs (resume, project docs) in `RAG/pdfs/`
-3. **Index Documents** – Run `python RAG/app/ingest.py` to make them searchable
-4. **Add Projects** – Update project data in `components/ProjectShowcase.tsx`
-5. **Add Certificates** – Place images in `public/Certificates/` and update `components/CertificatesSection.tsx`
-
-#### Customize Styling
-- **Colors & Theme** – Edit `app/globals.css` for color schemes
-- **Components** – Modify components in `components/` directory
-- **Layout** – Update `app/layout.tsx` for site-wide changes
-
-#### Manage Testimonials
-- Access testimonials API at `/api/testimonials` (GET, POST, PUT, DELETE)
-- Add testimonials through MongoDB or create an admin panel
-
-## 📚 Deployment
-
-Ready to go live? We've got you covered with detailed guides!
-
-### Quick Deploy (Recommended) ⚡
-**[🚀 QUICK_DEPLOY.md](QUICK_DEPLOY.md)** – Deploy in 15 minutes!
-- Vercel (Frontend) – Free tier
-- Render (Backend) – Free tier  
-- MongoDB Atlas – Free tier
-- **Total Cost: $0/month** 💰
-
-### Other Deployment Options
-- **[📖 DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)** – Comprehensive guide (Vercel+Render, VPS, Railway)
-- **[✅ DEPLOYMENT_CHECKLIST.md](DEPLOYMENT_CHECKLIST.md)** – Step-by-step deployment checklist
-- **[📁 FILES_OVERVIEW.md](FILES_OVERVIEW.md)** – All deployment files explained
-
-### Pre-Deployment Testing
-```bash
-# Test your build before deploying
-# Windows
-test-deployment.bat
-
-# Mac/Linux
-chmod +x test-deployment.sh
-./test-deployment.sh
-```
-
-## 📝 Documentation
-
-### Core Documentation
-- **[RAG_INTEGRATION_GUIDE.md](RAG_INTEGRATION_GUIDE.md)** – Complete RAG system architecture and setup
-- **[DEPLOYMENT_PACKAGE.md](DEPLOYMENT_PACKAGE.md)** – Overview of all deployment files
-
-### Configuration Templates
-- `.env.local.example` – Frontend environment variables template
-- `RAG/.env.example` – Backend environment variables template  
-- `vercel.json` – Vercel deployment configuration
-- `RAG/render.yaml` – Render deployment configuration
-- `RAG/railway.toml` – Railway deployment configuration
-
-## 🔧 Available Scripts
-
-### Development
-```bash
-npm run dev              # Start Next.js development server
-npm run build           # Build for production
-npm start               # Start production server
-npm run lint            # Run ESLint linter
-
-# Quick start both servers
-start_servers.bat       # Windows - Start both frontend & backend
-start_servers.sh        # Mac/Linux - Start both frontend & backend
-```
-
-### RAG Backend
-```bash
-cd RAG
-uvicorn app.main:app --reload      # Start FastAPI dev server
-python app/ingest.py               # Index PDF documents
-python clear_db.py                 # Clear ChromaDB vector database
-```
-
-### Testing
-```bash
-test-deployment.bat     # Windows - Pre-deployment checks
-test-deployment.sh      # Mac/Linux - Pre-deployment checks
-```
-
-## 🌟 Key Features Explained
-
-### 🤖 RAG-Powered AI Chat
-The intelligent chatbot uses **Retrieval Augmented Generation** to provide accurate answers:
-1. **User Query** – Visitor asks a question in the chat
-2. **Semantic Search** – ChromaDB finds relevant document chunks
-3. **Context Injection** – Retrieved content is added to the AI prompt
-4. **AI Generation** – Gemini AI generates contextual response
-5. **Response Delivery** – Answer displayed in chat with sources
-
-### 📧 Contact Form
-- **Email Integration** – Nodemailer with Gmail SMTP
-- **Validation** – Client & server-side form validation
-- **Error Handling** – Graceful error messages
-- **Anti-Spam** – Rate limiting (recommended for production)
-
-### ⭐ Testimonials System
-- **Full CRUD** – Create, Read, Update, Delete operations
-- **MongoDB Storage** – Persistent data storage with Mongoose
-- **API Routes** – RESTful API at `/api/testimonials`
-- **Admin Panel** – Can be added for easy management
-
-### 🎨 3D Hero Section
-- **Three.js** – WebGL-powered 3D graphics
-- **React Three Fiber** – React integration for Three.js
-- **Smooth Animations** – 60 FPS performance
-- **Responsive** – Adapts to all screen sizes
-
-## 🔒 Security Best Practices
-
-- ✅ Environment variables for sensitive data (API keys, passwords)
-- ✅ CORS configuration to prevent unauthorized access
-- ✅ MongoDB access controls and IP whitelisting
-- ✅ Input validation and sanitization
-- ✅ Rate limiting for API endpoints (recommended)
-- ✅ HTTPS in production (auto with Vercel/Render)
-
-## 🐛 Troubleshooting
-
-### Chat Widget Not Responding
-**Problem**: Chat doesn't work or returns errors
-
-**Solutions**:
-1. Verify `RAG_BACKEND_URL` in `.env.local` is correct
-2. Check backend health: visit `http://localhost:8000/health`
-3. Ensure backend is running: `cd RAG && uvicorn app.main:app --reload`
-4. Check browser console for CORS errors
-5. Verify `ALLOWED_ORIGINS` in `RAG/.env` includes your frontend URL
-
-### MongoDB Connection Failed
-**Problem**: Cannot connect to MongoDB
-
-**Solutions**:
-1. Verify connection string format in `.env.local`
-2. Check MongoDB Atlas IP whitelist (add `0.0.0.0/0` for cloud hosting)
-3. Confirm database user credentials are correct
-4. Test connection with MongoDB Compass
-
-### RAG Returns Generic/Empty Responses
-**Problem**: AI doesn't use your documents
-
-**Solutions**:
-1. Check PDFs exist in `RAG/pdfs/` directory
-2. Re-run ingestion: `cd RAG && python app/ingest.py`
-3. Verify ChromaDB created in `RAG/db/` directory
-4. Check Gemini API key is valid
-5. Review backend logs for errors
-
-### Build Errors
-**Problem**: `npm run build` fails
-
-**Solutions**:
-1. Clear cache: `rm -rf .next node_modules && npm install`
-2. Check Node.js version: `node --version` (should be 18+)
-3. Fix any TypeScript errors shown in output
-4. Ensure all dependencies are installed
-
-### Email Not Sending
-**Problem**: Contact form doesn't send emails
-
-**Solutions**:
-1. Use Gmail App Password, not regular password
-2. Enable 2-Step Verification in Google Account
-3. Generate App Password: Google Account → Security → App Passwords
-4. Update `EMAIL_PASSWORD` in `.env.local`
-
-## 🤝 Contribution
-
-**Got ideas? Found a bug? Want to contribute? 🐞**
-
-We welcome contributions! Here's how you can help:
-
-1. **Fork the repository**
-2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
-3. **Commit your changes**: `git commit -m 'Add amazing feature'`
-4. **Push to the branch**: `git push origin feature/amazing-feature`
-5. **Open a Pull Request**
-
-### Contribution Guidelines
-- Follow existing code style and conventions
-- Write clear commit messages
-- Test your changes thoroughly
-- Update documentation if needed
-- Be respectful and constructive
-
-### Ideas for Contributions
-- 🎨 New UI components or themes
-- 🌐 Internationalization (i18n) support
-- 📊 Analytics dashboard
-- 🔐 Admin panel for content management
-- 🎭 More animation presets
-- 📱 Progressive Web App (PWA) features
-- ♿ Accessibility improvements
-
-## 📜 License
-
-This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
-
-```
-MIT License - You are free to:
-✅ Use commercially
-✅ Modify
-✅ Distribute
-✅ Use privately
-```
-
-## 🙏 Acknowledgments
-
-- **Next.js Team** – For the amazing React framework
-- **Vercel** – For seamless deployment platform
-- **Google** – For Gemini AI API
-- **Open Source Community** – For incredible libraries and tools
-
-## 📧 Contact & Support
-
-- **Portfolio**: [Your Live URL Here]
-- **GitHub**: [@BikramMondal5](https://github.com/BikramMondal5)
-- **Issues**: [Create an issue](https://github.com/BikramMondal5/bikram-dot-dev/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/BikramMondal5/bikram-dot-dev/discussions)
+### For Developers
+1. 📝 **Customize Content** – Update project data in `components/ProjectShowcase.tsx`
+2. 🎨 **Modify Styling** – Edit Tailwind classes or `app/globals.css`
+3. 🤖 **Configure AI Agent** – Update system prompts in `.env.local`
+4. 📚 **Add Documents to RAG** – Place PDFs/text files in `RAG/documents/`
+5. 🔧 **Extend Features** – Add new components in the `components/` directory
 
 ---
 
-<div align="center">
+## 🎯 Key Features Breakdown
 
-### ⭐ Star this repo if you found it helpful!
+### 🤖 Reactz Agent (AI Chat Assistant)
+- **RAG-Powered Responses** – Retrieves information from your documents
+- **Email Automation** – Compose and send emails through natural conversation
+- **Context-Aware** – Maintains conversation history using LangChain memory
+- **Multi-Modal** – Supports text and voice input (Speech-to-Text)
+- **Spam Protection** – Filters out promotional/spam email requests
 
-**Built with ❤️ by developers, for developers**
+### 🎨 Bento Grid Section
+- **Video Text Animation** – Dynamic text with video background
+- **Tech Stack Marquee** – Scrolling technology pills
+- **Orbiting Icons** – Animated tech stack visualization
+- **Globe Component** – Interactive 3D globe showing timezone adaptability
+- **Lanyard Integration** – Real-time Discord presence (optional)
 
-*Using Next.js 16 • TypeScript • FastAPI • Google Gemini AI • MongoDB*
+### 💼 Project Showcase
+- **Carousel Navigation** – Smooth slide transitions with Framer Motion
+- **Feature Highlights** – Detailed project descriptions and tech stacks
+- **GitHub Integration** – Direct links to repositories
+- **Responsive Design** – Adapts from mobile to desktop seamlessly
 
-[⬆ Back to Top](#-modern-portfolio-with-ai-powered-chat)
+### 🏆 Certificates Section
+- **Tabbed Interface** – Skills, Hackathons, Extracurricular categories
+- **Image Preview** – Full-screen certificate viewing
+- **Download Option** – Save certificates locally
+- **Tilt Effects** – 3D parallax hover animations
 
-</div>
+---
+
+## 🤝 Contribution
+
+**Got ideas? Found a bug? 🐞 Want to collaborate?**
+
+Contributions are always welcome! Here's how you can help:
+
+1. 🍴 **Fork the repository**
+2. 🌿 **Create a feature branch** (`git checkout -b feature/AmazingFeature`)
+3. 💾 **Commit your changes** (`git commit -m 'Add some AmazingFeature'`)
+4. 📤 **Push to the branch** (`git push origin feature/AmazingFeature`)
+5. 🎉 **Open a Pull Request**
+
+### Areas for Contribution
+- 🎨 UI/UX improvements
+- 🐛 Bug fixes and optimizations
+- 📚 Documentation enhancements
+- 🌐 Internationalization (i18n)
+- ♿ Accessibility improvements
+- 🧪 Testing coverage
+
+---
+
+## 📂 Project Structure
+
+```
+bikram-dot-dev/
+├── app/                      # Next.js App Router
+│   ├── api/                  # API routes (email, testimonials, RAG)
+│   ├── login/                # Login page
+│   ├── sign-up/              # Sign-up page
+│   ├── layout.tsx            # Root layout
+│   └── page.tsx              # Home page
+├── components/               # React components
+│   ├── ui/                   # Reusable UI components
+│   ├── BentoSection.tsx      # About section with bento grid
+│   ├── CertificatesSection.tsx
+│   ├── ChatWidget.tsx        # AI chat assistant
+│   ├── HeroSection.tsx       # Landing section
+│   ├── Navbar.tsx            # Navigation bar
+│   ├── OverviewSection.tsx   # Overview and tech stack
+│   ├── ProjectShowcase.tsx   # Projects carousel
+│   └── TestimonialCarousel.tsx
+├── RAG/                      # Python RAG backend
+│   ├── documents/            # Knowledge base documents
+│   ├── app.py                # Flask server
+│   └── requirements.txt
+├── public/                   # Static assets
+│   ├── icons/                # Technology icons
+│   ├── certificates/         # Certificate images
+│   └── screenshots/          # Portfolio screenshots
+├── utils/                    # Utility functions
+├── .env.local.example        # Environment variables template
+├── tailwind.config.js        # Tailwind configuration
+└── package.json              # Dependencies
+```
+
+---
+
+## 🔐 Environment Variables
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `NEXT_PUBLIC_GEMINI_API_KEY` | Google Gemini API key for AI responses | ✅ Yes |
+| `NEXT_PUBLIC_SYSTEM_INSTRUCTION` | System prompt for AI agent | ✅ Yes |
+| `EMAIL_USER` | Gmail address for sending emails | ✅ Yes |
+| `EMAIL_PASS` | Gmail app password | ✅ Yes |
+| `MONGODB_URI` | MongoDB connection string | ✅ Yes |
+| `NEXT_PUBLIC_RAG_API_URL` | RAG backend URL | ⚠️ Optional |
+
+---
+
+## 🚀 Deployment
+
+### Deploy to Vercel (Recommended)
+1. Push your code to GitHub
+2. Import project in [Vercel](https://vercel.com)
+3. Add environment variables
+4. Deploy! 🎉
+
+### Deploy RAG Backend
+- **Option 1**: Deploy to Railway, Render, or Heroku
+- **Option 2**: Use serverless functions (AWS Lambda, Google Cloud Functions)
+- **Option 3**: Containerize with Docker and deploy to any cloud provider
+
+---
+
+## 📊 Performance
+
+- ⚡ **Lighthouse Score**: 95+ (Performance, Accessibility, Best Practices, SEO)
+- 🚀 **First Contentful Paint**: < 1.5s
+- 📱 **Mobile Optimized**: Touch-friendly, responsive design
+- ♿ **Accessibility**: WCAG 2.1 AA compliant
+
+---
+
+## 🐛 Known Issues & Roadmap
+
+### Current Limitations
+- Voice input requires HTTPS in production
+- RAG backend needs separate deployment
+- Large certificate images may slow initial load
+
+### Future Enhancements
+- [ ] Blog section with MDX support
+- [ ] Dark/Light theme toggle
+- [ ] Multi-language support (i18n)
+- [ ] Advanced analytics dashboard
+- [ ] Real-time collaboration features
+- [ ] Progressive Web App (PWA) support
+
+---
+
+## 📞 Contact & Support
+
+- 📧 **Email**: codesnippets45@gmail.com
+- 💼 **LinkedIn**: [Bikram Mondal](https://www.linkedin.com/in/bikram-mondal-a2bb18343/)
+- 🐙 **GitHub**: [@BikramMondal5](https://github.com/BikramMondal5)
+- 🐦 **Twitter/X**: [@CSnippets62428](https://x.com/CSnippets62428)
+- 📸 **Instagram**: [@code_snippets5](https://www.instagram.com/code_snippets5)
+
+

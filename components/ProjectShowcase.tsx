@@ -245,7 +245,7 @@ const ProjectShowcase: React.FC = () => {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.5 }}
-                                className="lg:hidden pt-2"
+                                className="lg:hidden pt-2 flex justify-center"
                             >
                                 <a
                                     href={currentProject.repoUrl}
@@ -300,10 +300,10 @@ const ProjectShowcase: React.FC = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
                 className="absolute bottom-2 left-4 sm:left-8 md:left-16 lg:left-28 px-3 sm:px-4 py-2 rounded-xl bg-[#69E300] text-black font-semibold hover:bg-[#7fff00] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-[#69E300] transition-all flex items-center gap-1 sm:gap-2 text-sm sm:text-base"
-                >
-                    <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
-                    <span className="hidden xs:inline">Previous</span>
-                </motion.button>
+            >
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span className="hidden xs:inline">Previous</span>
+            </motion.button>
 
             <motion.button
                 onClick={handleNext}
@@ -312,10 +312,10 @@ const ProjectShowcase: React.FC = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
                 className="absolute bottom-2 right-4 sm:right-8 md:right-16 lg:right-28 px-3 sm:px-4 py-2 rounded-xl bg-[#69E300] text-black font-semibold hover:bg-[#7fff00] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-[#69E300] transition-all flex items-center gap-1 sm:gap-2 text-sm sm:text-base"
-                >
-                    <span className="hidden xs:inline">Next</span>
-                    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
-                </motion.button>
+            >
+                <span className="hidden xs:inline">Next</span>
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+            </motion.button>
 
             {/* Progress Dots - Centered at bottom */}
             <motion.div

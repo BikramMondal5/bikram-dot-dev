@@ -32,7 +32,7 @@ export default function Navbar() {
                             className="w-7 h-7 sm:w-8 sm:h-8 mr-2"
                         />
                         <span className="hidden xs:inline">Bikram Mondal</span>
-                        <span className="xs:hidden">BM</span>
+                        <span className="xs:hidden">Bikram</span>
                     </a>
 
                     {/* Navigation Links - Desktop */}
@@ -81,15 +81,15 @@ export default function Navbar() {
 
                     {/* Right Side Buttons */}
                     <div className="flex items-center gap-3">
-                        <a href="https://linktr.ee/BikramMondal5" target="_blank" rel="noopener noreferrer" className="hidden sm:block">
+                        <a href="https://linktr.ee/BikramMondal5" target="_blank" rel="noopener noreferrer">
                             <Button
-                                className="bg-[#69E300] text-black hover:bg-[#7fff00] font-semibold text-sm px-4 py-2"
+                                className="bg-[#69E300] text-black hover:bg-[#7fff00] font-semibold text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2"
                             >
                                 <span className="hidden md:inline">Connect With Me</span>
                                 <span className="md:hidden">Connect</span>
                             </Button>
                         </a>
-                        
+
                         {/* Mobile Menu Button */}
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -156,15 +156,7 @@ export default function Navbar() {
                                     Testimonials
                                 </a>
                             </li>
-                            <li className="sm:hidden pt-2">
-                                <a href="https://linktr.ee/BikramMondal5" target="_blank" rel="noopener noreferrer">
-                                    <Button
-                                        className="w-full bg-[#69E300] text-black hover:bg-[#7fff00] font-semibold"
-                                    >
-                                        Connect With Me
-                                    </Button>
-                                </a>
-                            </li>
+
                         </ul>
                     </div>
                 )}

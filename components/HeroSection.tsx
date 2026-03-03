@@ -251,7 +251,7 @@ export default function HeroSection() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7, delay: 0.7 }}
-                            className="flex flex-row flex-wrap gap-3 sm:gap-4 justify-center items-center"
+                            className="flex flex-row flex-nowrap gap-2 sm:gap-4 justify-center items-center"
                         >
                             {/* Social Links */}
                             <a

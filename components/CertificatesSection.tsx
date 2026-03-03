@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Award, Trophy, Calendar, ExternalLink, ChevronDown, Download, Eye, Star } from "lucide-react";
+import { Award, Trophy, Calendar, ExternalLink, ChevronDown, ChevronLeft, ChevronRight, Download, Eye, Star } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -245,6 +245,12 @@ export default function CertificatesSection() {
     const [showAllSkills, setShowAllSkills] = useState(false);
     const [showAllHackathons, setShowAllHackathons] = useState(false);
     const [showAllExtracurricular, setShowAllExtracurricular] = useState(false);
+    const [mobileCertIndex, setMobileCertIndex] = useState(0);
+
+    // Reset mobile carousel index when switching tabs
+    useEffect(() => {
+        setMobileCertIndex(0);
+    }, [activeTab]);
 
     const currentCertificates =
         activeTab === "skills" ? coursesCertificates :
@@ -337,7 +343,157 @@ export default function CertificatesSection() {
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.3 }}
                     >
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                        {/* Mobile: Carousel - one certificate at a time with < > navigation */}
+                        <div className="md:hidden">
+                            {currentCertificates.length > 0 && (
+                                <div>
+                                    <AnimatePresence mode="wait">
+                                        <motion.div
+                                            key={`mobile-${activeTab}-${mobileCertIndex}`}
+                                            initial={{ opacity: 0, x: 40 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            exit={{ opacity: 0, x: -40 }}
+                                            transition={{ duration: 0.3 }}
+                                        >
+                                            {(() => {
+                                                const cert = currentCertificates[mobileCertIndex];
+                                                return (
+                                                    <Tilt
+                                                        tiltMaxAngleX={15}
+                                                        tiltMaxAngleY={15}
+                                                        scale={1.02}
+                                                        transitionSpeed={450}
+                                                        className="h-[420px]"
+                                                    >
+                                                        <Card className="group relative bg-[#0F172A] border border-[#1E293B] transition-all duration-500 overflow-hidden h-full cursor-pointer flex flex-col rounded-3xl">
+                                                            {cert.imageUrl ? (
+                                                                <>
+                                                                    <div className="relative h-1/2 overflow-hidden rounded-t-3xl">
+                                                                        <Image
+                                                                            src={cert.imageUrl}
+                                                                            alt={cert.title}
+                                                                            fill
+                                                                            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                                                                            style={{ objectPosition: 'center top' }}
+                                                                        />
+                                                                    </div>
+                                                                    <div className="h-1/2 bg-[#0F172A] p-6 flex flex-col justify-between">
+                                                                        <div className="space-y-3">
+                                                                            <h3 className="text-lg font-bold text-white leading-tight line-clamp-2">
+                                                                                {cert.title}
+                                                                            </h3>
+                                                                            <div className="flex items-center gap-2 text-sm text-gray-400">
+                                                                                <Calendar className="w-4 h-4" />
+                                                                                <span>{cert.date}</span>
+                                                                            </div>
+                                                                            <p className="text-sm text-gray-400 line-clamp-2">
+                                                                                {cert.description}
+                                                                            </p>
+                                                                        </div>
+                                                                        <div className="flex gap-3">
+                                                                            <Button
+                                                                                variant="outline"
+                                                                                size="sm"
+                                                                                className="flex-1 bg-transparent border-[#69E300]/30 text-[#69E300] hover:bg-[#69E300]/10 hover:text-[#69E300]"
+                                                                                onClick={(e) => {
+                                                                                    e.stopPropagation();
+                                                                                    window.open(cert.imageUrl, '_blank');
+                                                                                }}
+                                                                            >
+                                                                                <Eye className="w-4 h-4 mr-2" />
+                                                                                View in Full
+                                                                            </Button>
+                                                                            <Button
+                                                                                variant="outline"
+                                                                                size="sm"
+                                                                                className="flex-1 bg-transparent border-[#69E300]/30 text-[#69E300] hover:bg-[#69E300]/10 hover:text-[#69E300]"
+                                                                                onClick={(e) => {
+                                                                                    e.stopPropagation();
+                                                                                    const link = document.createElement('a');
+                                                                                    link.href = cert.imageUrl || '';
+                                                                                    link.download = `${cert.title}.jpg`;
+                                                                                    link.click();
+                                                                                }}
+                                                                            >
+                                                                                <Download className="w-4 h-4 mr-2" />
+                                                                                Download
+                                                                            </Button>
+                                                                        </div>
+                                                                    </div>
+                                                                </>
+                                                            ) : (
+                                                                <div className="relative p-6 space-y-4 h-full flex flex-col justify-between">
+                                                                    <div>
+                                                                        <div className="flex items-center gap-2 mb-2">
+                                                                            <div className="h-8 w-8 rounded-lg bg-[#69E300]/10 flex items-center justify-center">
+                                                                                {activeTab === "skills" ? (
+                                                                                    <Award className="w-4 h-4 text-[#69E300]" />
+                                                                                ) : (
+                                                                                    <Trophy className="w-4 h-4 text-[#69E300]" />
+                                                                                )}
+                                                                            </div>
+                                                                            <span className="text-sm font-semibold text-[#69E300]">
+                                                                                {cert.issuer}
+                                                                            </span>
+                                                                        </div>
+                                                                        <h3 className="text-lg font-bold text-white leading-tight">
+                                                                            {cert.title}
+                                                                        </h3>
+                                                                    </div>
+                                                                    <div className="space-y-3">
+                                                                        <div className="flex items-center gap-2 text-sm text-gray-400">
+                                                                            <Calendar className="w-4 h-4" />
+                                                                            <span>{cert.date}</span>
+                                                                        </div>
+                                                                        <p className="text-sm text-gray-300 line-clamp-3">
+                                                                            {cert.description}
+                                                                        </p>
+                                                                        <div className="flex flex-wrap gap-2">
+                                                                            {cert.skills.map((skill, idx) => (
+                                                                                <span
+                                                                                    key={idx}
+                                                                                    className="px-3 py-1 text-xs font-medium bg-[#69E300]/10 text-[#69E300] rounded-full border border-[#69E300]/20"
+                                                                                >
+                                                                                    {skill}
+                                                                                </span>
+                                                                            ))}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            )}
+                                                        </Card>
+                                                    </Tilt>
+                                                );
+                                            })()}
+                                        </motion.div>
+                                    </AnimatePresence>
+
+                                    {/* Prev / Next Navigation */}
+                                    <div className="flex items-center justify-between mt-6 px-4">
+                                        <button
+                                            onClick={() => setMobileCertIndex(prev => Math.max(0, prev - 1))}
+                                            disabled={mobileCertIndex === 0}
+                                            className="flex items-center justify-center w-11 h-11 rounded-full bg-[#69E300] text-black font-bold hover:bg-[#7fff00] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                                        >
+                                            <ChevronLeft className="w-5 h-5" />
+                                        </button>
+                                        <span className="text-gray-400 text-sm font-medium">
+                                            {mobileCertIndex + 1} / {currentCertificates.length}
+                                        </span>
+                                        <button
+                                            onClick={() => setMobileCertIndex(prev => Math.min(currentCertificates.length - 1, prev + 1))}
+                                            disabled={mobileCertIndex === currentCertificates.length - 1}
+                                            className="flex items-center justify-center w-11 h-11 rounded-full bg-[#69E300] text-black font-bold hover:bg-[#7fff00] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                                        >
+                                            <ChevronRight className="w-5 h-5" />
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Desktop: Grid */}
+                        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
                             {displayedCertificates.map((cert, index) => (
                                 <motion.div
                                     key={cert.id}
@@ -471,7 +627,7 @@ export default function CertificatesSection() {
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.3, delay: 0.2 }}
-                                className="flex justify-center mt-12"
+                                className="hidden md:flex justify-center mt-12"
                             >
                                 <button
                                     onClick={() => setShowAll(!showAll)}
