@@ -421,7 +421,7 @@ export default function CertificatesSection() {
                                                     <div>
                                                         <div className="flex items-center gap-2 mb-2">
                                                             <div className="h-8 w-8 rounded-lg bg-[#69E300]/10 flex items-center justify-center">
-                                                                {activeTab === "courses" ? (
+                                                                {activeTab === "skills" ? (
                                                                     <Award className="w-4 h-4 text-[#69E300]" />
                                                                 ) : (
                                                                     <Trophy className="w-4 h-4 text-[#69E300]" />
