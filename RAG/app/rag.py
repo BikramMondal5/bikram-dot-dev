@@ -1,11 +1,6 @@
-import google.generativeai as genai
+from app.config import client
 from app.utils.embeddings import embed_query
 from app.utils.vectorstore import query_vectorstore
-
-# Initialize specific model for generation
-# We put this here to avoid circular imports or re-init issues, 
-# though it could live in config if we wanted a global model object.
-model = genai.GenerativeModel('gemini-2.5-flash')
 
 def rag_query(query: str):
     """
@@ -56,8 +51,15 @@ def rag_query(query: str):
     
     # 4. Call Gemini
     try:
-        response = model.generate_content(prompt)
-        # Access the text property correctly
+        if not client:
+            return {"error": "Gemini client not initialized. Check GEMINI_API_KEY."}
+        
+        response = client.models.generate_content(
+            model='gemini-2.0-flash-exp',
+            contents=prompt
+        )
+        
+        # Access the text from response
         answer_text = response.text if hasattr(response, 'text') else str(response)
         return {"answer": answer_text}
     except Exception as e:

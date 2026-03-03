@@ -1,7 +1,8 @@
 services:
   - type: web
-    name: portfolio-rag-backend
+    name: bikram-dot-dev-backend
     runtime: python
+    rootDir: RAG
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
@@ -9,4 +10,6 @@ services:
         sync: false
       - key: ALLOWED_ORIGINS
         sync: false
+      - key: PYTHON_VERSION
+        value: "3.11"
     healthCheckPath: /health
