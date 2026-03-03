@@ -270,7 +270,7 @@ export default function TestimonialCarousel() {
                     }}>
                         <DialogTrigger asChild>
                             <Button
-                                className="h-14 px-8 rounded-full bg-[#69E300] text-black hover:bg-[#69E300]/90 font-bold text-base shadow-xl shadow-[#69E300]/5"
+                                className="h-14 px-8 rounded-full bg-[#69E300] text-black hover:bg-[#69E300]/90 font-bold text-base shadow-none"
                             >
                                 Share Your Experience With Me
                             </Button>
@@ -432,7 +432,7 @@ export default function TestimonialCarousel() {
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                         required
-                                        className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-[#69E300]/50"
+                                        className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-[#69E300]"
                                     />
                                 </div>
                                 <div className="space-y-2">
@@ -445,7 +445,7 @@ export default function TestimonialCarousel() {
                                         value={formData.role}
                                         onChange={(e) => setFormData({ ...formData, role: e.target.value })}
                                         required
-                                        className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-[#69E300]/50"
+                                        className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-[#69E300]"
                                     />
                                 </div>
                                 <div className="space-y-2">
@@ -459,7 +459,7 @@ export default function TestimonialCarousel() {
                                         onChange={(e) => setFormData({ ...formData, feedback: e.target.value })}
                                         required
                                         rows={3}
-                                        className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-[#69E300]/50 resize-none"
+                                        className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-[#69E300] resize-none"
                                     />
                                 </div>
                                 <Button
