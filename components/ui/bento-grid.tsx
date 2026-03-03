@@ -29,7 +29,7 @@ interface BentoCardProps extends ComponentPropsWithoutRef<"div"> {
     name?: string;
     description?: string;
     background?: ReactNode;
-    Icon?: React.ElementType;
+    Icon?: React.ComponentType<{ className?: string }>;
     href?: string;
     cta?: string;
 }
