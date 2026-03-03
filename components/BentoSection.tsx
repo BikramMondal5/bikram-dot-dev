@@ -21,11 +21,11 @@ import {
 import { cn } from "@/lib/utils";
 import { BentoCard } from "@/components/ui/bento-grid";
 import { Marquee } from "@/components/ui/marquee";
-import { Globe } from "@/registry/magicui/globe";
+import { Globe } from "@/registry/ui-registry/globe";
 import Lanyard from "@/components/Lanyard";
-import { OrbitingCircles } from "@/registry/magicui/orbiting-circles";
-import { ConfettiButton } from "@/registry/magicui/confetti";
-import { VideoText } from "@/registry/magicui/video-text";
+import { OrbitingCircles } from "@/registry/ui-registry/orbiting-circles";
+import { ConfettiButton } from "@/registry/ui-registry/confetti";
+import { VideoText } from "@/registry/ui-registry/video-text";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
 /* -- TECH STACK DATA -- */
