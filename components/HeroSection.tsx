@@ -237,13 +237,13 @@ export default function HeroSection() {
                         />
 
                         {/* Main Heading */}
-                        <h1 className="font-bold mb-6 font-[family-name:var(--font-space-grotesk)]" style={{ fontSize: '80px', lineHeight: '98px' }}>
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[80px] font-bold mb-6 font-[family-name:var(--font-space-grotesk)] leading-tight">
                             Hi, I'm <span className="text-[#69E300]">Bikram Mondal</span>
                         </h1>
 
                         {/* Subheading */}
-                        <p className="text-white mb-8 font-[family-name:var(--font-poppins)]" style={{ fontSize: '30px', lineHeight: '40px' }}>
-                            A <span className="inline-flex items-center px-6 py-2 bg-[#69E300] text-black hover:bg-[#7fff00] font-semibold rounded-lg transition-all duration-300">Full Stack Web Developer</span> with a passion for learning and building web applications.
+                        <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[30px] text-white mb-8 font-[family-name:var(--font-poppins)] leading-relaxed">
+                            A <span className="inline-flex items-center px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 bg-[#69E300] text-black hover:bg-[#7fff00] font-semibold rounded-lg transition-all duration-300 text-sm sm:text-base md:text-lg lg:text-xl">Full Stack Web Developer</span> with a passion for learning and building web applications.
                             I love solving problems and building things through code. Programming isn't just my profession, it's my passion.
                         </p>
 
@@ -251,65 +251,65 @@ export default function HeroSection() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7, delay: 0.7 }}
-                            className="flex flex-row gap-4 justify-center items-center"
+                            className="flex flex-row flex-wrap gap-3 sm:gap-4 justify-center items-center"
                         >
                             {/* Social Links */}
                             <a
                                 href="https://github.com/BikramMondal5"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group p-3 rounded-full bg-white/10 hover:bg-[#69E300] transition-all duration-300"
+                                className="group p-2.5 sm:p-3 rounded-full bg-white/10 hover:bg-[#69E300] transition-all duration-300"
                                 aria-label="GitHub"
                             >
-                                <Github className="w-6 h-6 text-white group-hover:text-black transition-colors" />
+                                <Github className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-black transition-colors" />
                             </a>
 
                             <a
                                 href="https://www.linkedin.com/in/bikram-mondal-a2bb18343/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group p-3 rounded-full bg-white/10 hover:bg-[#69E300] transition-all duration-300"
+                                className="group p-2.5 sm:p-3 rounded-full bg-white/10 hover:bg-[#69E300] transition-all duration-300"
                                 aria-label="LinkedIn"
                             >
-                                <Linkedin className="w-6 h-6 text-white group-hover:text-black transition-colors" />
+                                <Linkedin className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-black transition-colors" />
                             </a>
 
                             <a
                                 href="https://x.com/CSnippets62428"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group p-3 rounded-full bg-white/10 hover:bg-[#69E300] transition-all duration-300"
+                                className="group p-2.5 sm:p-3 rounded-full bg-white/10 hover:bg-[#69E300] transition-all duration-300"
                                 aria-label="X (Twitter)"
                             >
-                                <Twitter className="w-6 h-6 text-white group-hover:text-black transition-colors" />
+                                <Twitter className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-black transition-colors" />
                             </a>
 
                             <a
                                 href="mailto:codesnippets45@gmail.com"
-                                className="group p-3 rounded-full bg-white/10 hover:bg-[#69E300] transition-all duration-300"
+                                className="group p-2.5 sm:p-3 rounded-full bg-white/10 hover:bg-[#69E300] transition-all duration-300"
                                 aria-label="Email"
                             >
-                                <Mail className="w-6 h-6 text-white group-hover:text-black transition-colors" />
+                                <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-black transition-colors" />
                             </a>
 
                             <a
                                 href="https://www.instagram.com/code_snippets5"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group p-3 rounded-full bg-white/10 hover:bg-[#69E300] transition-all duration-300"
+                                className="group p-2.5 sm:p-3 rounded-full bg-white/10 hover:bg-[#69E300] transition-all duration-300"
                                 aria-label="Instagram"
                             >
-                                <Instagram className="w-6 h-6 text-white group-hover:text-black transition-colors" />
+                                <Instagram className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-black transition-colors" />
                             </a>
 
                             <a
                                 href="https://drive.google.com/file/d/1tu0QenFZIEciDSA0GerFjF4Ck_mbgOTq/view?usp=sharing"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group p-3 rounded-full bg-white/10 hover:bg-[#69E300] transition-all duration-300"
+                                className="group p-2.5 sm:p-3 rounded-full bg-white/10 hover:bg-[#69E300] transition-all duration-300"
                                 aria-label="Resume"
                             >
-                                <FileText className="w-6 h-6 text-white group-hover:text-black transition-colors" />
+                                <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-black transition-colors" />
                             </a>
                         </motion.div>
 
@@ -375,13 +375,13 @@ export default function HeroSection() {
             </section>
 
             {/* Footer */}
-            <footer className="relative z-10 py-16 px-4 bg-[#0a0a0a]">
+            <footer className="relative z-10 py-12 sm:py-16 px-4 bg-[#0a0a0a]">
                 <div className="max-w-7xl mx-auto">
-                    <div className="flex flex-row items-start justify-between gap-12">
+                    <div className="flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-12">
                         {/* Left: Let's Connect */}
-                        <div className="flex flex-col items-start gap-6">
+                        <div className="flex flex-col items-start gap-6 w-full lg:w-auto">
                             <h2
-                                className="pointer-events-none text-5xl md:text-6xl lg:text-7xl leading-tight whitespace-pre-wrap"
+                                className="pointer-events-none text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight"
                                 style={{
                                     background: 'linear-gradient(180deg, #f8fafc 0%, #bfc9d3 40%, #6b7280 100%)',
                                     WebkitBackgroundClip: 'text',
@@ -394,7 +394,7 @@ export default function HeroSection() {
                             </h2>
 
                             <TooltipProvider>
-                                <Dock direction="middle" className="bg-white/5 border-white/10">
+                                <Dock direction="middle" className="bg-white/5 border-white/10 w-full sm:w-auto">
                                     {Object.entries(SOCIAL_DATA).map(([name, social]) => (
                                         <DockIcon key={name}>
                                             <Tooltip>
@@ -406,10 +406,10 @@ export default function HeroSection() {
                                                         aria-label={social.name}
                                                         className={cn(
                                                             buttonVariants({ variant: "ghost", size: "icon" }),
-                                                            "size-12 rounded-full !bg-transparent hover:!bg-[#69E300] hover:!text-black"
+                                                            "size-10 sm:size-12 rounded-full !bg-transparent hover:!bg-[#69E300] hover:!text-black"
                                                         )}
                                                     >
-                                                        <social.icon className="size-5" />
+                                                        <social.icon className="size-4 sm:size-5" />
                                                     </Link>
                                                 </TooltipTrigger>
                                                 <TooltipContent>
@@ -424,10 +424,10 @@ export default function HeroSection() {
 
                         {/* Right: Collaboration Text */}
                         <div className="flex-1 flex flex-col gap-4 max-w-2xl">
-                            <p className="text-2xl md:text-3xl font-semibold text-[#69E300] leading-relaxed">
+                            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-[#69E300] leading-relaxed">
                                 Have an idea or want to collaborate? I&apos;d love to hear from you.
                             </p>
-                            <p className="text-xl md:text-2xl text-gray-400 leading-tight">
+                            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-400 leading-tight">
                                 Looking for a contact form? Skip the traditional way, just ask my{" "}
                                 <span className="text-[#69E300] font-semibold">Reactz Agent</span>{" "}
                                 and it&apos;ll handle everything for you.

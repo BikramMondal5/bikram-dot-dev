@@ -167,7 +167,7 @@ const ProjectShowcase: React.FC = () => {
     };
 
     return (
-        <section id="projects" className="relative bg-[#0A0A0A] py-20 px-4 md:px-8 lg:px-16 min-h-screen flex flex-col items-center justify-center">
+        <section id="projects" className="relative bg-[#0A0A0A] py-12 sm:py-16 md:py-20 px-4 md:px-8 lg:px-16 min-h-screen flex flex-col items-center justify-center">
             <SectionHeader
                 label="Featured Projects"
                 icon={<Briefcase className="h-4 w-4" />}
@@ -192,19 +192,19 @@ const ProjectShowcase: React.FC = () => {
                             opacity: { duration: 0.3 },
                             scale: { duration: 0.3 }
                         }}
-                        className="flex items-center justify-between gap-8 lg:gap-20 xl:gap-24"
+                        className="flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 lg:gap-20 xl:gap-24"
                     >
                         {/* Left - Project Info */}
-                        <div className="w-full lg:w-[45%] space-y-6 -mt-8">
+                        <div className="w-full lg:w-[45%] space-y-4 sm:space-y-6">
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2 }}
                             >
-                                <h2 className="text-4xl lg:text-6xl font-bold text-[#69E300] tracking-tight mb-4">
+                                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#69E300] tracking-tight mb-3 sm:mb-4">
                                     {currentProject.title}
                                 </h2>
-                                <p className="text-lg text-gray-300 leading-relaxed">
+                                <p className="text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed">
                                     {currentProject.description}
                                 </p>
                             </motion.div>
@@ -213,11 +213,11 @@ const ProjectShowcase: React.FC = () => {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3 }}
-                                className="space-y-3"
+                                className="space-y-2 sm:space-y-3"
                             >
                                 {currentProject.features.map((feature, idx) => (
-                                    <div key={idx} className="flex items-start gap-3 text-gray-300 text-base">
-                                        <Sparkles className="text-[#69E300] mt-1 shrink-0 w-4 h-4" />
+                                    <div key={idx} className="flex items-start gap-2 sm:gap-3 text-gray-300 text-xs sm:text-sm md:text-base">
+                                        <Sparkles className="text-[#69E300] mt-1 shrink-0 w-3 h-3 sm:w-4 sm:h-4" />
                                         <span>{feature}</span>
                                     </div>
                                 ))}
@@ -232,17 +232,35 @@ const ProjectShowcase: React.FC = () => {
                                 {currentProject.techStack.map((tech, idx) => (
                                     <span
                                         key={idx}
-                                        className="px-3 py-1.5 text-sm flex items-center gap-2 bg-zinc-800/60 border border-zinc-700/50 hover:bg-zinc-700/60 transition-colors rounded-lg text-white"
+                                        className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm flex items-center gap-1.5 sm:gap-2 bg-zinc-800/60 border border-zinc-700/50 hover:bg-zinc-700/60 transition-colors rounded-lg text-white"
                                     >
                                         {tech.icon}
                                         {tech.name}
                                     </span>
                                 ))}
                             </motion.div>
+
+                            {/* Mobile GitHub Link */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.5 }}
+                                className="lg:hidden pt-2"
+                            >
+                                <a
+                                    href={currentProject.repoUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#69E300] text-black font-bold rounded-full hover:bg-[#7fff00] transition-colors text-sm"
+                                >
+                                    <ExternalLink className="w-4 h-4" />
+                                    View on GitHub
+                                </a>
+                            </motion.div>
                         </div>
 
-                        {/* Right - Project Image */}
-                        <div className="hidden lg:block w-[50%] relative -mt-12">
+                        {/* Right - Project Image - Desktop Only */}
+                        <div className="hidden lg:block w-[50%] relative">
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
@@ -253,7 +271,7 @@ const ProjectShowcase: React.FC = () => {
                                     <img
                                         src={currentProject.image}
                                         alt={currentProject.title}
-                                        className="w-full h-[500px] object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                                        className="w-full h-[400px] xl:h-[500px] object-cover object-center transition-transform duration-300 group-hover:scale-105"
                                     />
                                     {/* GitHub Link Overlay */}
                                     <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -274,18 +292,18 @@ const ProjectShowcase: React.FC = () => {
                 </AnimatePresence>
             </div>
 
-            {/* Navigation Buttons - Fixed at bottom corners */}
+            {/* Navigation Buttons - Responsive positioning */}
             <motion.button
                 onClick={handlePrev}
                 disabled={currentIndex === 0}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
-                className="absolute bottom-2 left-28 px-4 py-2 rounded-xl bg-[#69E300] text-black font-semibold hover:bg-[#7fff00] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-[#69E300] transition-all flex items-center gap-2"
-            >
-                <ChevronLeft className="w-5 h-5" />
-                Previous
-            </motion.button>
+                className="absolute bottom-2 left-4 sm:left-8 md:left-16 lg:left-28 px-3 sm:px-4 py-2 rounded-xl bg-[#69E300] text-black font-semibold hover:bg-[#7fff00] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-[#69E300] transition-all flex items-center gap-1 sm:gap-2 text-sm sm:text-base"
+                >
+                    <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span className="hidden xs:inline">Previous</span>
+                </motion.button>
 
             <motion.button
                 onClick={handleNext}
@@ -293,18 +311,18 @@ const ProjectShowcase: React.FC = () => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
-                className="absolute bottom-2 right-28 px-4 py-2 rounded-xl bg-[#69E300] text-black font-semibold hover:bg-[#7fff00] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-[#69E300] transition-all flex items-center gap-2"
-            >
-                Next
-                <ChevronRight className="w-5 h-5" />
-            </motion.button>
+                className="absolute bottom-2 right-4 sm:right-8 md:right-16 lg:right-28 px-3 sm:px-4 py-2 rounded-xl bg-[#69E300] text-black font-semibold hover:bg-[#7fff00] disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-[#69E300] transition-all flex items-center gap-1 sm:gap-2 text-sm sm:text-base"
+                >
+                    <span className="hidden xs:inline">Next</span>
+                    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                </motion.button>
 
             {/* Progress Dots - Centered at bottom */}
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2"
+                className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 sm:gap-2"
             >
                 {projects.map((_, idx) => (
                     <button
@@ -313,9 +331,9 @@ const ProjectShowcase: React.FC = () => {
                             setDirection(idx > currentIndex ? 1 : -1);
                             setCurrentIndex(idx);
                         }}
-                        className={`h-2 rounded-full transition-all ${idx === currentIndex
-                            ? 'w-8 bg-[#69E300]'
-                            : 'w-2 bg-zinc-700 hover:bg-zinc-600'
+                        className={`h-1.5 sm:h-2 rounded-full transition-all ${idx === currentIndex
+                            ? 'w-6 sm:w-8 bg-[#69E300]'
+                            : 'w-1.5 sm:w-2 bg-zinc-700 hover:bg-zinc-600'
                             }`}
                     />
                 ))}

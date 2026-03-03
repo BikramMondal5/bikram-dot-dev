@@ -280,11 +280,11 @@ export default function CertificatesSection() {
                 />
 
                 {/* Tabs */}
-                <div className="flex justify-center gap-4 mb-12">
+                <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-12 px-4">
                     <button
                         onClick={() => setActiveTab("skills")}
                         className={`
-                            px-8 py-3 rounded-full font-semibold transition-all duration-300
+                            px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 rounded-full font-semibold transition-all duration-300 text-sm sm:text-base
                             ${activeTab === "skills"
                                 ? "bg-[#69E300] text-black"
                                 : "bg-white/5 text-gray-400 hover:bg-white/10 border border-white/10"
@@ -292,14 +292,14 @@ export default function CertificatesSection() {
                         `}
                     >
                         <div className="flex items-center gap-2">
-                            <Award className="w-4 h-4" />
-                            Skills
+                            <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                            <span className="hidden xs:inline">Skills</span>
                         </div>
                     </button>
                     <button
                         onClick={() => setActiveTab("hackathons")}
                         className={`
-                            px-8 py-3 rounded-full font-semibold transition-all duration-300
+                            px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 rounded-full font-semibold transition-all duration-300 text-sm sm:text-base
                             ${activeTab === "hackathons"
                                 ? "bg-[#69E300] text-black"
                                 : "bg-white/5 text-gray-400 hover:bg-white/10 border border-white/10"
@@ -307,14 +307,14 @@ export default function CertificatesSection() {
                         `}
                     >
                         <div className="flex items-center gap-2">
-                            <Trophy className="w-4 h-4" />
-                            Hackathons
+                            <Trophy className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                            <span className="hidden xs:inline">Hackathons</span>
                         </div>
                     </button>
                     <button
                         onClick={() => setActiveTab("extracurricular")}
                         className={`
-                            px-8 py-3 rounded-full font-semibold transition-all duration-300
+                            px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 rounded-full font-semibold transition-all duration-300 text-sm sm:text-base
                             ${activeTab === "extracurricular"
                                 ? "bg-[#69E300] text-black"
                                 : "bg-white/5 text-gray-400 hover:bg-white/10 border border-white/10"
@@ -322,8 +322,8 @@ export default function CertificatesSection() {
                         `}
                     >
                         <div className="flex items-center gap-2">
-                            <Star className="w-4 h-4" />
-                            Extracurricular
+                            <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                            <span className="hidden xs:inline">Extracurricular</span>
                         </div>
                     </button>
                 </div>

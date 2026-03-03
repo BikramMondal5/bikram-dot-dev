@@ -165,12 +165,12 @@ export default function OverviewSection() {
                     {/* Left: Content */}
                     <div className="space-y-6">
                         <h2
-                            className="text-5xl md:text-7xl font-bold text-white mb-6"
+                            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6"
                             style={{ fontFamily: 'var(--font-space-grotesk)' }}
                         >
                             Overview.
                         </h2>
-                        <p className="text-gray-400 leading-relaxed text-lg md:text-xl">
+                        <p className="text-gray-400 leading-relaxed text-base sm:text-lg md:text-xl">
                             I&apos;m a{" "}
                             <span className="text-white font-semibold">
                                 Full-stack Web developer
@@ -192,7 +192,7 @@ export default function OverviewSection() {
                     </div>
 
                     {/* Right: Avatar */}
-                    <div className="relative w-[90%] h-100 lg:h-125 ml-auto rounded-3xl overflow-hidden bg-linear-to-br from-[#69E300]/10 via-[#0d0d0d] to-[#0d0d0d] border border-white/6 group hover:border-[#69E300]/30 transition-all duration-500">
+                    <div className="relative w-full sm:w-[85%] md:w-[90%] h-80 sm:h-96 md:h-100 lg:h-125 mx-auto lg:ml-auto rounded-3xl overflow-hidden bg-linear-to-br from-[#69E300]/10 via-[#0d0d0d] to-[#0d0d0d] border border-white/6 group hover:border-[#69E300]/30 transition-all duration-500">
                         <img
                             src="/avatar.jpeg"
                             alt="Bikram"

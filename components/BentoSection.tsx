@@ -234,57 +234,57 @@ export default function BentoSection() {
                     subtitle="Crafting scalable AI tools, interactive web apps, and experimental digital systems where performance meets creativity."
                 />
 
-                {/* 3-col x 3-row grid, each row = 260px */}
-                <div className="grid grid-cols-3 gap-4" style={{ gridTemplateRows: "260px 260px 260px" }}>
+                {/* Responsive grid: 1 col on mobile, 2 on tablet, 3 on desktop */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[260px]">
 
-                    {/* A: Video Text — col 1-2 / row 1 */}
+                    {/* A: Video Text — spans 2 cols on desktop, full width on mobile */}
                     <BentoCard
-                        className="col-span-2 row-span-1"
+                        className="md:col-span-2 lg:col-span-2 row-span-1"
                         background={<VideoTextBackground />}
                     />
 
-                    {/* B: Lanyard — col 3 / rows 1-2 */}
+                    {/* B: Lanyard — spans 2 rows on desktop, 1 on mobile */}
                     <BentoCard
                         name="Focused on latest digital innovations"
                         description="Full-stack expertise across the modern JS ecosystem."
                         Icon={Zap}
-                        className="col-start-3 row-span-2"
+                        className="lg:row-span-2"
                         background={<Lanyard position={[0, 0, 15]} fov={25} />}
                     />
 
-                    {/* C: Globe / Timezones — col 1 / rows 2-3 */}
+                    {/* C: Globe / Timezones — spans 2 rows on desktop, 1 on mobile */}
                     <BentoCard
-                        className="col-start-1 row-span-2"
+                        className="lg:row-span-2"
                         background={
                             <>
                                 {/* Title at top */}
                                 <div className="absolute top-5 left-5 right-5 z-20">
-                                    <p className="text-sm font-semibold text-white leading-snug tracking-tight" style={{ fontFamily: 'var(--font-space-grotesk)' }}>I&apos;m highly adaptable<br />across global time zones</p>
+                                    <p className="text-xs sm:text-sm font-semibold text-white leading-snug tracking-tight" style={{ fontFamily: 'var(--font-space-grotesk)' }}>I&apos;m highly adaptable<br />across global time zones</p>
                                 </div>
                                 <Globe className="top-[18%]" />
                                 <div className="pointer-events-none absolute inset-0 h-full bg-[radial-gradient(circle_at_50%_200%,rgba(105,227,0,0.08),rgba(0,0,0,0))]" />
                                 <div className="absolute bottom-6 left-5 flex items-center gap-1.5 z-20">
                                     <MapPin size={11} className="text-[#69E300]" />
-                                    <span className="text-[11px] text-[#69E300] font-mono">REMOTE · India</span>
+                                    <span className="text-[10px] sm:text-[11px] text-[#69E300] font-mono">REMOTE · India</span>
                                 </div>
                             </>
                         }
                     />
 
-                    {/* D: Orbiting Tech — col 2 / row 2 */}
+                    {/* D: Orbiting Tech — single cell */}
                     <BentoCard
-                        className="col-start-2 row-start-2"
+                        className="row-span-1"
                         background={<OrbitingBackground />}
                     />
 
-                    {/* E: Projects — col 2-3 / row 3 */}
+                    {/* E: Projects — spans 2 cols on desktop, full width on mobile */}
                     <BentoCard
                         name="Selected Works"
                         description="SaaS products, AI tools & full-stack builds — scroll to explore →"
                         Icon={Code2}
                         href="#projects"
                         cta="View all projects"
-                        className="col-start-2 col-span-2 row-start-3"
+                        className="md:col-span-2 lg:col-span-2 row-span-1"
                         background={<ProjectsBackground />}
                     />
                 </div>
