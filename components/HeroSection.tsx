@@ -159,7 +159,7 @@ function QuoteCard() {
     const quoteData = {
         name: "Bikram",
         avatar: "/avatar.jfif",
-        feedback: "Software, art, and life are never perfect, they improve over time.",
+        feedback: "Software, art, and life are never perfect, they need to improve over time.",
         rating: 5,
         country: "Developer",
         type: "Philosophy"
