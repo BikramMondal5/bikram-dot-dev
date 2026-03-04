@@ -158,28 +158,6 @@ Navigate to `http://localhost:3000` to view the portfolio.
 
 ---
 
-## 🤝 Contribution
-
-**Got ideas? Found a bug? 🐞 Want to collaborate?**
-
-Contributions are always welcome! Here's how you can help:
-
-1. 🍴 **Fork the repository**
-2. 🌿 **Create a feature branch** (`git checkout -b feature/AmazingFeature`)
-3. 💾 **Commit your changes** (`git commit -m 'Add some AmazingFeature'`)
-4. 📤 **Push to the branch** (`git push origin feature/AmazingFeature`)
-5. 🎉 **Open a Pull Request**
-
-### Areas for Contribution
-- 🎨 UI/UX improvements
-- 🐛 Bug fixes and optimizations
-- 📚 Documentation enhancements
-- 🌐 Internationalization (i18n)
-- ♿ Accessibility improvements
-- 🧪 Testing coverage
-
----
-
 ## 📂 Project Structure
 
 ```
@@ -214,8 +192,6 @@ bikram-dot-dev/
 └── package.json              # Dependencies
 ```
 
----
-
 ## 🔐 Environment Variables
 
 | Variable | Description | Required |
@@ -226,48 +202,6 @@ bikram-dot-dev/
 | `EMAIL_PASS` | Gmail app password | ✅ Yes |
 | `MONGODB_URI` | MongoDB connection string | ✅ Yes |
 | `NEXT_PUBLIC_RAG_API_URL` | RAG backend URL | ⚠️ Optional |
-
----
-
-## 🚀 Deployment
-
-### Deploy to Vercel (Recommended)
-1. Push your code to GitHub
-2. Import project in [Vercel](https://vercel.com)
-3. Add environment variables
-4. Deploy! 🎉
-
-### Deploy RAG Backend
-- **Option 1**: Deploy to Railway, Render, or Heroku
-- **Option 2**: Use serverless functions (AWS Lambda, Google Cloud Functions)
-- **Option 3**: Containerize with Docker and deploy to any cloud provider
-
----
-
-## 📊 Performance
-
-- ⚡ **Lighthouse Score**: 95+ (Performance, Accessibility, Best Practices, SEO)
-- 🚀 **First Contentful Paint**: < 1.5s
-- 📱 **Mobile Optimized**: Touch-friendly, responsive design
-- ♿ **Accessibility**: WCAG 2.1 AA compliant
-
----
-
-## 🐛 Known Issues & Roadmap
-
-### Current Limitations
-- Voice input requires HTTPS in production
-- RAG backend needs separate deployment
-- Large certificate images may slow initial load
-
-### Future Enhancements
-- [ ] Blog section with MDX support
-- [ ] Dark/Light theme toggle
-- [ ] Multi-language support (i18n)
-- [ ] Advanced analytics dashboard
-- [ ] Real-time collaboration features
-- [ ] Progressive Web App (PWA) support
-
 ---
 
 ## 📞 Contact & Support
@@ -277,5 +211,5 @@ bikram-dot-dev/
 - 🐙 **GitHub**: [@BikramMondal5](https://github.com/BikramMondal5)
 - 🐦 **Twitter/X**: [@CSnippets62428](https://x.com/CSnippets62428)
 - 📸 **Instagram**: [@code_snippets5](https://www.instagram.com/code_snippets5)
-
+---
 
