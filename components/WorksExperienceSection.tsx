@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Plane, Briefcase, Code, GraduationCap, Award, Wrench, type LucideIcon } from "lucide-react";
+import { Briefcase, Code, GraduationCap, Award, Wrench, Users, Globe, type LucideIcon } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -10,13 +10,11 @@ import { cn } from "@/lib/utils";
 
 interface ExperienceItem {
     id: number;
-    year: string;
+    date: string;
     title: string;
-    company: string;
+    organization: string;
     description: string;
-    technologies: string[];
     icon: LucideIcon;
-    status: "completed" | "current";
 }
 
 interface TimelineProps {
@@ -26,47 +24,39 @@ interface TimelineProps {
 const defaultExperiences: ExperienceItem[] = [
     {
         id: 1,
-        year: "2024",
-        title: "Senior Full Stack Developer",
-        company: "Tech Innovations Inc.",
+        date: "Jul 2024 – Aug 2024",
+        title: "AI/ML Intern",
+        organization: "AI Wallah",
         description:
-            "Leading development of cloud-native applications with microservices architecture. Mentoring junior developers and establishing best practices.",
-        technologies: ["React", "Node.js", "AWS", "Docker"],
+            "Built user-friendly, scalable, and responsive AI-driven web applications featuring real-time weather forecasting and automated email integration.",
         icon: Code,
-        status: "current",
     },
     {
         id: 2,
-        year: "2022",
-        title: "Full Stack Developer",
-        company: "Digital Solutions Co.",
+        date: "Jul 2025 – Present",
+        title: "AI/ML Lead",
+        organization: "Digital Dominators",
         description:
-            "Built scalable web applications serving 100k+ users. Implemented CI/CD pipelines and improved deployment efficiency by 60%.",
-        technologies: ["TypeScript", "Next.js", "PostgreSQL", "Redis"],
-        icon: Briefcase,
-        status: "completed",
+            "Leading the AI/ML domain by organizing technical workshops, community events, and innovation-driven initiatives while strengthening leadership and collaborative learning.",
+        icon: Users,
     },
     {
         id: 3,
-        year: "2020",
-        title: "Frontend Developer",
-        company: "Creative Agency",
+        date: "Dec 2025 – Present",
+        title: "Campus Ambassador",
+        organization: "Open Source Connect Global",
         description:
-            "Developed responsive web interfaces and interactive experiences. Collaborated with designers to bring creative visions to life.",
-        technologies: ["JavaScript", "Vue.js", "Tailwind", "Figma"],
-        icon: Award,
-        status: "completed",
+            "Promoting open-source contribution culture by onboarding and mentoring developers while strengthening communication, outreach, and developer community building.",
+        icon: Globe,
     },
     {
         id: 4,
-        year: "2019",
-        title: "Computer Science Degree",
-        company: "University of Technology",
+        date: "Feb 2026 – Present",
+        title: "Ambassador",
+        organization: "The Girls Who Yap",
         description:
-            "Graduated with honors. Specialized in software engineering and web technologies. Built multiple projects and participated in hackathons.",
-        technologies: ["Java", "Python", "Algorithms", "Data Structures"],
-        icon: GraduationCap,
-        status: "completed",
+            "Representing a Web3-focused fellowship community, encouraging awareness of decentralized technologies while supporting networking and inclusive community engagement.",
+        icon: Award,
     },
 ];
 
@@ -165,7 +155,7 @@ const InteractiveTimeline: React.FC<TimelineProps> = ({
                     strokeLinecap="round"
                 />
 
-                {/* Moving plane along path */}
+                {/* Moving circle along path */}
                 <motion.g
                     style={{
                         offsetPath: `path('${generatePath()}')`,
@@ -180,11 +170,6 @@ const InteractiveTimeline: React.FC<TimelineProps> = ({
                         className="drop-shadow-[0_0_10px_rgba(105,227,0,0.8)]"
                         animate={{ scale: [1, 1.2, 1] }}
                         transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                    />
-                    <Plane
-                        className="text-[#69E300]"
-                        size={24}
-                        style={{ transform: "translate(-12px, -12px)" }}
                     />
                 </motion.g>
 
@@ -231,6 +216,7 @@ const InteractiveTimeline: React.FC<TimelineProps> = ({
                 const pos = getNodePosition(index);
                 const isLeft = index % 2 === 0;
                 const isActive = activeIndex !== null && index <= activeIndex;
+                const isCurrent = exp.date.includes("Present");
                 const Icon = exp.icon;
 
                 return (
@@ -262,53 +248,27 @@ const InteractiveTimeline: React.FC<TimelineProps> = ({
                                     <Badge
                                         className={cn(
                                             "text-xs font-mono",
-                                            exp.status === "current"
+                                            isCurrent
                                                 ? "bg-[#69E300]/20 text-[#69E300] border-[#69E300]/50"
                                                 : "bg-slate-700/50 text-slate-300 border-slate-600/50"
                                         )}
                                     >
-                                        {exp.year}
+                                        {exp.date}
                                     </Badge>
-                                    <motion.div
-                                        animate={
-                                            isActive
-                                                ? { rotate: [0, 360], scale: [1, 1.1, 1] }
-                                                : {}
-                                        }
-                                        transition={{
-                                            duration: 2,
-                                            repeat: isActive ? Infinity : 0,
-                                            ease: "linear",
-                                        }}
-                                    >
-                                        <Icon
-                                            className={cn(
-                                                "w-6 h-6",
-                                                isActive ? "text-[#69E300]" : "text-slate-400"
-                                            )}
-                                        />
-                                    </motion.div>
+                                    <Icon
+                                        className={cn(
+                                            "w-6 h-6",
+                                            isActive ? "text-[#69E300]" : "text-slate-400"
+                                        )}
+                                    />
                                 </div>
                                 <CardTitle className="text-xl text-white">{exp.title}</CardTitle>
-                                <p className="text-sm text-[#69E300] font-medium">{exp.company}</p>
+                                <p className="text-sm text-[#69E300] font-medium">{exp.organization}</p>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-slate-300 text-sm mb-4 leading-relaxed">
+                                <p className="text-slate-300 text-sm leading-relaxed">
                                     {exp.description}
                                 </p>
-                                <div className="flex flex-wrap gap-2">
-                                    {exp.technologies.map((tech, techIndex) => (
-                                        <motion.span
-                                            key={techIndex}
-                                            initial={{ opacity: 0, scale: 0.8 }}
-                                            whileInView={{ opacity: 1, scale: 1 }}
-                                            transition={{ delay: techIndex * 0.05 }}
-                                            className="px-3 py-1 text-xs rounded-full bg-slate-800/50 text-slate-300 border border-slate-700/50"
-                                        >
-                                            {tech}
-                                        </motion.span>
-                                    ))}
-                                </div>
                             </CardContent>
                         </Card>
                     </motion.div>
