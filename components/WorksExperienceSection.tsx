@@ -278,6 +278,86 @@ const InteractiveTimeline: React.FC<TimelineProps> = ({
     );
 };
 
+const MobileTimeline: React.FC<TimelineProps> = ({
+    experiences = defaultExperiences,
+}) => {
+    return (
+        <div className="relative">
+            {/* Vertical connecting line */}
+            <div className="absolute left-5 top-6 bottom-6 w-0.5 bg-linear-to-b from-[#69E300] via-[#69E300]/40 to-[#69E300]/10" />
+
+            <div className="space-y-6">
+                {experiences.map((exp, index) => {
+                    const Icon = exp.icon;
+                    const isCurrent = exp.date.includes("Present");
+
+                    return (
+                        <motion.div
+                            key={exp.id}
+                            className="relative flex gap-4"
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: false, margin: "-50px" }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                        >
+                            {/* Icon circle node */}
+                            <div className="relative shrink-0 z-10">
+                                <motion.div
+                                    className="w-10 h-10 rounded-full bg-slate-900 border-2 border-[#69E300] flex items-center justify-center"
+                                    animate={isCurrent ? {
+                                        boxShadow: [
+                                            "0 0 8px rgba(105,227,0,0.3)",
+                                            "0 0 20px rgba(105,227,0,0.7)",
+                                            "0 0 8px rgba(105,227,0,0.3)",
+                                        ],
+                                    } : { boxShadow: "0 0 8px rgba(105,227,0,0.2)" }}
+                                    transition={{ duration: 2, repeat: Infinity }}
+                                >
+                                    <Icon className="w-4 h-4 text-[#69E300]" />
+                                </motion.div>
+                            </div>
+
+                            {/* Card */}
+                            <div className="flex-1 min-w-0 pb-2">
+                                <Card
+                                    className={cn(
+                                        "bg-slate-900/80 backdrop-blur-lg border-2 transition-all duration-500",
+                                        isCurrent
+                                            ? "border-[#69E300]/50 shadow-[0_0_20px_rgba(105,227,0,0.15)]"
+                                            : "border-slate-700/50"
+                                    )}
+                                >
+                                    <CardHeader className="pb-3">
+                                        <Badge
+                                            className={cn(
+                                                "text-xs font-mono w-fit mb-2",
+                                                isCurrent
+                                                    ? "bg-[#69E300]/20 text-[#69E300] border-[#69E300]/50"
+                                                    : "bg-slate-700/50 text-slate-300 border-slate-600/50"
+                                            )}
+                                        >
+                                            {exp.date}
+                                        </Badge>
+                                        <CardTitle className="text-base sm:text-lg text-white leading-snug">
+                                            {exp.title}
+                                        </CardTitle>
+                                        <p className="text-sm text-[#69E300] font-medium">{exp.organization}</p>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p className="text-slate-300 text-sm leading-relaxed">
+                                            {exp.description}
+                                        </p>
+                                    </CardContent>
+                                </Card>
+                            </div>
+                        </motion.div>
+                    );
+                })}
+            </div>
+        </div>
+    );
+};
+
 const WorksExperienceSection: React.FC = () => {
     return (
         <section
@@ -295,7 +375,16 @@ const WorksExperienceSection: React.FC = () => {
                     }
                     subtitle="A journey through the projects I've built, the communities I've contributed to, and the experiences that shaped my growth as a developer."
                 />
-                <InteractiveTimeline />
+
+                {/* Mobile / Tablet timeline (< lg) */}
+                <div className="block lg:hidden">
+                    <MobileTimeline />
+                </div>
+
+                {/* Desktop timeline (≥ lg) */}
+                <div className="hidden lg:block">
+                    <InteractiveTimeline />
+                </div>
             </div>
 
             {/* Ambient glow */}
