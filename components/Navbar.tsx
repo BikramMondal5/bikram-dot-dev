@@ -63,10 +63,34 @@ export default function Navbar() {
                         </li>
                         <li>
                             <a
+                                href="#tech-stacks"
+                                className="text-white/80 hover:text-white font-medium transition-colors duration-200"
+                            >
+                                Tech Stacks
+                            </a>
+                        </li>
+                        <li>
+                            <a
                                 href="#projects"
                                 className="text-white/80 hover:text-white font-medium transition-colors duration-200"
                             >
                                 Projects
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#works-experience"
+                                className="text-white/80 hover:text-white font-medium transition-colors duration-200"
+                            >
+                                Experience
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#certificates"
+                                className="text-white/80 hover:text-white font-medium transition-colors duration-200"
+                            >
+                                Certificates
                             </a>
                         </li>
                         <li>
@@ -140,11 +164,38 @@ export default function Navbar() {
                             </li>
                             <li>
                                 <a
+                                    href="#tech-stacks"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="block text-white/80 hover:text-white font-medium transition-colors duration-200 py-2"
+                                >
+                                    Tech Stacks
+                                </a>
+                            </li>
+                            <li>
+                                <a
                                     href="#projects"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                     className="block text-white/80 hover:text-white font-medium transition-colors duration-200 py-2"
                                 >
                                     Projects
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="#works-experience"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="block text-white/80 hover:text-white font-medium transition-colors duration-200 py-2"
+                                >
+                                    Experience
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="#certificates"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="block text-white/80 hover:text-white font-medium transition-colors duration-200 py-2"
+                                >
+                                    Certificates
                                 </a>
                             </li>
                             <li>

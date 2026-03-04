@@ -272,7 +272,7 @@ export default function CertificatesSection() {
     const hasMore = currentCertificates.length > 6;
 
     return (
-        <section className="relative py-20 px-4 bg-[#0a0a0a]">
+        <section id="certificates" className="relative py-20 px-4 bg-[#0a0a0a]">
             <div className="container mx-auto max-w-7xl">
                 <SectionHeader
                     label="ACHIEVEMENTS"

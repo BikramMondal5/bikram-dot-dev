@@ -4,9 +4,8 @@
 
 A modern, interactive, and AI-powered portfolio website showcasing my journey as a Full-Stack Developer and AI/ML enthusiast. Built with cutting-edge technologies, featuring stunning 3D animations, an intelligent AI chatbot, and a seamless user experience across all devices.
 
-Grab a coffee ☕, explore my work, and let's build something amazing together!
+☕ Grab a coffee, explore my work, and let's build something amazing together!
 
----
 
 ## 🌟 Features
 
@@ -23,7 +22,6 @@ Grab a coffee ☕, explore my work, and let's build something amazing together!
 - 🎪 **Bento Grid Layout** – Modern card-based design with orbiting tech stack visualization
 - 📱 **Mobile-First Approach** – Hamburger menu, touch-friendly controls, and adaptive layouts
 
----
 
 ## 🛠️ Technologies Used
 
@@ -49,7 +47,6 @@ Grab a coffee ☕, explore my work, and let's build something amazing together!
 - **Lucide Icons** – Modern icon set
 - **Nodemailer** – Email sending functionality
 
----
 
 ## ⚙️ Installation
 
@@ -126,7 +123,6 @@ Navigate to `http://localhost:3000` to view the portfolio.
 4. 📚 **Add Documents to RAG** – Place PDFs/text files in `RAG/documents/`
 5. 🔧 **Extend Features** – Add new components in the `components/` directory
 
----
 
 ## 🎯 Key Features Breakdown
 
@@ -156,7 +152,6 @@ Navigate to `http://localhost:3000` to view the portfolio.
 - **Download Option** – Save certificates locally
 - **Tilt Effects** – 3D parallax hover animations
 
----
 
 ## 📂 Project Structure
 
@@ -246,7 +241,6 @@ bikram-dot-dev/
 | `EMAIL_PASS` | Gmail app password | ✅ Yes |
 | `MONGODB_URI` | MongoDB connection string | ✅ Yes |
 | `NEXT_PUBLIC_RAG_API_URL` | RAG backend URL | ⚠️ Optional |
----
 
 ## 📞 Contact & Support
 
@@ -255,5 +249,4 @@ bikram-dot-dev/
 - 🐙 **GitHub**: [@BikramMondal5](https://github.com/BikramMondal5)
 - 🐦 **Twitter/X**: [@CSnippets62428](https://x.com/CSnippets62428)
 - 📸 **Instagram**: [@code_snippets5](https://www.instagram.com/code_snippets5)
----
 

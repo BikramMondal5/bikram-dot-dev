@@ -215,6 +215,7 @@ export default function OverviewSection() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.3 }}
                     className="mt-20"
+                    id="tech-stacks"
                 >
                     {/* Section Header */}
                     <SectionHeader
