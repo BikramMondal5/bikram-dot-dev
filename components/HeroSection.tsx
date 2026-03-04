@@ -20,6 +20,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import OverviewSection from "@/components/OverviewSection";
 import CertificatesSection from "@/components/CertificatesSection";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
+import WorksExperienceSection from "@/components/WorksExperienceSection";
 import { Dock, DockIcon } from "@/components/ui/dock";
 import {
     Tooltip,
@@ -360,6 +361,9 @@ export default function HeroSection() {
 
             {/* Dynamic Project Showcase Section */}
             <ProjectShowcase />
+
+            {/* Works & Experience Section */}
+            <WorksExperienceSection />
 
             {/* Certificates Section */}
             <CertificatesSection />
