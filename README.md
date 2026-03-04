@@ -162,34 +162,78 @@ Navigate to `http://localhost:3000` to view the portfolio.
 
 ```
 bikram-dot-dev/
-├── app/                      # Next.js App Router
-│   ├── api/                  # API routes (email, testimonials, RAG)
-│   ├── login/                # Login page
-│   ├── sign-up/              # Sign-up page
-│   ├── layout.tsx            # Root layout
-│   └── page.tsx              # Home page
-├── components/               # React components
-│   ├── ui/                   # Reusable UI components
-│   ├── BentoSection.tsx      # About section with bento grid
-│   ├── CertificatesSection.tsx
-│   ├── ChatWidget.tsx        # AI chat assistant
-│   ├── HeroSection.tsx       # Landing section
-│   ├── Navbar.tsx            # Navigation bar
-│   ├── OverviewSection.tsx   # Overview and tech stack
-│   ├── ProjectShowcase.tsx   # Projects carousel
-│   └── TestimonialCarousel.tsx
-├── RAG/                      # Python RAG backend
-│   ├── documents/            # Knowledge base documents
-│   ├── app.py                # Flask server
-│   └── requirements.txt
-├── public/                   # Static assets
-│   ├── icons/                # Technology icons
-│   ├── certificates/         # Certificate images
-│   └── screenshots/          # Portfolio screenshots
-├── utils/                    # Utility functions
-├── .env.local.example        # Environment variables template
-├── tailwind.config.js        # Tailwind configuration
-└── package.json              # Dependencies
+├── app/                          # Next.js App Router
+│   ├── api/                      # API routes
+│   │   ├── chat-history/         # Chat history endpoint
+│   │   ├── rag/                  # RAG query endpoint
+│   │   ├── send-email/           # Email sending endpoint
+│   │   └── testimonials/         # Testimonials CRUD + seed
+│   ├── login/                    # Login page
+│   ├── sign-up/                  # Sign-up page
+│   ├── globals.css               # Global styles
+│   ├── layout.tsx                # Root layout
+│   └── page.tsx                  # Home page
+├── components/                   # React components
+│   ├── ui/                       # Reusable UI primitives
+│   │   ├── avatar-circles.tsx
+│   │   ├── bento-grid.tsx
+│   │   ├── dock.tsx
+│   │   ├── marquee.tsx
+│   │   ├── shimmer-button.tsx
+│   │   ├── typing-animation.tsx
+│   │   └── ...                   # badge, button, card, dialog, etc.
+│   ├── BentoSection.tsx          # About section with bento grid
+│   ├── CertificatesSection.tsx   # Certificates & achievements
+│   ├── ChatWidget.tsx            # AI chat assistant
+│   ├── HeroSection.tsx           # Landing section
+│   ├── Lanyard.tsx               # Discord presence widget
+│   ├── login-form.tsx            # Login form component
+│   ├── Navbar.tsx                # Navigation bar
+│   ├── OverviewSection.tsx       # Overview and tech stack
+│   ├── ProjectShowcase.tsx       # Projects carousel
+│   ├── signup-form.tsx           # Sign-up form component
+│   ├── TestimonialCarousel.tsx   # Testimonials display
+│   └── WorksExperienceSection.tsx# Work experience timeline
+├── RAG/                          # Python RAG backend
+│   ├── app/                      # Flask application
+│   │   ├── config.py             # App configuration
+│   │   ├── ingest.py             # Document ingestion
+│   │   ├── main.py               # Flask server entry point
+│   │   ├── rag.py                # RAG pipeline logic
+│   │   └── utils/                # Chunker, embeddings, vectorstore, etc.
+│   ├── db/                       # ChromaDB persistent storage
+│   ├── pdfs/                     # Knowledge base PDF documents
+│   ├── clear_db.py               # Script to reset vector DB
+│   ├── railway.toml              # Railway deployment config
+│   ├── render.yaml               # Render deployment config
+│   └── requirements.txt          # Python dependencies
+├── Voice-agent/                  # Standalone voice agent app
+│   ├── app/                      # Next.js app for voice agent
+│   ├── components/               # Voice agent components
+│   ├── src/                      # Vapi integration source
+│   └── utils/                    # Shared utilities
+├── lib/                          # Shared server-side libraries
+│   ├── mongodb.ts                # MongoDB connection
+│   ├── utils.ts                  # Utility functions
+│   └── models/                   # Mongoose models (ChatMessage, Testimonial)
+├── registry/                     # Custom UI component registry
+│   └── ui-registry/              # Confetti, globe, orbiting-circles, etc.
+├── public/                       # Static assets
+│   ├── icons/                    # Technology icons
+│   ├── certificates/             # Certificate images
+│   └── my-details.json           # Personal details for RAG
+├── utils/                        # Client-side utilities
+│   ├── chatMemory.ts             # Chat history management
+│   ├── ThreeJsContext.tsx        # Three.js React context
+│   └── vapi.ts                   # Vapi voice client
+├── setup_rag.py                  # RAG setup helper script
+├── start_servers.bat / .sh       # Dev server startup scripts
+├── test-deployment.bat / .sh     # Deployment test scripts
+├── components.json               # Shadcn/ui component config
+├── tailwind.config.js            # Tailwind configuration
+├── next.config.ts                # Next.js configuration
+├── tsconfig.json                 # TypeScript configuration
+└── package.json                  # Frontend dependencies
 ```
 
 ## 🔐 Environment Variables
